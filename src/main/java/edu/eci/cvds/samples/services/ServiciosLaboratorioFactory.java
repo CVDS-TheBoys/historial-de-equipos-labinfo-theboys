@@ -2,7 +2,9 @@ package edu.eci.cvds.samples.services;
 
 import com.google.inject.Injector;
 import edu.eci.cvds.sampleprj.dao.ElementoDAO;
+import edu.eci.cvds.sampleprj.dao.EquipoDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISElementoDAO;
+import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISEquipoDAO;
 import edu.eci.cvds.samples.services.impl.ServiciosLaboratorioImpl;
 import edu.eci.cvds.samples.services.impl.ServiciosLaboratorioStub;
 import org.mybatis.guice.XMLMyBatisModule;
@@ -21,6 +23,7 @@ public class ServiciosLaboratorioFactory {
                 setEnvironmentId(env);
                 setClassPathResource(pathResource);
                 bind(ElementoDAO.class).to(MyBATISElementoDAO.class);
+                bind(EquipoDAO.class).to(MyBATISEquipoDAO.class);
                 // TODO bind de DAOs faltantes
                 bind(ServiciosLaboratorio.class).to(ServiciosLaboratorioImpl.class);
             }
