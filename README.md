@@ -1,4 +1,4 @@
 ### Escuela Colombiana de Ingeniería
 ### Ciclos de Vida del desarrollo de Software – CVDS
 #### Proyecto de curso Ciclos de Vida de Software
-![](img/Modelo 2.png)
+![](img/Modelo2.png)
