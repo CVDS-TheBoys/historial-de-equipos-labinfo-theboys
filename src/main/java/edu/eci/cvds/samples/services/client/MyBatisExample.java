@@ -5,7 +5,9 @@ import java.io.InputStream;
 import java.sql.SQLException;
 
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper;
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper;
 import edu.eci.cvds.samples.entities.Elemento;
+import edu.eci.cvds.samples.entities.Equipo;
 import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.samples.services.ServiciosLaboratorio;
 import edu.eci.cvds.samples.services.ServiciosLaboratorioFactory;
@@ -50,10 +52,17 @@ public class MyBatisExample {
         SqlSession sqlss = sessionfact.openSession();
 
         //Crear el mapper y probarlo
+        //Elemento
         ElementoMapper em = sqlss.getMapper(ElementoMapper.class);
         Elemento elemento = new Elemento(1, "pupito", "Teclado", true);
         //em.insertarElemento(elemento);
         System.out.println(em.consultarElementos());
+
+        //Equipo
+        EquipoMapper eqm = sqlss.getMapper(EquipoMapper.class);
+        Equipo equipo = new Equipo(1, true, "equipo1");
+        //eqm.insertarEquipo(equipo);
+        //System.out.println(eqm.consultarEquipos());
 
         sqlss.commit();
         sqlss.close();
@@ -67,7 +76,8 @@ public class MyBatisExample {
             System.out.println(serviciosLaboratorio.consultarElementos());
 
             // Equipo
-
+            //serviciosLaboratorio.registrarEquipo(equipo);
+            System.out.println(serviciosLaboratorio.consultarEquipos());
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
         }
