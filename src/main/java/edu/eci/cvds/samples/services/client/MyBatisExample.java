@@ -1,28 +1,16 @@
-/*
- * Copyright (C) 2015 hcadavid
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package edu.eci.cvds.samples.services.client;
-
-
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper;
+import edu.eci.cvds.samples.entities.Elemento;
+import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
+import edu.eci.cvds.samples.services.ServiciosLaboratorio;
+import edu.eci.cvds.samples.services.ServiciosLaboratorioFactory;
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -43,7 +31,7 @@ public class MyBatisExample {
         if (sqlSessionFactory == null) {
             InputStream inputStream;
             try {
-                inputStream = Resources.getResourceAsStream("mybatis-config.xml");
+                inputStream = Resources.getResourceAsStream("mybatis-config-h2.xml");
                 sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             } catch (IOException e) {
                 throw new RuntimeException(e.getCause());
@@ -57,7 +45,32 @@ public class MyBatisExample {
      * @param args
      * @throws SQLException 
      */
-    public static void main(String args[]) throws SQLException {
+    public static void main(String[] args) throws SQLException {
+        SqlSessionFactory sessionfact = getSqlSessionFactory();
+        SqlSession sqlss = sessionfact.openSession();
+
+        //Crear el mapper y probarlo
+        ElementoMapper em = sqlss.getMapper(ElementoMapper.class);
+        Elemento elemento = new Elemento(1, "pupito", "Teclado", true);
+        //em.insertarElemento(elemento);
+        System.out.println(em.consultarElementos());
+
+        sqlss.commit();
+        sqlss.close();
+
+
+        // Prueba servicio
+        ServiciosLaboratorio serviciosLaboratorio = ServiciosLaboratorioFactory.getInstance().getServiciosLaboratorio();
+        try {
+            // Elemento
+            //serviciosLaboratorio.registrarElemento(elemento);
+            System.out.println(serviciosLaboratorio.consultarElementos());
+
+            // Equipo
+
+        } catch (ExcepcionServiciosLaboratorio e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
