@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper">
+
+    <insert id="insertarEquipo" parameterType="map">
+        INSERT INTO EQUIPOS (id, estado, LABORATORIO_id, nombre)
+        VALUES (#{equipo.id}, #{equipo.estado}, null, #{equipo.nombre})
+    </insert>
+
+    <select parameterType="map" id="consultarEquipo" resultMap="EquipoResult">
+        SELECT
+          eq.id as eq_id,
+          eq.estado as eq_estado,
+          eq.LABORATORIO_id as eq_laboratorio_id,
+          eq.nombre as eq_nombre
+        FROM EQUIPOS as eq
+        WHERE eq.id = #{ideq}
+    </select>
+
+    <select parameterType="map" id="consultarEquipos" resultMap="EquipoResult">
+        SELECT
+          eq.id as eq_id,
+          eq.estado as eq_estado,
+          eq.LABORATORIO_id as eq_laboratorio_id,
+          eq.nombre as eq_nombre
+        FROM EQUIPOS as eq
+    </select>
+
+    <resultMap id="EquipoResult" type="Equipo">
+        <id property="id" column="eq_id" />
+        <result property="estado" column="eq_estado" />
+        <result property="laboratorio_id" column="eq_laboratorio_id" />
+        <result property="nombre" column="eq_nombre" />
+    </resultMap>
+
+</mapper>
