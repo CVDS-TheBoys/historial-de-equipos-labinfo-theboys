@@ -4,5 +4,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper">
+    <insert id="insertarElemento" parameterType="map">
+        INSERT INTO ELEMENTOS (id, nombre, tipo, funcional, EQUIPO_id)
+        VALUES (#{elem.id}, #{elem.nombre}, #{elem.tipo}, #{elem.funcional}, null)
+    </insert>
+
+    <select id="consultarElementos" resultMap="ElementoResult">
+        SELECT
+          e.id as e_id,
+          e.nombre as e_nombre,
+          e.tipo as e_tipo,
+          e.funcional as e_funcional,
+          e.EQUIPO_id as e_equipo_id
+        FROM ELEMENTOS as e
+    </select>
+
+    <resultMap id="ElementoResult" type="Elemento">
+        <id property="id" column="e_id"/>
+        <result property="nombre" column="e_nombre"/>
+        <result property="tipo" column="e_tipo"/>
+        <result property="funcional" column="e_funcional"/>
+        <result property="equipo_id" column="e_equipo_id"/>
+    </resultMap>
 
 </mapper>
