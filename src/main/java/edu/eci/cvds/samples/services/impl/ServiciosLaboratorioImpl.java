@@ -3,12 +3,15 @@ package edu.eci.cvds.samples.services.impl;
 import com.google.inject.Inject;
 import edu.eci.cvds.sampleprj.dao.ElementoDAO;
 import edu.eci.cvds.sampleprj.dao.EquipoDAO;
+import edu.eci.cvds.sampleprj.dao.NovedadDAO;
 import edu.eci.cvds.samples.entities.Elemento;
 import edu.eci.cvds.samples.entities.Equipo;
+import edu.eci.cvds.samples.entities.Novedad;
 import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.samples.services.ServiciosLaboratorio;
 import org.apache.ibatis.exceptions.PersistenceException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServiciosLaboratorioImpl implements ServiciosLaboratorio {
@@ -16,6 +19,8 @@ public class ServiciosLaboratorioImpl implements ServiciosLaboratorio {
     private ElementoDAO elementoDAO;
     @Inject
     private EquipoDAO equipoDAO;
+    @Inject
+    private NovedadDAO novedadDAO;
 
     @Override
     public List<Elemento> consultarElementos() throws ExcepcionServiciosLaboratorio {
@@ -50,6 +55,31 @@ public class ServiciosLaboratorioImpl implements ServiciosLaboratorio {
             equipoDAO.save(equipo);
         } catch (PersistenceException ex) {
             throw new ExcepcionServiciosLaboratorio("Error al registrar el equipo " + equipo.getId() + ex);
+        }
+    }
+    @Override
+    public Novedad consultarNovedad(int id) throws ExcepcionServiciosLaboratorio {
+        try {
+            return novedadDAO.load(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar novedad "+ id + ": " + ex);
+        }
+    }
+    @Override
+    public ArrayList<Novedad> consultarNovedades() throws ExcepcionServiciosLaboratorio {
+        try {
+            return novedadDAO.loadAll();
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar novedades: " + ex);
+        }
+    }
+
+    @Override
+    public void registrarNovedad(Novedad novedad) throws ExcepcionServiciosLaboratorio {
+        try {
+            novedadDAO.save(novedad);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al registrar novedad " + novedad.getId() + ": " + ex);
         }
     }
 }
