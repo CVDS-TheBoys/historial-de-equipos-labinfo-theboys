@@ -2,12 +2,15 @@ package edu.eci.cvds.samples.services.client;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
 import java.sql.SQLException;
 
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper;
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.NovedadMapper;
 import edu.eci.cvds.samples.entities.Elemento;
 import edu.eci.cvds.samples.entities.Equipo;
+import edu.eci.cvds.samples.entities.Novedad;
 import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.samples.services.ServiciosLaboratorio;
 import edu.eci.cvds.samples.services.ServiciosLaboratorioFactory;
@@ -56,7 +59,7 @@ public class MyBatisExample {
         ElementoMapper em = sqlss.getMapper(ElementoMapper.class);
         Elemento elemento = new Elemento(1, "pupito", "Teclado", true);
         //em.insertarElemento(elemento);
-        System.out.println(em.consultarElementos());
+        //System.out.println(em.consultarElementos());
 
         //Equipo
         EquipoMapper eqm = sqlss.getMapper(EquipoMapper.class);
@@ -64,6 +67,12 @@ public class MyBatisExample {
         //eqm.insertarEquipo(equipo);
         //System.out.println(eqm.consultarEquipos());
 
+        //Novedad
+        NovedadMapper nvd = sqlss.getMapper(NovedadMapper.class);
+        Date fecha = new Date(System.currentTimeMillis());
+        Novedad novedad = new Novedad(1, "novedad1", "detalle1", fecha, 1, 1);
+        //nvd.insertarNovedad(novedad);
+        //System.out.println(nvd.consultarNovedades());
         sqlss.commit();
         sqlss.close();
 
@@ -78,6 +87,10 @@ public class MyBatisExample {
             // Equipo
             //serviciosLaboratorio.registrarEquipo(equipo);
             System.out.println(serviciosLaboratorio.consultarEquipos());
+
+            // Novedad
+            //serviciosLaboratorio.registrarNovedad(novedad);
+            System.out.println(serviciosLaboratorio.consultarNovedades());
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
         }

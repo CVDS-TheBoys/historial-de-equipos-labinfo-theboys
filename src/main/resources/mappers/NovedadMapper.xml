@@ -7,8 +7,8 @@
 
     <insert id="insertarNovedad" parameterType="map">
         INSERT INTO NOVEDADES (id, titulo, detalle, fecha, EQUIPO_id, ELEMENTO_id)
-        VALUES (#{novedad.id}, #{novedad.titulo}, #{novedad.detalle}, #{novedad.fecha}, #{novedad.equipo_id},
-        #{novedad.elemento_id})
+        VALUES (#{novedad.id}, #{novedad.titulo}, #{novedad.detalle}, #{novedad.fecha}, #{novedad.EQUIPO_id},
+        #{novedad.ELEMENTO_id})
     </insert>
 
     <select parameterType="map" id="consultarNovedad" resultMap="NovedadResult">
@@ -18,7 +18,7 @@
         nv.detalle as nv_detalle,
         nv.fecha as nv_fecha,
         nv.EQUIPO_id as nv_equipo_id,
-        nv.ELEMENTO_id as nv_elemento_id,
+        nv.ELEMENTO_id as nv_elemento_id
         FROM NOVEDADES as nv
         WHERE nv.id = #{idnv}
     </select>
@@ -30,7 +30,7 @@
         nv.detalle as nv_detalle,
         nv.fecha as nv_fecha,
         nv.EQUIPO_id as nv_equipo_id,
-        nv.ELEMENTO_id as nv_elemento_id,
+        nv.ELEMENTO_id as nv_elemento_id
         FROM NOVEDADES as nv
     </select>
 
