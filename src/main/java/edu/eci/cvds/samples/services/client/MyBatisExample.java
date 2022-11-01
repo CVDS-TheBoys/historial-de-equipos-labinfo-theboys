@@ -8,9 +8,8 @@ import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper;
 import edu.eci.cvds.samples.entities.Elemento;
 import edu.eci.cvds.samples.entities.Equipo;
-import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
-import edu.eci.cvds.samples.services.ServiciosLaboratorio;
-import edu.eci.cvds.samples.services.ServiciosLaboratorioFactory;
+import edu.eci.cvds.samples.services.*;
+import edu.eci.cvds.samples.services.impl.ServiciosEquipoImpl;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -55,32 +54,36 @@ public class MyBatisExample {
         //Elemento
         ElementoMapper em = sqlss.getMapper(ElementoMapper.class);
         Elemento elemento = new Elemento(1, "pupito", "Teclado", true);
-        //em.insertarElemento(elemento);
+        em.insertarElemento(elemento);
         System.out.println(em.consultarElementos());
 
         //Equipo
         EquipoMapper eqm = sqlss.getMapper(EquipoMapper.class);
-        Equipo equipo = new Equipo(1, true, "equipo1");
-        //eqm.insertarEquipo(equipo);
-        //System.out.println(eqm.consultarEquipos());
+        Equipo equipo = new Equipo(2, true, "equipo1");
+        eqm.insertarEquipo(equipo);
+        System.out.println(eqm.consultarEquipos());
+
+        em.actualizarEquipo(1, 2);
+        System.out.println(em.consultarElementos());
 
         sqlss.commit();
         sqlss.close();
 
 
         // Prueba servicio
-        ServiciosLaboratorio serviciosLaboratorio = ServiciosLaboratorioFactory.getInstance().getServiciosLaboratorio();
+        //ServiciosLaboratorio serviciosLaboratorio = ServiciosLaboratorioFactory.getInstance().getServiciosLaboratorio();
+        /*ServiciosEquipo serviciosEquipo = ServiciosEquipoFactory.getInstance().getServiciosEquipo();
         try {
             // Elemento
             //serviciosLaboratorio.registrarElemento(elemento);
-            System.out.println(serviciosLaboratorio.consultarElementos());
+            //System.out.println(serviciosLaboratorio.consultarElementos());
 
             // Equipo
-            //serviciosLaboratorio.registrarEquipo(equipo);
-            System.out.println(serviciosLaboratorio.consultarEquipos());
+            serviciosEquipo.registrarEquipo(equipo);
+            System.out.println(serviciosEquipo.consultarEquipos());
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
     }
 
