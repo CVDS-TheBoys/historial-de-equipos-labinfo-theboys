@@ -9,4 +9,5 @@ public interface EquipoMapper {
     public void insertarEquipo(@Param("equipo") Equipo equipo);
     public Equipo consultarEquipo(@Param("ideq") int id);
     public List<Equipo> consultarEquipos();
+    public List<Equipo> consultarReporte();
 }

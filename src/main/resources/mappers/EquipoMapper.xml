@@ -29,6 +29,16 @@
         FROM EQUIPOS as eq
     </select>
 
+    <select parameterType="map" id="consultarEquipos" resultMap="EquipoResult">
+        SELECT
+        eq.id as eq_id,
+        eq.estado as eq_estado,
+        eq.LABORATORIO_id as eq_laboratorio_id,
+        eq.nombre as eq_nombre
+        FROM EQUIPOS as eq
+        WHERE eq.estado == true
+    </select>
+
     <resultMap id="EquipoResult" type="Equipo">
         <id property="id" column="eq_id" />
         <result property="estado" column="eq_estado" />
