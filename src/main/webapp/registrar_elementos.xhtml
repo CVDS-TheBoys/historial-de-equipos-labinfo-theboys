@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Registro Elementos</title>
+    <link rel="stylesheet" href="./style.css"/>
+</h:head>
+
+<h:body>
+    <div class="card">
+        <h:form id="elementos">
+            <h1>Clientes</h1>
+            <p:dataTable var="elemento" value="#{ElementosBean.getElementos()}" rows="10"
+                         paginator="true" paginatorPosition="bottom"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                         rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+
+                <p:column headerText="Id">
+                    <h:outputText value="#{elemento.id}" />
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{elemento.nombre}" />
+                </p:column>
+
+                <p:column headerText="tipo">
+                    <h:outputText value="#{elemento.tipo}" />
+                </p:column>
+
+                <p:column headerText="funcional">
+                    <h:outputText value="#{elemento.funcional}" />
+                </p:column>
+
+                <p:column headerText="equipo_id">
+                    <h:outputText value="#{elemento.equipo_id}" />
+                </p:column>
+
+                <f:facet name="paginatorTopLeft">
+                    <p:commandButton type="button" icon="pi pi-refresh"/>
+                </f:facet>
+
+            </p:dataTable>
+
+            <h1>Registrar Elementos</h1>
+            <div>
+                <p:outputLabel for="Id" value="Id" /><br/>
+                <p:inputText id="Id" type="int" value="#{id}" /><br/><br/>
+            </div>
+            <div>
+                <p:outputLabel for="Nombre" value="Nombre" /><br/>
+                <p:inputText id="Nombre" type="String" value="#{name}" /><br/><br/>
+            </div>
+            <!--<div>
+                <p:outputLabel for="Tipo" value="Tipo" /><br/>
+                <p:inputText id="Tipo" type="String" value="#{type}" placeholder="Torre, Pantalla, Mouse, Teclado" /><br/><br/>
+            </div>-->
+            <div>
+                <p:outputLabel for="Tipo" value="Tipo" /><br/>
+                <p:selectOneMenu id="Tipo" value="#{type}">
+                    <f:selectItem itemLabel="Torre" itemValue="Torre"/>
+                    <f:selectItem itemLabel="Pantalla" itemValue="Pantalla"/>
+                    <f:selectItem itemLabel="Mouse" itemValue="Mouse"/>
+                    <f:selectItem itemLabel="Teclado" itemValue="Teclado"/>
+                </p:selectOneMenu><br/><br/>
+            </div>
+            <p:commandButton value="Registrar elemento" update="elementos" actionListener="#{ElementosBean.registrarElemento(id, name, type)}"/>
+        </h:form>
+    </div>
+
+
+
+
+
+</h:body>
+</html>
