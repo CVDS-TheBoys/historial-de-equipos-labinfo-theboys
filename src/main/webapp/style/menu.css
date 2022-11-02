@@ -5,7 +5,7 @@
 }
 
 body {
-    background-image: url('./../images/background5.png')
+    background-image: url('./../images/bkgd_menu.png')
 }
 
 .form-menu {
@@ -31,7 +31,7 @@ body {
 
 .title {
     color: white;
-    padding: 0px 30px;
+    padding: 0px 22px;
     margin: auto;
     width: 380px;
     margin-top: 0px;
@@ -39,4 +39,3 @@ body {
     font-size: 47px;
     text-shadow: 6px 6px 15px #000;
 }
-
