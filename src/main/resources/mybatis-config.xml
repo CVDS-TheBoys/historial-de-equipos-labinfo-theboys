@@ -10,7 +10,9 @@
     <properties resource="config.properties">
     </properties>
     <typeAliases>
-        <!-- -->
+        <typeAlias type='edu.eci.cvds.samples.entities.Elemento' alias='Elemento'/>
+        <typeAlias type='edu.eci.cvds.samples.entities.Equipo' alias='Equipo'/>
+        <!-- TODO poner entidades faltantes -->
     </typeAliases>	
 
     <environments default="development">
@@ -29,7 +31,9 @@
     </environments>
         
     <mappers>
-        <!-- -->
+        <mapper resource="mappers/ElementoMapper.xml"></mapper>
+        <mapper resource="mappers/EquipoMapper.xml"></mapper>
+        <!-- TODO poner mappers faltantes -->
     </mappers> 
         
         

@@ -10,10 +10,7 @@ import edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.NovedadMapper;
 import edu.eci.cvds.samples.entities.Elemento;
 import edu.eci.cvds.samples.entities.Equipo;
-import edu.eci.cvds.samples.entities.Novedad;
-import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
-import edu.eci.cvds.samples.services.ServiciosLaboratorio;
-import edu.eci.cvds.samples.services.ServiciosLaboratorioFactory;
+import edu.eci.cvds.samples.services.*;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -47,55 +44,48 @@ public class MyBatisExample {
 
     /**
      * Programa principal de ejempo de uso de MyBATIS
+     * 
      * @param args
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void main(String[] args) throws SQLException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
 
-        //Crear el mapper y probarlo
-        //Elemento
+        // Crear el mapper y probarlo
+        // Elemento
         ElementoMapper em = sqlss.getMapper(ElementoMapper.class);
         Elemento elemento = new Elemento(1, "pupito", "Teclado", true);
-        //em.insertarElemento(elemento);
-        //System.out.println(em.consultarElementos());
+        // em.insertarElemento(elemento);
+        // System.out.println(em.consultarElementos());
 
-        //Equipo
+        // Equipo
         EquipoMapper eqm = sqlss.getMapper(EquipoMapper.class);
         Equipo equipo = new Equipo(1, true, "equipo1");
-        //eqm.insertarEquipo(equipo);
-        //System.out.println(eqm.consultarEquipos());
+        // eqm.insertarEquipo(equipo);
+        // System.out.println(eqm.consultarEquipos());
 
-        //Novedad
+        // Novedad
         NovedadMapper nvd = sqlss.getMapper(NovedadMapper.class);
         Date fecha = new Date(System.currentTimeMillis());
         Novedad novedad = new Novedad(1, "novedad1", "detalle1", fecha, 1, 1);
-        //nvd.insertarNovedad(novedad);
-        //System.out.println(nvd.consultarNovedades());
+        // nvd.insertarNovedad(novedad);
+        // System.out.println(nvd.consultarNovedades());
         sqlss.commit();
         sqlss.close();
 
-
         // Prueba servicio
-        ServiciosLaboratorio serviciosLaboratorio = ServiciosLaboratorioFactory.getInstance().getServiciosLaboratorio();
+        ServiciosElemento serviciosElemento = ServiciosElementoFactory.getInstance().getServiciosElemento();
         try {
             // Elemento
-            //serviciosLaboratorio.registrarElemento(elemento);
-            System.out.println(serviciosLaboratorio.consultarElementos());
+            System.out.println(serviciosElemento.consultarElementos());
+            serviciosElemento.registrarElemento(elemento);
+            System.out.println(serviciosElemento.consultarElementos());
 
-            // Equipo
-            //serviciosLaboratorio.registrarEquipo(equipo);
-            System.out.println(serviciosLaboratorio.consultarEquipos());
-
-            // Novedad
-            //serviciosLaboratorio.registrarNovedad(novedad);
-            System.out.println(serviciosLaboratorio.consultarNovedades());
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
         }
 
     }
-
 
 }
