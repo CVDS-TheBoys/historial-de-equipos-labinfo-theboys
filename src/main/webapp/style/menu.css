@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('./../images/background5.png')
+}
+
+.form-menu {
+    color: white;
+    width: 400px;
+    background: #000000d6;
+    padding: 30px;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 10px;
+    font-family: 'calibri';
+    box-shadow: 10px 10px 35px #000;
+}
+
+.card {
+    margin-left: 58px;
+    margin-bottom: 15px;
+}
+
+.ui-menu {
+    width: 14em;
+}
+
+.title {
+    color: white;
+    padding: 0px 30px;
+    margin: auto;
+    width: 380px;
+    margin-top: 0px;
+    font-family: 'calibri';
+    font-size: 47px;
+    text-shadow: 6px 6px 15px #000;
+}
+
