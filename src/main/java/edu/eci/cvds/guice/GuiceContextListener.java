@@ -7,7 +7,9 @@ import edu.eci.cvds.sampleprj.dao.EquipoDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISElementoDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISEquipoDAO;
 import edu.eci.cvds.samples.services.ServiciosElemento;
+import edu.eci.cvds.samples.services.ServiciosEquipo;
 import edu.eci.cvds.samples.services.impl.ServiciosElementoImpl;
+import edu.eci.cvds.samples.services.impl.ServiciosEquipoImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
@@ -34,6 +36,7 @@ public class GuiceContextListener implements ServletContextListener {
                 bind(ElementoDAO.class).to(MyBATISElementoDAO.class);
                 bind(EquipoDAO.class).to(MyBATISEquipoDAO.class);
                 bind(ServiciosElemento.class).to(ServiciosElementoImpl.class);
+                bind(ServiciosEquipo.class).to(ServiciosEquipoImpl.class);
                 // TODO Añadir entidades/servicios faltantes
                 // bind(BBB.class).to(ZZZ.class);
 

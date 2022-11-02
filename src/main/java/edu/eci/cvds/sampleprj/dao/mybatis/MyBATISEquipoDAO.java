@@ -52,5 +52,15 @@ public class MyBATISEquipoDAO implements EquipoDAO {
         }
     }
 
+    @Override
+    public List<Equipo> consultarReporteFiltro(int id, boolean est, int lab_id, String nombre) throws PersistenceException {
+        try {
+            return equipoMapper.consultarReporteFiltro(id, est, lab_id, nombre);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            System.out.println(e.getMessage());
+            throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar los reportes ", e);
+        }
+    }
+
 
 }

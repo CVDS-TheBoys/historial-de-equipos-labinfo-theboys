@@ -1,18 +1,18 @@
 package edu.eci.cvds.samples.services;
 
 import com.google.inject.Injector;
-import edu.eci.cvds.sampleprj.dao.ElementoDAO;
-import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISElementoDAO;
-import edu.eci.cvds.samples.services.impl.ServiciosElementoImpl;
+import edu.eci.cvds.sampleprj.dao.EquipoDAO;
+import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISEquipoDAO;
+import edu.eci.cvds.samples.services.impl.ServiciosEquipoImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 
 import java.util.Optional;
 
 import static com.google.inject.Guice.createInjector;
 
-public class ServiciosElementoFactory {
+public class ServiciosEquipoFactory {
 
-    private static ServiciosElementoFactory instance = new ServiciosElementoFactory();
+    private static ServiciosEquipoFactory instance = new ServiciosEquipoFactory();
 
     private static Optional<Injector> optInjector;
 
@@ -22,33 +22,34 @@ public class ServiciosElementoFactory {
             protected void initialize() {
                 setEnvironmentId(env);
                 setClassPathResource(pathResource);
-                bind(ElementoDAO.class).to(MyBATISElementoDAO.class);
-                bind(ServiciosElemento.class).to(ServiciosElementoImpl.class);
+                bind(EquipoDAO.class).to(MyBATISEquipoDAO.class);
+                bind(ServiciosEquipo.class).to(ServiciosEquipoImpl.class);
                 // TODO bind de DAOs/servicios faltantes
             }
         });
     }
 
-    private ServiciosElementoFactory(){
+    private ServiciosEquipoFactory(){
         optInjector = Optional.empty();
     }
 
-    public ServiciosElemento getServiciosElemento(){
+    public ServiciosEquipo getServiciosEquipo(){
         if (!optInjector.isPresent()) {
             optInjector = Optional.of(myBatisInjector("development","mybatis-config.xml"));
         }
-        return optInjector.get().getInstance(ServiciosElemento.class);
+        return optInjector.get().getInstance(ServiciosEquipo.class);
     }
 
-    public ServiciosElemento getServiciosElementoTesting(){
+    public ServiciosEquipo getServiciosEquipoTesting(){
         if (!optInjector.isPresent()) {
             optInjector = Optional.of(myBatisInjector("test","mybatis-config-h2.xml"));
         }
-        return optInjector.get().getInstance(ServiciosElemento.class);
+        return optInjector.get().getInstance(ServiciosEquipo.class);
     }
 
-    public static ServiciosElementoFactory getInstance(){
+    public static ServiciosEquipoFactory getInstance(){
         return instance;
     }
 
 }
+

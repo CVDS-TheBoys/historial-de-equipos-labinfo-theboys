@@ -38,6 +38,12 @@ public class ServiciosElementoTest {
 
     @Test
     public void test() {
+        try {
+            System.out.println(serviciosElemento.consultarElementos());
+        } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
+            excepcionServiciosLaboratorio.printStackTrace();
+        }
         Assert.assertTrue(true);
     }
+
 }
