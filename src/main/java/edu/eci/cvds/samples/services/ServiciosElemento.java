@@ -13,4 +13,12 @@ public interface ServiciosElemento {
      * @throws ExcepcionServiciosLaboratorio si el identificador del elemento ya existe
      */
     public void registrarElemento(Elemento elemento) throws ExcepcionServiciosLaboratorio;
+
+    /**
+     * Actualiza el equipo al que pertenece el elemento
+     * @param idel id del elemento
+     * @param ideq id del equipo
+     * @throws ExcepcionServiciosLaboratorio
+     */
+    public void actualizarEquipo(int idel, int ideq) throws ExcepcionServiciosLaboratorio;
 }

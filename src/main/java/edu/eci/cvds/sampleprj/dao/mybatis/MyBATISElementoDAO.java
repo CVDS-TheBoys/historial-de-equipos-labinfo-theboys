@@ -35,4 +35,14 @@ public class MyBATISElementoDAO implements ElementoDAO {
             throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar los elementos disponibles " + e);
         }
     }
+
+    @Override
+    public void updatePC(int idel, int ideq) throws PersistenceException {
+        try {
+            elementoMapper.actualizarEquipo(idel, ideq);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            System.out.println(e.getMessage());
+            throw new org.apache.ibatis.exceptions.PersistenceException("Error al actualizar el equipo del elemento " + idel, e);
+        }
+    }
 }

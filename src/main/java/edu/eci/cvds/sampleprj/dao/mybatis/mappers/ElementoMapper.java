@@ -8,4 +8,5 @@ import java.util.List;
 public interface ElementoMapper {
     public List<Elemento> consultarElementos();
     public void insertarElemento(@Param("elem") Elemento elemento);
+    public void actualizarEquipo(@Param("idel") int idel, @Param("ideq") int ideq);
 }

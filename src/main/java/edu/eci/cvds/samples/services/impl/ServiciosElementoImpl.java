@@ -31,4 +31,13 @@ public class ServiciosElementoImpl implements ServiciosElemento {
             throw new ExcepcionServiciosLaboratorio("Error al registrar el elemento " + elemento.getId() + ex);
         }
     }
+
+    @Override
+    public void actualizarEquipo(int idel, int ideq) throws ExcepcionServiciosLaboratorio {
+        try {
+            elementoDAO.updatePC(idel, ideq);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al actualizar el equipo del elemento " + idel + ex);
+        }
+    }
 }

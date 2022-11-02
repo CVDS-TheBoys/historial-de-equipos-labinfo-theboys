@@ -9,4 +9,5 @@ public interface ElementoDAO {
     public Elemento load(int id) throws PersistenceException;
     public void save(Elemento elemento) throws PersistenceException;
     public List<Elemento> loadAll() throws PersistenceException;
+    public void updatePC(int idel, int ideq) throws PersistenceException;
 }

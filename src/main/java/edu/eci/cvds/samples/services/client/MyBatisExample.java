@@ -54,6 +54,7 @@ public class MyBatisExample {
         //Elemento
         ElementoMapper em = sqlss.getMapper(ElementoMapper.class);
         Elemento elemento = new Elemento(1, "pupito", "Teclado", true);
+
         em.insertarElemento(elemento);
         System.out.println(em.consultarElementos());
 
@@ -71,16 +72,18 @@ public class MyBatisExample {
 
 
         // Prueba servicio
-        //ServiciosLaboratorio serviciosLaboratorio = ServiciosLaboratorioFactory.getInstance().getServiciosLaboratorio();
+        ServiciosElemento serviciosElemento = ServiciosElementoFactory.getInstance().getServiciosElemento();
         /*ServiciosEquipo serviciosEquipo = ServiciosEquipoFactory.getInstance().getServiciosEquipo();
         try {
             // Elemento
-            //serviciosLaboratorio.registrarElemento(elemento);
-            //System.out.println(serviciosLaboratorio.consultarElementos());
+            System.out.println(serviciosElemento.consultarElementos());
+            serviciosElemento.registrarElemento(elemento);
+            System.out.println(serviciosElemento.consultarElementos());
 
             // Equipo
             serviciosEquipo.registrarEquipo(equipo);
             System.out.println(serviciosEquipo.consultarEquipos());
+
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
         }*/
