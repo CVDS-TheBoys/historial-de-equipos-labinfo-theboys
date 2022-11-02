@@ -5,12 +5,8 @@ import edu.eci.cvds.samples.entities.Elemento;
 import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.samples.services.ServiciosElemento;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.model.SelectItem;
-import javax.faces.model.SelectItemGroup;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
