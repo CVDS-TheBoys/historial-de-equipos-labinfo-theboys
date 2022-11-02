@@ -42,5 +42,4 @@ public class MyBATISEquipoDAO implements EquipoDAO {
         }
     }
 
-
 }

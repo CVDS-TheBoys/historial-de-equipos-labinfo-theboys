@@ -19,6 +19,10 @@
         FROM ELEMENTOS as e
     </select>
 
+    <update id="actualizarEquipo" parameterType="map">
+        UPDATE ELEMENTOS SET EQUIPO_id = #{ideq} WHERE id = #{idel}
+    </update>
+
     <resultMap id="ElementoResult" type="Elemento">
         <id property="id" column="e_id"/>
         <result property="nombre" column="e_nombre"/>
