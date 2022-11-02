@@ -18,7 +18,7 @@ public class ServiciosNovedadImpl implements ServiciosNovedad {
         try {
             return novedadDAO.loadAll();
         } catch (PersistenceException ex) {
-            throw new ExcepcionServiciosLaboratorio("Error al cargar elementos " + ex);
+            throw new ExcepcionServiciosLaboratorio("Error al cargar novedades " + ex);
         }
     }
 
