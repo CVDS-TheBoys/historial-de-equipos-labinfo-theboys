@@ -17,7 +17,7 @@ import java.util.List;
  * Bean para la interfaz de usuario de los elementos
  */
 @SuppressWarnings("deprecation")
-@ManagedBean(name = "ElementosBean")
+@ManagedBean(name = "ElementoBean")
 @SessionScoped
 public class ElementoBean extends BasePageBean {
     @Inject
@@ -36,6 +36,14 @@ public class ElementoBean extends BasePageBean {
     public List<Elemento> getElementos() {
         try {
             return serviciosElemento.consultarElementos();
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    public List<Elemento> getTipoElementosDisponibles(String tipo) {
+        try {
+            return serviciosElemento.consultarTipoElementoDisponibles(tipo);
         } catch (ExcepcionServiciosLaboratorio ex) {
             ex.printStackTrace();
             return null;
