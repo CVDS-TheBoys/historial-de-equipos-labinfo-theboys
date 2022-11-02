@@ -12,12 +12,13 @@ import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Bean para la interfaz de usuario de los elementos
  */
 @SuppressWarnings("deprecation")
-@ManagedBean(name = "ElementosBean")
+@ManagedBean(name = "ElementoBean")
 @SessionScoped
 public class ElementoBean extends BasePageBean {
     @Inject
@@ -40,6 +41,10 @@ public class ElementoBean extends BasePageBean {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    public void sleep() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
     }
 
 }
