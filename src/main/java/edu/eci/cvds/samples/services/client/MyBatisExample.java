@@ -10,6 +10,7 @@ import edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.NovedadMapper;
 import edu.eci.cvds.samples.entities.Elemento;
 import edu.eci.cvds.samples.entities.Equipo;
+import edu.eci.cvds.samples.entities.Novedad;
 import edu.eci.cvds.samples.services.*;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
