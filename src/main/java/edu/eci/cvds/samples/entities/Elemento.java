@@ -18,7 +18,7 @@ public class Elemento {
         this.nombre = nombre;
         this.tipo = tipo;
         this.funcional = funcional;
-        this.equipo_id = -1;
+        this.equipo_id = null;
     }
 
     public Elemento(int id, String nombre, String tipo, boolean funcional, Integer equipo_id) {
@@ -61,11 +61,11 @@ public class Elemento {
         this.funcional = funcional;
     }
 
-    public int getEquipo_id() {
+    public Integer getEquipo_id() {
         return equipo_id;
     }
 
-    public void setEquipo_id(int equipo_id) {
+    public void setEquipo_id(Integer equipo_id) {
         this.equipo_id = equipo_id;
     }
 
