@@ -12,7 +12,7 @@
 
 <h:body>
     <h:form>
-        <p:dataTable var="equipo" value="#{EquiposBean.consultarEquipos()}"
+        <p:dataTable id ="tabla_reporte" var="equipo" value="#{EquiposBean.consultarEquipos()}"
                      filteredValue="#{EquiposBean.listaEquiposFiltrada}"
                      widgetVar="equipoWidget" xmlns:p="http://primefaces.org/ui"
                      xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html">
@@ -54,7 +54,17 @@
                 <p:button outcome="pagina_adm" value="Pagina Administracion"/>
             </p:column>
 
+
         </p:dataTable>
+        <center>
+            <p:panel header="Exportar a Excel">
+
+                <h:commandLink>
+                    <p:graphicImage value="./images/excel.ico" height="50" />
+                    <p:dataExporter type="xls" target="tabla_reporte" fileName="reporte" />
+                </h:commandLink>
+            </p:panel>
+        </center>
     </h:form>
 </h:body>
 </html>
