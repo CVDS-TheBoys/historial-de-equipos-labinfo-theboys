@@ -1,5 +1,8 @@
 package edu.eci.cvds.samples.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Ariza
  */
@@ -10,8 +13,7 @@ public class Elemento {
     private String tipo;
     private boolean funcional;
     private Integer equipo_id;
-
-    // TODO private List<Novedad> novedades
+    private List<Novedad> novedades;
 
     public Elemento(int id, String nombre, String tipo, boolean funcional) {
         this.id = id;
@@ -19,6 +21,7 @@ public class Elemento {
         this.tipo = tipo;
         this.funcional = funcional;
         this.equipo_id = null;
+        this.novedades = null;
     }
 
     public Elemento(int id, String nombre, String tipo, boolean funcional, Integer equipo_id) {
@@ -27,6 +30,20 @@ public class Elemento {
         this.tipo = tipo;
         this.funcional = funcional;
         this.equipo_id = equipo_id;
+        this.novedades = new ArrayList<>();
+    }
+
+    public Elemento(int id, String nombre, String tipo, boolean funcional, Integer equipo_id, List<Novedad> novedades) {
+        this.id = id;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.funcional = funcional;
+        this.equipo_id = equipo_id;
+        this.novedades = novedades;
+    }
+
+    public Elemento() {
+
     }
 
     public int getId() {
@@ -69,6 +86,14 @@ public class Elemento {
         this.equipo_id = equipo_id;
     }
 
+    public List<Novedad> getNovedades() {
+        return novedades;
+    }
+
+    public void setNovedades(List<Novedad> novedades) {
+        this.novedades = novedades;
+    }
+
     @Override
     public String toString() {
         return "Elemento{" +
@@ -76,7 +101,8 @@ public class Elemento {
                 ", nombre='" + nombre + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", funcional=" + funcional +
-                ", Equipo_id=" + equipo_id +
+                ", equipo_id=" + equipo_id +
+                ", novedades=" + novedades +
                 '}';
     }
 }

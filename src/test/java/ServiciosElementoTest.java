@@ -17,7 +17,7 @@ public class ServiciosElementoTest {
         serviciosElemento = ServiciosElementoFactory.getInstance().getServiciosElementoTesting();
     }
 
-    @Test
+    /*@Test
     public void deberiaInsertarElemento() {
         try {
             serviciosElemento.registrarElemento(elemento);
@@ -34,7 +34,7 @@ public class ServiciosElementoTest {
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 
     @Test
     public void test() {

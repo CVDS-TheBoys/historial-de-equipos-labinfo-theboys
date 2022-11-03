@@ -11,12 +11,18 @@
 
     <select id="consultarElementos" resultMap="ElementoResult">
         SELECT
-          e.id as e_id,
-          e.nombre as e_nombre,
-          e.tipo as e_tipo,
-          e.funcional as e_funcional,
-          e.EQUIPO_id as e_equipo_id
-        FROM ELEMENTOS as e
+            e.id as e_id,
+            e.nombre as e_nombre,
+            e.tipo as e_tipo,
+            e.funcional as e_funcional,
+            e.EQUIPO_id as e_equipo_id<!--,
+            n.id as n_id,
+            n.titulo as n_titulo,
+            n.detalle as n_detalle,
+            n.fecha as n_fecha,
+            n.EQUIPO_id as n_EQUIPO_id,
+            n.ELEMENTO_id as n_ELEMENTO_id-->
+        FROM ELEMENTOS as e JOIN NOVEDADES as n ON (e.id = n.elemento_id);
     </select>
 
     <resultMap id="ElementoResult" type="Elemento">
@@ -25,6 +31,9 @@
         <result property="tipo" column="e_tipo"/>
         <result property="funcional" column="e_funcional"/>
         <result property="equipo_id" column="e_equipo_id"/>
+        <collection property="novedades" javaType="ArrayList" ofType="Novedad" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.NovedadMapper.NovedadResult" columnPrefix="n_">
+        </collection>
     </resultMap>
+
 
 </mapper>

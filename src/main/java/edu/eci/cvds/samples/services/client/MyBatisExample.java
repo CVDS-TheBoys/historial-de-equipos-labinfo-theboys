@@ -77,11 +77,18 @@ public class MyBatisExample {
 
         // Prueba servicio
         ServiciosElemento serviciosElemento = ServiciosElementoFactory.getInstance().getServiciosElemento();
+        ServiciosNovedad serviciosNovedad = ServiciosNovedadFactory.getInstance().getServiciosNovedad();
         try {
             // Elemento
+            //System.out.println(serviciosElemento.consultarElementos());
+            //serviciosElemento.registrarElemento(elemento);
             System.out.println(serviciosElemento.consultarElementos());
-            serviciosElemento.registrarElemento(elemento);
-            System.out.println(serviciosElemento.consultarElementos());
+
+
+
+            // Novedades
+            System.out.println(serviciosNovedad.consultarNovedades());
+            //serviciosNovedad.registrarNovedad(novedad);
 
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
