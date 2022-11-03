@@ -21,4 +21,12 @@ public interface ServiciosElemento {
      * @throws ExcepcionServiciosLaboratorio
      */
     public void actualizarEquipo(int idel, int ideq) throws ExcepcionServiciosLaboratorio;
+
+    /**
+     * Consulta los elementos disponibles segun el tipo que se ingrese
+     * @param tipo de elemento
+     * @return lista de id's de los elementos disponibles segun el tipo
+     * @throws ExcepcionServiciosLaboratorio
+     */
+    public List<Elemento> consultarTipoElementoDisponibles(String tipo) throws ExcepcionServiciosLaboratorio;
 }
