@@ -32,7 +32,7 @@ public class ServiciosEquipoFactory {
 
     public ServiciosEquipo getServiciosEquipo(){
         if (!optInjector.isPresent()) {
-            optInjector = Optional.of(myBatisInjector("test"/*"development"*/,"mybatis-config-h2.xml"/*"mybatis-config.xml"*/)); // BASE LOCAL
+            optInjector = Optional.of(myBatisInjector("development","mybatis-config.xml"));
         }
         return optInjector.get().getInstance(ServiciosEquipo.class);
     }

@@ -11,6 +11,62 @@
 </h:head>
 
 <h:body>
+    <div class="card">
+        <h:form id="equipos">
+            <h1>Registrar equipo</h1>
+            <div>
+                <p:outputLabel for="Id" value="Id"/><br/>
+                <p:inputText id="Id" type="int" required="true" value="#{equipoId}">
+                    <p:keyFilter mask="num"/>
+                </p:inputText><br/>
+            </div>
+            <div>
+                <p:outputLabel for="Nombre" value="Nombre"/><br/>
+                <p:inputText id="Nombre" type="String" required="true" value="#{nombreEquipo}"/><br/>
+            </div>
+            <div>
+                <p:outputLabel for="Pantalla" value="Pantalla"/><br/>
+                <p:selectOneMenu id="Pantalla" value="#{pantallaId}" required="true"
+                                 hideNoSelectionOption="#{not empty pantallaId}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getTipoElementosDisponibles('Pantalla')}" var="pantalla"
+                                   itemLabel="#{pantalla.nombre}" itemValue="#{pantalla.id}"/>
+                </p:selectOneMenu><br/>
 
+                <p:outputLabel for="Torre" value="Torre"/><br/>
+                <p:selectOneMenu id="Torre" value="#{torreId}" required="true"
+                                 hideNoSelectionOption="#{not empty torreId}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getTipoElementosDisponibles('Torre')}" var="torre"
+                                   itemLabel="#{torre.nombre}" itemValue="#{torre.id}"/>
+                </p:selectOneMenu><br/>
+
+                <p:outputLabel for="Teclado" value="Teclado"/><br/>
+                <p:selectOneMenu id="Teclado" value="#{tecladoId}" required="true"
+                                 hideNoSelectionOption="#{not empty tecladoId}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getTipoElementosDisponibles('Teclado')}" var="teclado"
+                                   itemLabel="#{teclado.nombre}" itemValue="#{teclado.id}"/>
+                </p:selectOneMenu><br/>
+
+                <p:outputLabel for="Mouse" value="Mouse"/><br/>
+                <p:selectOneMenu id="Mouse" value="#{mouseId}" required="true"
+                                 hideNoSelectionOption="#{not empty mouseId}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getTipoElementosDisponibles('Mouse')}" var="mouse"
+                                   itemLabel="#{mouse.nombre}" itemValue="#{mouse.id}"/>
+                </p:selectOneMenu>
+            </div>
+            <p:commandButton value="Registrar equipo" icon="pi pi-save" update="equipos" action="menu?faces-redirect=true"
+                             actionListener="#{EquiposBean.registrarEquipo(equipoId, nombreEquipo, pantallaId, torreId, tecladoId, mouseId)}"/><br/>
+            <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/><br/>
+            <p:commandButton value="Registrar elemento" action="registrar_elementos?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
+
+        </h:form>
+    </div>
 </h:body>
 </html>
