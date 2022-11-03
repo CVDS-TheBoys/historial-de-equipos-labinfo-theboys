@@ -28,6 +28,10 @@ public class Novedad {
         this.ELEMENTO_id = ELEMENTO_id;
     }
 
+    public Novedad() {
+
+    }
+
 
     public int getId() {
         return id;
