@@ -6,9 +6,14 @@ import edu.eci.cvds.samples.entities.Equipo;
 import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.samples.services.ServiciosEquipo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ServiciosEquipoImpl implements ServiciosEquipo {
+
+    private ArrayList<Boolean> estados;
+
     @Inject
     private EquipoDAO equipoDAO;
 
@@ -26,4 +31,5 @@ public class ServiciosEquipoImpl implements ServiciosEquipo {
     public List<Equipo> consultarReporte() throws ExcepcionServiciosLaboratorio {
         return equipoDAO.consultarReporte();
     }
+
 }

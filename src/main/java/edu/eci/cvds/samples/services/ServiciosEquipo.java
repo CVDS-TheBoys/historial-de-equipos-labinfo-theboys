@@ -22,4 +22,5 @@ public interface ServiciosEquipo {
      *  Consulta el reporte de los equipos activo
      */
     public List<Equipo> consultarReporte() throws  ExcepcionServiciosLaboratorio;
+
 }

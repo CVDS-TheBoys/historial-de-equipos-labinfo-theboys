@@ -20,6 +20,7 @@ public class EquipoBean extends BasePageBean{
     @Inject
     private ServiciosEquipo serviciosEquipo;
 
+    private List<Equipo> listaEquipos;
     private List<Equipo> listaEquiposFiltrada;
 
     /**
@@ -59,4 +60,38 @@ public class EquipoBean extends BasePageBean{
         }
     }
 
+    public void setListaEquipos(List<Equipo> listaEquipos) {
+        try {
+            this.listaEquipos = serviciosEquipo.consultarEquipos();
+        } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
+            excepcionServiciosLaboratorio.printStackTrace();
+        }
+    }
+
+    public List<Equipo> getListaEquipos() {
+        return listaEquipos;
+    }
+
+    public List<Equipo> getListaEquiposFiltrada() {
+        return listaEquiposFiltrada;
+    }
+
+    public void setListaEquiposFiltrada(List<Equipo> listaEquiposFiltrada) {
+        this.listaEquiposFiltrada = listaEquiposFiltrada;
+    }
+
+    /**
+     * Convierte el valor booleano de estado en un String que sea Activo o Inactivo para mostrar
+     * en el frontend
+     * @param estado estado del equipo
+     * @return "Activo" "Inactivo"
+     */
+    public String convertToString(boolean estado){
+        if (estado){
+            return "Activo";
+        }
+        else {
+            return "Inactivo";
+        }
+    }
 }
