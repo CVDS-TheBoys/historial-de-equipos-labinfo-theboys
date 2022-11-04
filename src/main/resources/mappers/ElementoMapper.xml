@@ -9,6 +9,23 @@
         VALUES (#{elem.id}, #{elem.nombre}, #{elem.tipo}, #{elem.funcional}, null)
     </insert>
 
+    <select id="consultarElemento" resultMap="ElementoResult">
+        SELECT
+        e.id as e_id,
+        e.nombre as e_nombre,
+        e.tipo as e_tipo,
+        e.funcional as e_funcional,
+        e.EQUIPO_id as e_equipo_id,
+        n.id as nv_id,
+        n.titulo as nv_titulo,
+        n.detalle as nv_detalle,
+        n.fecha as nv_fecha,
+        n.EQUIPO_id as nv_EQUIPO_id,
+        n.ELEMENTO_id as nv_ELEMENTO_id
+        FROM ELEMENTOS as e LEFT JOIN NOVEDADES as n ON (e.id = n.elemento_id)
+        WHERE e.id = #{idele}
+    </select>
+
     <select id="consultarElementos" resultMap="ElementoResult">
         SELECT
             e.id as e_id,
@@ -22,6 +39,22 @@
             n.fecha as nv_fecha,
             n.EQUIPO_id as nv_EQUIPO_id,
             n.ELEMENTO_id as nv_ELEMENTO_id
+        FROM ELEMENTOS as e LEFT JOIN NOVEDADES as n ON (e.id = n.elemento_id);
+    </select>
+
+    <select id="consultarElementosConNovedades" resultMap="ElementoResult">
+        SELECT
+        e.id as e_id,
+        e.nombre as e_nombre,
+        e.tipo as e_tipo,
+        e.funcional as e_funcional,
+        e.EQUIPO_id as e_equipo_id,
+        n.id as nv_id,
+        n.titulo as nv_titulo,
+        n.detalle as nv_detalle,
+        n.fecha as nv_fecha,
+        n.EQUIPO_id as nv_EQUIPO_id,
+        n.ELEMENTO_id as nv_ELEMENTO_id
         FROM ELEMENTOS as e JOIN NOVEDADES as n ON (e.id = n.elemento_id);
     </select>
 
@@ -31,7 +64,13 @@
         <result property="tipo" column="e_tipo"/>
         <result property="funcional" column="e_funcional"/>
         <result property="equipo_id" column="e_equipo_id"/>
-        <collection property="novedades" javaType="ArrayList" ofType="Novedad" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.NovedadMapper.NovedadResult" columnPrefix="nv_">
+        <collection property="novedades" javaType="ArrayList" ofType="Novedad" column="n_id">
+            <result property="id" column="nv_id"/>
+            <result property="titulo" column="nv_titulo"/>
+            <result property="detalle" column="nv_detalle"/>
+            <result property="fecha" column="nv_fecha"/>
+            <result property="EQUIPO_id" column="nv_EQUIPO_id"/>
+            <result property="ELEMENTO_id" column="nv_ELEMENTO_id"/>
         </collection>
     </resultMap>
 

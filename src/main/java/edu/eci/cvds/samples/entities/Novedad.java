@@ -7,10 +7,10 @@ public class Novedad {
     private String titulo;
     private String detalle;
     private Date fecha;
-    private int EQUIPO_id;
+    private Integer EQUIPO_id;
     private int ELEMENTO_id;
 
-    public Novedad(int id, String titulo, String detalle, Date fecha, int EQUIPO_id, int ELEMENTO_id) {
+    public Novedad(int id, String titulo, String detalle, Date fecha, Integer EQUIPO_id, int ELEMENTO_id) {
         this.id = id;
         this.titulo = titulo;
         this.detalle = detalle;
@@ -24,7 +24,7 @@ public class Novedad {
         this.titulo = titulo;
         this.detalle = detalle;
         this.fecha = fecha;
-        //this.EQUIPO_id = null;
+        this.EQUIPO_id = null;
         this.ELEMENTO_id = ELEMENTO_id;
     }
 
@@ -69,11 +69,11 @@ public class Novedad {
         return EQUIPO_id;
     }
 
-    public void setEQUIPO_id(int EQUIPO_id) {
+    public void setEQUIPO_id(Integer EQUIPO_id) {
         this.EQUIPO_id = EQUIPO_id;
     }
 
-    public int getELEMENTO_id() {
+    public Integer getELEMENTO_id() {
         return ELEMENTO_id;
     }
 
