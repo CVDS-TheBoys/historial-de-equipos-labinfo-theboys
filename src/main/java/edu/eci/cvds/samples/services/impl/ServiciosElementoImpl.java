@@ -49,4 +49,13 @@ public class ServiciosElementoImpl implements ServiciosElemento {
             throw new ExcepcionServiciosLaboratorio("Error al cargar elementos disponibles del tipo " + tipo + ex);
         }
     }
+
+    @Override
+    public Elemento consultarElemento(int id) throws ExcepcionServiciosLaboratorio {
+        try {
+            return elementoDAO.load(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar el elemento " + id + ex);
+        }
+    }
 }

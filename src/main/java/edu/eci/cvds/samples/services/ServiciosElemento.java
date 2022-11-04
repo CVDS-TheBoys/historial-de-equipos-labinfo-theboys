@@ -5,6 +5,12 @@ import edu.eci.cvds.samples.entities.Elemento;
 import java.util.List;
 
 public interface ServiciosElemento {
+
+    /**
+     * Consulta los elementos registrados
+     * @return lista con los elementos registrados
+     * @throws ExcepcionServiciosLaboratorio
+     */
     public List<Elemento> consultarElementos() throws ExcepcionServiciosLaboratorio;
 
     /**
@@ -29,4 +35,12 @@ public interface ServiciosElemento {
      * @throws ExcepcionServiciosLaboratorio
      */
     public List<Elemento> consultarTipoElementoDisponibles(String tipo) throws ExcepcionServiciosLaboratorio;
+
+    /**
+     * Consulta un elemento por id
+     * @param id del elemento
+     * @return elemento con el id del parametro
+     * @throws ExcepcionServiciosLaboratorio
+     */
+    public Elemento consultarElemento(int id) throws ExcepcionServiciosLaboratorio;
 }

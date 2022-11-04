@@ -14,7 +14,11 @@ public class MyBATISElementoDAO implements ElementoDAO {
 
     @Override
     public Elemento load(int id) throws PersistenceException {
-        return null;
+        try {
+            return elementoMapper.consultarElemento(id);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar los elemento" + id + e);
+        }
     }
 
     @Override
