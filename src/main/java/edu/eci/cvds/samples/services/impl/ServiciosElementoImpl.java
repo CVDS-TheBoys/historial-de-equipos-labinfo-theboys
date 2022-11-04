@@ -30,4 +30,31 @@ public class ServiciosElementoImpl implements ServiciosElemento {
             throw new ExcepcionServiciosLaboratorio("Error al registrar el elemento " + elemento.getId() + ex);
         }
     }
+
+    @Override
+    public void actualizarEquipo(int idel, int ideq) throws ExcepcionServiciosLaboratorio {
+        try {
+            elementoDAO.updatePC(idel, ideq);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al actualizar el equipo del elemento " + idel + ex);
+        }
+    }
+
+    @Override
+    public List<Elemento> consultarTipoElementoDisponibles(String tipo) throws ExcepcionServiciosLaboratorio {
+        try {
+            return elementoDAO.loadAvailableElementsType(tipo);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar elementos disponibles del tipo " + tipo + ex);
+        }
+    }
+
+    @Override
+    public Elemento consultarElemento(int id) throws ExcepcionServiciosLaboratorio {
+        try {
+            return elementoDAO.load(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar el elemento " + id + ex);
+        }
+    }
 }

@@ -1,27 +1,42 @@
 package edu.eci.cvds.samples.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
+/**
+ * @author Juan Pablo Sánchez Bermúdez
+ */
 public class Equipo implements Serializable {
     private int id;
     private boolean estado;
     private Integer laboratorio_id;
     private String nombre;
+    private List<Elemento> elementos;
     // TODO private List<Novedad> novedades;
 
-    /*public Equipo(int id, boolean estado, Integer laboratorio_id, String nombre, List<Novedad> novedades) {
+    /*public Equipo(int id, boolean estado, Integer laboratorio_id, String nombre, List<Elemento> elementos, List<Novedad> novedades) {
         this.id = id;
         this.estado = estado;
         this.laboratorio_id = laboratorio_id;
         this.nombre = nombre;
+        this.elementos = elementos;
         this.novedades = novedades;
     }*/
+
+    public Equipo(int id, boolean estado, Integer laboratorio_id, String nombre, List<Elemento> elementos) {
+        this.id = id;
+        this.estado = estado;
+        this.laboratorio_id = laboratorio_id;
+        this.nombre = nombre;
+        this.elementos = elementos;
+    }
 
     public Equipo(int id, boolean estado, String nombre) {
         this.id = id;
         this.estado = estado;
-        this.laboratorio_id = -1;
+        this.laboratorio_id = null;
         this.nombre = nombre;
+        this.elementos = null;
     }
 
     public Equipo(int id, boolean estado, Integer laboratorio_id, String nombre) {
@@ -29,6 +44,7 @@ public class Equipo implements Serializable {
         this.estado = estado;
         this.laboratorio_id = laboratorio_id;
         this.nombre = nombre;
+        this.elementos = null;
     }
 
     public Equipo() {
@@ -66,6 +82,14 @@ public class Equipo implements Serializable {
         this.nombre = nombre;
     }
 
+    public List<Elemento> getElementos() {
+        return elementos;
+    }
+
+    public void setElementos(List<Elemento> elementos) {
+        this.elementos = elementos;
+    }
+
     /*public List<Novedad> getNovedades() {
         return novedades;
     }
@@ -82,6 +106,7 @@ public class Equipo implements Serializable {
                 ", laboratorio_id=" + laboratorio_id +
                 ", nombre='" + nombre + '\'' +
                 //", novedades=" + novedades +
+                ", elementos=" + elementos +
                 '}';
     }
 }
