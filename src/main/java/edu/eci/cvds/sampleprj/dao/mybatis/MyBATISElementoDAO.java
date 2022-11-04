@@ -14,7 +14,11 @@ public class MyBATISElementoDAO implements ElementoDAO {
 
     @Override
     public Elemento load(int id) throws PersistenceException {
-        return null;
+        try {
+            return elementoMapper.consultarElemento(id);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar los elementos disponibles " + e);
+        }
     }
 
     @Override
@@ -31,6 +35,15 @@ public class MyBATISElementoDAO implements ElementoDAO {
     public List<Elemento> loadAll() throws PersistenceException {
         try {
             return elementoMapper.consultarElementos();
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar los elementos disponibles " + e);
+        }
+    }
+
+    @Override
+    public List<Elemento> loadWithNovedades() throws PersistenceException {
+        try {
+            return elementoMapper.consultarElementosConNovedades();
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {
             throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar los elementos disponibles " + e);
         }
