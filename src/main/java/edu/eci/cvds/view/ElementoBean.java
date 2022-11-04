@@ -43,6 +43,16 @@ public class ElementoBean extends BasePageBean {
         }
     }
 
+    public List<Elemento> getElementosConNovedades() {
+        try {
+            return serviciosElemento.consultarElementosConNovedades();
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+
     public void sleep() throws InterruptedException {
         TimeUnit.SECONDS.sleep(1);
     }
