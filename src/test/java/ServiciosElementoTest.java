@@ -46,8 +46,8 @@ public class ServiciosElementoTest {
             Elemento elemento1 = new Elemento(2, "LG", "Torre", true);
             serviciosElemento.registrarElemento(elemento1);
             serviciosElemento.actualizarEquipo(elemento1.getId(), equipo.getId());
-            //System.out.println(serviciosElemento.consultarElementos());
-            Assert.assertEquals(elemento1.getEquipo_id(), null);
+            Integer numero = 1;
+            Assert.assertEquals(serviciosElemento.consultarElemento(2).getEquipo_id(), numero);
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
         }
@@ -56,7 +56,6 @@ public class ServiciosElementoTest {
     @Test
     public void deberiaConsultarTipoElementoDisponibles() {
         try {
-            //serviciosElemento.registrarElemento(elemento);
             Elemento elemento2 = new Elemento(3, "Samsung", "Pantalla", true);
             serviciosElemento.registrarElemento(elemento2);
             Assert.assertEquals(serviciosElemento.consultarTipoElementoDisponibles("Pantalla").size(), 1);

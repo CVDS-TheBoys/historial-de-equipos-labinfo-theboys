@@ -44,7 +44,7 @@ public class MyBatisExample {
     /**
      * Programa principal de ejempo de uso de MyBATIS
      * @param args
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void main(String[] args) throws SQLException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
