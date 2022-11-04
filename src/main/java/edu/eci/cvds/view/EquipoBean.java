@@ -23,6 +23,10 @@ public class EquipoBean extends BasePageBean{
     private List<Equipo> listaEquipos;
     private List<Equipo> listaEquiposFiltrada;
 
+    private Equipo equipoSeleccionado;
+
+    private List<Equipo> equiposSeleccionados;
+
     /**
      * Registra un equipo
      * @param id de equipo
@@ -92,6 +96,28 @@ public class EquipoBean extends BasePageBean{
         }
         else {
             return "Inactivo";
+        }
+    }
+
+    public List<Equipo> getEquiposSeleccionados() {
+        return equiposSeleccionados;
+    }
+
+    public void setEquiposSeleccionados(List<Equipo> equiposSeleccionados) {
+        this.equiposSeleccionados = equiposSeleccionados;
+    }
+
+    public Equipo getEquipoSeleccionado() {
+        return equipoSeleccionado;
+    }
+
+    public void setEquipoSeleccionado(Equipo equipoSeleccionado) {
+        this.equipoSeleccionado = equipoSeleccionado;
+    }
+
+    public void darDeBaja() {
+        for (Equipo equipo : equiposSeleccionados) {
+            equipo.darDeBaja();
         }
     }
 }

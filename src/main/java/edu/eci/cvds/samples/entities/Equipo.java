@@ -84,4 +84,8 @@ public class Equipo implements Serializable {
                 //", novedades=" + novedades +
                 '}';
     }
+
+    public void darDeBaja() {
+        // Sin implementacion
+    }
 }
