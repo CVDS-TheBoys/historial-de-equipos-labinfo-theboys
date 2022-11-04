@@ -82,12 +82,12 @@ public class MyBatisExample {
             // Elemento
             //System.out.println(serviciosElemento.consultarElementos());
             //serviciosElemento.registrarElemento(elemento);
-            System.out.println(serviciosElemento.consultarElementos());
-
-
+            //System.out.println(serviciosElemento.consultarElementos().size());
+            //System.out.println(serviciosElemento.consultarElementosConNovedades().size());
+            System.out.println(serviciosElemento.consultarElemento(1));
 
             // Novedades
-            System.out.println(serviciosNovedad.consultarNovedades());
+            //System.out.println(serviciosNovedad.consultarNovedades());
             //serviciosNovedad.registrarNovedad(novedad);
 
         } catch (ExcepcionServiciosLaboratorio e) {
