@@ -4,12 +4,16 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import edu.eci.cvds.sampleprj.dao.ElementoDAO;
 import edu.eci.cvds.sampleprj.dao.EquipoDAO;
+import edu.eci.cvds.sampleprj.dao.NovedadDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISElementoDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISEquipoDAO;
+import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISNovedadDAO;
 import edu.eci.cvds.samples.services.ServiciosElemento;
 import edu.eci.cvds.samples.services.ServiciosEquipo;
 import edu.eci.cvds.samples.services.impl.ServiciosElementoImpl;
 import edu.eci.cvds.samples.services.impl.ServiciosEquipoImpl;
+import edu.eci.cvds.samples.services.ServiciosNovedad;
+import edu.eci.cvds.samples.services.impl.ServiciosNovedadImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
@@ -27,8 +31,7 @@ public class GuiceContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         Injector injector = Guice.createInjector(new XMLMyBatisModule() {
             @Override
-            protected void
-            initialize() {
+            protected void initialize() {
                 install(JdbcHelper.MySQL);
                 setEnvironmentId("development");
                 setClassPathResource("mybatis-config.xml");
@@ -38,7 +41,8 @@ public class GuiceContextListener implements ServletContextListener {
                 bind(ServiciosElemento.class).to(ServiciosElementoImpl.class);
                 bind(ServiciosEquipo.class).to(ServiciosEquipoImpl.class);
                 // TODO Añadir entidades/servicios faltantes
-                // bind(BBB.class).to(ZZZ.class);
+                bind(NovedadDAO.class).to(MyBATISNovedadDAO.class);
+                bind(ServiciosNovedad.class).to(ServiciosNovedadImpl.class);
 
             }
         });

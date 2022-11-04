@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.NovedadMapper">
+
+    <insert id="insertarNovedad" parameterType="map">
+        INSERT INTO NOVEDADES (id, titulo, detalle, fecha, EQUIPO_id, ELEMENTO_id)
+        VALUES (#{novedad.id}, #{novedad.titulo}, #{novedad.detalle}, #{novedad.fecha}, #{novedad.EQUIPO_id},
+        #{novedad.ELEMENTO_id})
+    </insert>
+
+    <select parameterType="map" id="consultarNovedad" resultMap="NovedadResult">
+        SELECT
+        nv.id as nv_id,
+        nv.titulo as nv_titulo,
+        nv.detalle as nv_detalle,
+        nv.fecha as nv_fecha,
+        nv.EQUIPO_id as nv_equipo_id,
+        nv.ELEMENTO_id as nv_elemento_id
+        FROM NOVEDADES as nv
+        WHERE nv.id = #{idnv}
+    </select>
+
+    <select parameterType="map" id="consultarNovedades" resultMap="NovedadResult">
+        SELECT
+        nv.id as nv_id,
+        nv.titulo as nv_titulo,
+        nv.detalle as nv_detalle,
+        nv.fecha as nv_fecha,
+        nv.EQUIPO_id as nv_equipo_id,
+        nv.ELEMENTO_id as nv_elemento_id
+        FROM NOVEDADES as nv
+    </select>
+
+    <resultMap id="NovedadResult" type="Novedad">
+        <id property="id" column="nv_id"/>
+        <result property="titulo" column="nv_titulo"/>
+        <result property="detalle" column="nv_detalle"/>
+        <result property="fecha" column="nv_fecha"/>
+        <result property="EQUIPO_id" column="nv_equipo_id"/>
+        <result property="ELEMENTO_id" column="nv_elemento_id"/>
+    </resultMap>
+
+</mapper>

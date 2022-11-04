@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Registro Novedad</title>
+    <link rel="stylesheet" href="./style/registrar_elementos.css"/>
+</h:head>
+
+<h:body>
+    <div class="card">
+        <h:form id="novedades" class="form-elementos">
+            <h1 class="title">Registrar Novedades</h1>
+            <br/>
+            <div>
+                <p:outputLabel for="Id" value="Id" /><br/>
+                <p:inputText id="Id" type="int" required="true" value="#{id}" placeholder="Ingresa el id">
+                    <p:keyFilter mask="num"/>
+                </p:inputText><br/><br/>
+            </div>
+            <div>
+                <p:outputLabel for="Titulo" value="Título" /><br/>
+                <p:inputText id="Titulo" type="String" required="true" value="#{titulo}" placeholder="Ingresa el título"/><br/><br/>
+            </div>
+            <div>
+                <p:outputLabel for="Detalle" value="Detalle" /><br/>
+                <p:inputText id="Detalle" type="String" required="true" value="#{detalle}" placeholder="Ingresa detalles"/><br/><br/>
+            </div>
+            <div>
+                <p:outputLabel for="Equipo_id" value="Equipo_id" /><br/>
+                <p:inputText id="Equipo_id" type="int" required="true" value="#{equipo_id}" placeholder="Ingresa el id Equipo">
+                    <p:keyFilter mask="num"/>
+                </p:inputText><br/><br/>
+            </div>
+            <div>
+                <p:outputLabel for="Elemento_id" value="Elemento_id" /><br/>
+                <p:inputText id="Elemento_id" type="int" required="true" value="#{elemento_id}" placeholder="Ingresa el id Elemento">
+                    <p:keyFilter mask="num"/>
+                </p:inputText><br/><br/>
+            </div>
+            <div>
+                <p:commandButton value="Registrar Novedad" icon="pi pi-save" iconPos="left" update="novedades"
+                                 action="menu?faces-redirect=true" styleClass="ui-button-info"
+                                 actionListener="#{NovedadBean.registrarNovedad(id, titulo, detalle, equipo_id, elemento_id)}"/><br/><br/>
+            </div>
+            <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
+        </h:form>
+
+    </div>
+
+</h:body>
+</html>

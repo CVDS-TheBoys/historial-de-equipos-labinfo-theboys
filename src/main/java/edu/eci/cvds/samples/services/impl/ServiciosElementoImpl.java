@@ -2,7 +2,6 @@ package edu.eci.cvds.samples.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.sampleprj.dao.ElementoDAO;
-import edu.eci.cvds.sampleprj.dao.EquipoDAO;
 import edu.eci.cvds.samples.entities.Elemento;
 import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.samples.services.ServiciosElemento;

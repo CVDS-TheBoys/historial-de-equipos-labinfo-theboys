@@ -15,8 +15,10 @@ public interface ServiciosElemento {
 
     /**
      * Registra un nuevo elemento
+     * 
      * @param elemento elemento a registrar
-     * @throws ExcepcionServiciosLaboratorio si el identificador del elemento ya existe
+     * @throws ExcepcionServiciosLaboratorio si el identificador del elemento ya
+     *                                       existe
      */
     public void registrarElemento(Elemento elemento) throws ExcepcionServiciosLaboratorio;
 
