@@ -32,6 +32,7 @@
         nv.EQUIPO_id as nv_equipo_id,
         nv.ELEMENTO_id as nv_elemento_id
         FROM NOVEDADES as nv
+        ORDER BY nv.fecha DESC
     </select>
 
     <resultMap id="NovedadResult" type="Novedad">
