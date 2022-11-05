@@ -8,7 +8,9 @@ import edu.eci.cvds.samples.services.ServiciosEquipo;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.view.ViewScoped;
+import java.util.Arrays;
+import java.util.List;
+
 
 /**
  * Bean para la interfaz de usuario de los equipos
@@ -19,8 +21,13 @@ import javax.faces.view.ViewScoped;
 public class EquipoBean extends BasePageBean{
     @Inject
     private ServiciosEquipo serviciosEquipo;
+
     @Inject
     private ServiciosElemento serviciosElemento;
+
+    private List<Equipo> listaEquipos;
+    private List<Equipo> listaEquiposFiltrada;
+    private List<Equipo> equiposSeleccionados;
 
     /**
      * Registra un equipo junto con sus elementos
@@ -44,4 +51,76 @@ public class EquipoBean extends BasePageBean{
         }
     }
 
+    /**
+     * Consulta todos los equipos
+     */
+    public List<Equipo> consultarEquipos(){
+        try{
+            return serviciosEquipo.consultarEquipos();
+        } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
+            excepcionServiciosLaboratorio.printStackTrace();
+            return null;
+        }
+    }
+
+    /** Consulta el reporte de los equipos activos
+     */
+    public List<Equipo> consultarReporte() {
+        try {
+            return serviciosEquipo.consultarReporte();
+        } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
+            excepcionServiciosLaboratorio.printStackTrace();
+            return null;
+        }
+    }
+
+    public void setListaEquipos(List<Equipo> listaEquipos) {
+        try {
+            this.listaEquipos = serviciosEquipo.consultarEquipos();
+        } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
+            excepcionServiciosLaboratorio.printStackTrace();
+        }
+    }
+
+    public List<Equipo> getListaEquipos() {
+        return listaEquipos;
+    }
+
+    public List<Equipo> getListaEquiposFiltrada() {
+        return listaEquiposFiltrada;
+    }
+
+    public void setListaEquiposFiltrada(List<Equipo> listaEquiposFiltrada) {
+        this.listaEquiposFiltrada = listaEquiposFiltrada;
+    }
+
+    /**
+     * Convierte el valor booleano de estado en un String que sea Activo o Inactivo para mostrar
+     * en el frontend
+     * @param estado estado del equipo
+     * @return "Activo" "Inactivo"
+     */
+    public String convertToString(boolean estado){
+        if (estado){
+            return "Activo";
+        }
+        else {
+            return "Inactivo";
+        }
+    }
+
+    public List<Equipo> getEquiposSeleccionados() {
+        return equiposSeleccionados;
+    }
+
+    public void setEquiposSeleccionados(List<Equipo> equiposSeleccionados) {
+        this.equiposSeleccionados = equiposSeleccionados;
+    }
+
+    public void darDeBaja() {
+        //
+        for (Equipo equipo : equiposSeleccionados) {
+            equipo.darDeBaja();
+        }
+    }
 }

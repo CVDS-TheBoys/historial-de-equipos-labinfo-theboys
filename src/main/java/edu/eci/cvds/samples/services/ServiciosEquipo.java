@@ -17,4 +17,10 @@ public interface ServiciosEquipo {
      * @throws ExcepcionServiciosLaboratorio si el identificador del equipo ya existe
      */
     public void registrarEquipo(Equipo equipo) throws ExcepcionServiciosLaboratorio;
+
+    /**
+     *  Consulta el reporte de los equipos activo
+     */
+    public List<Equipo> consultarReporte() throws  ExcepcionServiciosLaboratorio;
+
 }

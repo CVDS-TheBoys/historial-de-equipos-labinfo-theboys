@@ -30,4 +30,11 @@ public class ServiciosEquipoImpl implements ServiciosEquipo {
             throw new ExcepcionServiciosLaboratorio("Error al registrar el equipo " + equipo.getId() + ex);
         }
     }
+
+
+    @Override
+    public List<Equipo> consultarReporte() throws ExcepcionServiciosLaboratorio {
+        return equipoDAO.consultarReporte();
+    }
+
 }

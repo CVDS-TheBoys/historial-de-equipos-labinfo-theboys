@@ -1,6 +1,9 @@
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Equipo;
 import edu.eci.cvds.samples.services.*;
+import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
+import edu.eci.cvds.samples.services.ServiciosEquipo;
+import edu.eci.cvds.samples.services.ServiciosEquipoFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Assert;
 import org.junit.Test;
