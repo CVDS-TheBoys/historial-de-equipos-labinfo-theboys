@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Registro Novedades</title>
+    <link rel="stylesheet" href="./style/novedades.css"/>
+</h:head>
+
+<h:body>
+    <div class="card">
+        <h:form id="novedades" class="form-novedades">
+            <h1 class="title">Reporte de Novedades</h1>
+            <br/>
+            <h3>¿Quiéres ver las novedades de un equipo/elemento en particular?</h3>
+            <div class="menu-elemento">
+                <p:outputLabel for="Elemento" value="Elemento" /><br/>
+                <p:selectOneMenu id="Elemento" value="#{elementoId}" required="true"
+                                 hideNoSelectionOption="#{not empty elementoId}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getElementosConNovedades()}" var="elemento"
+                                   itemLabel="#{elemento.nombre}" itemValue="#{elemento.id}"/>
+                </p:selectOneMenu><br/><br/>
+            </div><br/>
+            <h3>Reporte histórico de novedades</h3><br/>
+            <div class="myLabel">
+                <p:dataTable var="novedad" value="#{NovedadBean.getNovedades()}" rows="5"
+                             paginator="true" paginatorPosition="bottom"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                             rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+
+                    <p:column headerText="Id">
+                        <h:outputText value="#{novedad.id}" />
+                    </p:column>
+
+                    <p:column headerText="Título">
+                        <h:outputText value="#{novedad.titulo}" />
+                    </p:column>
+
+                    <p:column headerText="Detalle">
+                        <h:outputText value="#{novedad.detalle}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha">
+                        <h:outputText value="#{novedad.fecha}" />
+                    </p:column>
+
+                    <p:column headerText="Equipo">
+                        <h:outputText value="#{novedad.EQUIPO_id}" />
+                    </p:column>
+
+                    <p:column headerText="Elemento">
+                        <h:outputText value="#{novedad.ELEMENTO_id}" />
+                    </p:column>
+
+                    <f:facet name="paginatorTopLeft">
+                        <p:commandButton type="button" icon="pi pi-refresh"/>
+                    </f:facet>
+
+                    <!--<p:column style="width:3rem;text-align: center">
+                        <p:commandButton action = "registroalquiler?faces-redirect = true" icon="pi pi-search" title="View">
+                            <f:setPropertyActionListener value="#{novedad}" target="#{AlquilerItemsBean.novedadSeleccionado}"/>
+                        </p:commandButton>
+                    </p:column>-->
+                </p:dataTable>
+            </div><br/>
+            <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
+        </h:form>
+
+    </div>
+
+</h:body>
+</html>
