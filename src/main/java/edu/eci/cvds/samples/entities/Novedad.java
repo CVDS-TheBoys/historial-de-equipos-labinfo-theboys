@@ -65,7 +65,7 @@ public class Novedad {
         this.fecha = fecha;
     }
 
-    public int getEQUIPO_id() {
+    public Integer getEQUIPO_id() {
         return EQUIPO_id;
     }
 
