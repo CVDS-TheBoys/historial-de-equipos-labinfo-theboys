@@ -18,8 +18,7 @@
             <h3>¿Quiéres ver las novedades de un equipo/elemento en particular?</h3>
             <div class="menu-elemento">
                 <p:outputLabel for="Elemento" value="Elemento" /><br/>
-                <p:selectOneMenu id="Elemento" value="#{elementoId}" required="true"
-                                 hideNoSelectionOption="#{not empty elementoId}">
+                <p:selectOneMenu id="Elemento" value="#{elementoId}" hideNoSelectionOption="#{not empty elementoId}">
                     <p:ajax update="@this" process="@this"/>
                     <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
                     <f:selectItems value="#{ElementoBean.getElementosConNovedades()}" var="elemento"
@@ -55,7 +54,7 @@
                     </p:column>
 
                     <p:column headerText="Elemento">
-                        <h:outputText value="#{novedad.ELEMENTO_id}" />
+                        <h:outputText value="#{ElementoBean.getElemento(novedad.ELEMENTO_id).nombre}" />
                     </p:column>
 
                     <f:facet name="paginatorTopLeft">

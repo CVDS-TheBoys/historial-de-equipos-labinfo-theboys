@@ -43,6 +43,15 @@ public class ElementoBean extends BasePageBean {
         }
     }
 
+    public Elemento getElemento(int id) {
+        try {
+            return serviciosElemento.consultarElemento(id);
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public List<Elemento> getElementosConNovedades() {
         try {
             return serviciosElemento.consultarElementosConNovedades();
