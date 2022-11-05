@@ -12,6 +12,7 @@ import edu.eci.cvds.samples.entities.Elemento;
 import edu.eci.cvds.samples.entities.Equipo;
 import edu.eci.cvds.samples.entities.Novedad;
 import edu.eci.cvds.samples.services.*;
+import edu.eci.cvds.samples.services.impl.ServiciosEquipoImpl;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -57,14 +58,17 @@ public class MyBatisExample {
         // Elemento
         ElementoMapper em = sqlss.getMapper(ElementoMapper.class);
         Elemento elemento = new Elemento(1, "pupito", "Teclado", true);
-        // em.insertarElemento(elemento);
-        // System.out.println(em.consultarElementos());
+        em.insertarElemento(elemento);
+        System.out.println(em.consultarElementos());
 
         // Equipo
         EquipoMapper eqm = sqlss.getMapper(EquipoMapper.class);
-        Equipo equipo = new Equipo(1, true, "equipo1");
-        // eqm.insertarEquipo(equipo);
-        // System.out.println(eqm.consultarEquipos());
+        Equipo equipo = new Equipo(2, true, "equipo1");
+        eqm.insertarEquipo(equipo);
+        System.out.println(eqm.consultarEquipos());
+
+        em.actualizarEquipo(1, 2);
+        System.out.println(em.consultarElementos());
 
         // Novedad
         NovedadMapper nvd = sqlss.getMapper(NovedadMapper.class);
@@ -78,6 +82,7 @@ public class MyBatisExample {
         // Prueba servicio
         ServiciosElemento serviciosElemento = ServiciosElementoFactory.getInstance().getServiciosElemento();
         ServiciosNovedad serviciosNovedad = ServiciosNovedadFactory.getInstance().getServiciosNovedad();
+        /*ServiciosEquipo serviciosEquipo = ServiciosEquipoFactory.getInstance().getServiciosEquipo();
         try {
             // Elemento
             //System.out.println(serviciosElemento.consultarElementos());
@@ -90,9 +95,13 @@ public class MyBatisExample {
             //System.out.println(serviciosNovedad.consultarNovedades());
             //serviciosNovedad.registrarNovedad(novedad);
 
+            // Equipo
+            serviciosEquipo.registrarEquipo(equipo);
+            System.out.println(serviciosEquipo.consultarEquipos());
+
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
     }
 

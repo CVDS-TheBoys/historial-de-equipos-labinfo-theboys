@@ -5,12 +5,8 @@ import edu.eci.cvds.samples.entities.Elemento;
 import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.samples.services.ServiciosElemento;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.model.SelectItem;
-import javax.faces.model.SelectItemGroup;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -37,6 +33,14 @@ public class ElementoBean extends BasePageBean {
     public List<Elemento> getElementos() {
         try {
             return serviciosElemento.consultarElementos();
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    public List<Elemento> getTipoElementosDisponibles(String tipo) {
+        try {
+            return serviciosElemento.consultarTipoElementoDisponibles(tipo);
         } catch (ExcepcionServiciosLaboratorio ex) {
             ex.printStackTrace();
             return null;

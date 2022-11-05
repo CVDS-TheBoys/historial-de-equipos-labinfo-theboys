@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Registro Equipos</title>
+    <link rel="stylesheet" href="./style/registrar_equipos.css"/>
+</h:head>
+
+<h:body>
+    <div class="card">
+        <h:form id="equipos" class="form-equipos">
+            <h1 class="title">Registrar equipo</h1>
+            <br/>
+            <div>
+                <p:outputLabel for="Id" value="Id"/><br/>
+                <p:inputText id="Id" type="int" required="true" value="#{equipoId}" placeholder="Ingresa el id">
+                    <p:keyFilter mask="num"/>
+                </p:inputText><br/><br/>
+            </div>
+            <div>
+                <p:outputLabel for="Nombre" value="Nombre"/><br/>
+                <p:inputText id="Nombre" type="String" required="true" value="#{nombreEquipo}" placeholder="Ingresa el nombre"/><br/><br/>
+            </div>
+            <h1 class="title2">Elementos para el equipo</h1><br/>
+            <div>
+                <p:outputLabel for="Pantalla" value="Pantalla"/><br/>
+                <p:selectOneMenu id="Pantalla" value="#{pantallaId}" required="true"
+                                 hideNoSelectionOption="#{not empty pantallaId}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getTipoElementosDisponibles('Pantalla')}" var="pantalla"
+                                   itemLabel="#{pantalla.nombre}" itemValue="#{pantalla.id}"/>
+                </p:selectOneMenu><br/>
+
+                <p:outputLabel for="Torre" value="Torre"/><br/>
+                <p:selectOneMenu id="Torre" value="#{torreId}" required="true"
+                                 hideNoSelectionOption="#{not empty torreId}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getTipoElementosDisponibles('Torre')}" var="torre"
+                                   itemLabel="#{torre.nombre}" itemValue="#{torre.id}"/>
+                </p:selectOneMenu><br/>
+
+                <p:outputLabel for="Teclado" value="Teclado"/><br/>
+                <p:selectOneMenu id="Teclado" value="#{tecladoId}" required="true"
+                                 hideNoSelectionOption="#{not empty tecladoId}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getTipoElementosDisponibles('Teclado')}" var="teclado"
+                                   itemLabel="#{teclado.nombre}" itemValue="#{teclado.id}"/>
+                </p:selectOneMenu><br/>
+
+                <p:outputLabel for="Mouse" value="Mouse"/><br/>
+                <p:selectOneMenu id="Mouse" value="#{mouseId}" required="true"
+                                 hideNoSelectionOption="#{not empty mouseId}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getTipoElementosDisponibles('Mouse')}" var="mouse"
+                                   itemLabel="#{mouse.nombre}" itemValue="#{mouse.id}"/>
+                </p:selectOneMenu>
+            </div><br/>
+            <p:commandButton value="Registrar equipo" icon="pi pi-save" update="equipos" action="menu?faces-redirect=true"
+                             actionListener="#{EquiposBean.registrarEquipo(equipoId, nombreEquipo, pantallaId, torreId, tecladoId, mouseId)}"/><br/><br/>
+            <h1 class="title2">¿Quieres registrar un elemento?</h1>
+            <p:commandButton value="Registrar elemento" action="registrar_elementos?faces-redirect=true" styleClass="ui-button-info" icon="pi pi-desktop" immediate="true"/><br/><br/>
+            <p:commandButton value="Menú" action="menu?faces-redirect=true" styleClass="ui-button-info" icon="pi pi-home" immediate="true"/>
+
+        </h:form>
+    </div>
+</h:body>
+</html>
