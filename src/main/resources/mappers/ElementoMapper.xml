@@ -58,6 +58,23 @@
         FROM ELEMENTOS as e JOIN NOVEDADES as n ON (e.id = n.elemento_id);
     </select>
 
+    <select id="consultarEquipoElementosConNovedades" resultMap="ElementoResult">
+        SELECT
+        e.id as e_id,
+        e.nombre as e_nombre,
+        e.tipo as e_tipo,
+        e.funcional as e_funcional,
+        e.EQUIPO_id as e_equipo_id,
+        n.id as nv_id,
+        n.titulo as nv_titulo,
+        n.detalle as nv_detalle,
+        n.fecha as nv_fecha,
+        n.EQUIPO_id as nv_EQUIPO_id,
+        n.ELEMENTO_id as nv_ELEMENTO_id
+        FROM ELEMENTOS as e JOIN NOVEDADES as n ON (e.id = n.elemento_id)
+        WHERE n.EQUIPO_id = #{idequ}
+    </select>
+
     <update id="actualizarEquipo" parameterType="map">
         UPDATE ELEMENTOS SET EQUIPO_id = #{ideq} WHERE id = #{idel}
     </update>

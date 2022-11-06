@@ -38,6 +38,14 @@ public interface ServiciosElemento {
     public List<Elemento> consultarElementosConNovedades() throws ExcepcionServiciosLaboratorio;
 
     /**
+     * Consulta los elementos de un equipo que tienen novedades asociadas
+     * @param idEquipo del equipo
+     * @return lista de elementos
+     * @throws ExcepcionServiciosLaboratorio
+     */
+    public List<Elemento> consultarElementosConNovedades(int idEquipo) throws ExcepcionServiciosLaboratorio;
+
+    /**
      * Actualiza el equipo al que pertenece el elemento
      * @param idel id del elemento
      * @param ideq id del equipo

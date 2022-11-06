@@ -50,6 +50,15 @@ public class ServiciosElementoImpl implements ServiciosElemento {
     }
 
     @Override
+    public List<Elemento> consultarElementosConNovedades(int idEquipo) throws ExcepcionServiciosLaboratorio {
+        try {
+            return elementoDAO.loadWithNovedades(idEquipo);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar elementos " + ex);
+        }
+    }
+
+    @Override
     public void actualizarEquipo(int idel, int ideq) throws ExcepcionServiciosLaboratorio {
         try {
             elementoDAO.updatePC(idel, ideq);

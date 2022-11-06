@@ -56,9 +56,14 @@ public class ElementoBean extends BasePageBean {
         }
     }
 
-    public List<Elemento> getElementosConNovedades() {
+    public List<Elemento> getElementosConNovedades(Integer equipoId) {
         try {
-            return serviciosElemento.consultarElementosConNovedades();
+            if (equipoId == null || equipoId == 0) {
+                return serviciosElemento.consultarElementosConNovedades();
+            } else {
+                return serviciosElemento.consultarElementosConNovedades(equipoId);
+            }
+
         } catch (ExcepcionServiciosLaboratorio ex) {
             ex.printStackTrace();
             return null;

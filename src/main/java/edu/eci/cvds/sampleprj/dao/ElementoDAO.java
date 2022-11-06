@@ -10,6 +10,7 @@ public interface ElementoDAO {
     public void save(Elemento elemento) throws PersistenceException;
     public List<Elemento> loadAll() throws PersistenceException;
     public List<Elemento> loadWithNovedades() throws PersistenceException;
+    public List<Elemento> loadWithNovedades(int id) throws PersistenceException;
     public void updatePC(int idel, int ideq) throws PersistenceException;
     public List<Elemento> loadAvailableElementsType(String tipo) throws PersistenceException;
 }
