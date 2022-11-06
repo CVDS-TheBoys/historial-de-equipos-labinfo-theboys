@@ -14,6 +14,15 @@ public class ServiciosEquipoImpl implements ServiciosEquipo {
     private EquipoDAO equipoDAO;
 
     @Override
+    public Equipo consultarEquipo(int id) throws ExcepcionServiciosLaboratorio {
+        try {
+            return equipoDAO.load(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar los equipos " + ex);
+        }
+    }
+
+    @Override
     public List<Equipo> consultarEquipos() throws ExcepcionServiciosLaboratorio {
         try {
             return equipoDAO.loadAll();
@@ -28,6 +37,15 @@ public class ServiciosEquipoImpl implements ServiciosEquipo {
             equipoDAO.save(equipo);
         } catch (PersistenceException ex) {
             throw new ExcepcionServiciosLaboratorio("Error al registrar el equipo " + equipo.getId() + ex);
+        }
+    }
+
+    @Override
+    public List<Equipo> consultarEquiposConNovedades() throws ExcepcionServiciosLaboratorio {
+        try {
+            return equipoDAO.loadWithNovedades();
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar novedades de los equipos " + ex);
         }
     }
 }

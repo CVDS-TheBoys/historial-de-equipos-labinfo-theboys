@@ -42,4 +42,14 @@ public class MyBATISEquipoDAO implements EquipoDAO {
         }
     }
 
+    @Override
+    public List<Equipo> loadWithNovedades() throws PersistenceException {
+        try {
+            return equipoMapper.consultarEquiposConNovedades();
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            System.out.println(e.getMessage());
+            throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar los equipos ", e);
+        }
+    }
+
 }

@@ -22,7 +22,7 @@
         n.fecha as n_fecha,
         n.EQUIPO_id as n_EQUIPO_id,
         n.ELEMENTO_id as n_ELEMENTO_id
-        FROM EQUIPOS as eq LEFT JOIN NOVEDADES as n ON (eq.id = n.equipo_id);
+        FROM EQUIPOS as eq LEFT JOIN NOVEDADES as n ON (eq.id = n.equipo_id)
         WHERE eq.id = #{ideq}
     </select>
 
