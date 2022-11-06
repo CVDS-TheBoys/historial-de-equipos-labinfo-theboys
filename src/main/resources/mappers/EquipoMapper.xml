@@ -15,8 +15,14 @@
           eq.id as eq_id,
           eq.estado as eq_estado,
           eq.LABORATORIO_id as eq_laboratorio_id,
-          eq.nombre as eq_nombre
-        FROM EQUIPOS as eq
+          eq.nombre as eq_nombre,
+        n.id as n_id,
+        n.titulo as n_titulo,
+        n.detalle as n_detalle,
+        n.fecha as n_fecha,
+        n.EQUIPO_id as n_EQUIPO_id,
+        n.ELEMENTO_id as n_ELEMENTO_id
+        FROM EQUIPOS as eq LEFT JOIN NOVEDADES as n ON (eq.id = n.equipo_id);
         WHERE eq.id = #{ideq}
     </select>
 
@@ -25,8 +31,29 @@
           eq.id as eq_id,
           eq.estado as eq_estado,
           eq.LABORATORIO_id as eq_laboratorio_id,
-          eq.nombre as eq_nombre
-        FROM EQUIPOS as eq
+          eq.nombre as eq_nombre,
+            n.id as n_id,
+            n.titulo as nv_titulo,
+            n.detalle as nv_detalle,
+            n.fecha as nv_fecha,
+            n.EQUIPO_id as nv_EQUIPO_id,
+            n.ELEMENTO_id as nv_ELEMENTO_id
+        FROM EQUIPOS as eq LEFT JOIN NOVEDADES as n ON (eq.id = n.equipo_id);
+    </select>
+
+    <select parameterType="map" id="consultarEquiposConNovedades" resultMap="EquipoResult">
+        SELECT
+            eq.id as eq_id,
+            eq.estado as eq_estado,
+            eq.LABORATORIO_id as eq_laboratorio_id,
+            eq.nombre as eq_nombre,
+            n.id as n_id,
+            n.titulo as nv_titulo,
+            n.detalle as nv_detalle,
+            n.fecha as nv_fecha,
+            n.EQUIPO_id as nv_EQUIPO_id,
+            n.ELEMENTO_id as nv_ELEMENTO_id
+        FROM EQUIPOS as eq JOIN NOVEDADES as n ON (eq.id = n.equipo_id);
     </select>
 
     <resultMap id="EquipoResult" type="Equipo">
@@ -34,6 +61,14 @@
         <result property="estado" column="eq_estado" />
         <result property="laboratorio_id" column="eq_laboratorio_id" />
         <result property="nombre" column="eq_nombre" />
+        <collection property="novedades" javaType="ArrayList" ofType="Novedad" column="n_id">
+            <result property="id" column="nv_id"/>
+            <result property="titulo" column="nv_titulo"/>
+            <result property="detalle" column="nv_detalle"/>
+            <result property="fecha" column="nv_fecha"/>
+            <result property="EQUIPO_id" column="nv_EQUIPO_id"/>
+            <result property="ELEMENTO_id" column="nv_ELEMENTO_id"/>
+        </collection>
     </resultMap>
 
 </mapper>
