@@ -3,12 +3,16 @@ package edu.eci.cvds.view;
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Novedad;
 import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
+import edu.eci.cvds.samples.services.ServiciosElemento;
+import edu.eci.cvds.samples.services.ServiciosEquipo;
 import edu.eci.cvds.samples.services.ServiciosNovedad;
+import org.apache.ibatis.jdbc.Null;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -20,6 +24,13 @@ import java.util.concurrent.TimeUnit;
 public class NovedadBean extends BasePageBean {
     @Inject
     private ServiciosNovedad serviciosNovedad;
+    @Inject
+    private ServiciosEquipo serviciosEquipo;
+    @Inject
+    private ServiciosElemento serviciosElemento;
+    private Integer elementoId;
+    private Integer equipoId;
+
 
     public void registrarNovedad(int id, String titulo, String detalle, int EQUIPO_id, int ELEMENTO_id) {
         Date fecha = new Date(System.currentTimeMillis());
@@ -40,8 +51,55 @@ public class NovedadBean extends BasePageBean {
         }
     }
 
+    public List<Novedad> getNovedadesEspecificas(Integer elementoId, Integer equipoId) {
+        try {
+            if (elementoId == 0) {
+                return serviciosNovedad.consultarNovedadesEquipo(equipoId);
+            } else {
+                return serviciosNovedad.consultarNovedadesElemento(elementoId);
+            }
+        } catch (ExcepcionServiciosLaboratorio e) {
+            e.printStackTrace();
+            return null;
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+
+    public String getElementName() {
+        try {
+            if (elementoId == null || elementoId == 0) {
+                return "Equipo " + serviciosEquipo.consultarEquipo(equipoId).getNombre();
+
+            } else {
+                return "Elemento " + serviciosElemento.consultarElemento(elementoId).getNombre();
+            }
+        } catch (ExcepcionServiciosLaboratorio e) {
+            e.printStackTrace();
+            return null;
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+
     public void sleep() throws InterruptedException {
         TimeUnit.SECONDS.sleep(1);
+    }
+
+    public Integer getElementoId() {
+        return elementoId;
+    }
+
+    public void setElementoId(Integer elementoId) {
+        this.elementoId = elementoId;
+    }
+
+    public Integer getEquipoId() {
+        return equipoId;
+    }
+
+    public void setEquipoId(Integer equipoId) {
+        this.equipoId = equipoId;
     }
 
 }

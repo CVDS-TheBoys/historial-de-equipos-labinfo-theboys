@@ -35,6 +35,32 @@
         ORDER BY nv.fecha DESC
     </select>
 
+    <select parameterType="map" id="consultarNovedadesElemento" resultMap="NovedadResult">
+        SELECT
+            n.id as nv_id,
+            n.titulo as nv_titulo,
+            n.detalle as nv_detalle,
+            n.fecha as nv_fecha,
+            n.EQUIPO_id as nv_EQUIPO_id,
+            n.ELEMENTO_id as nv_ELEMENTO_id
+        FROM NOVEDADES as n
+        WHERE n.elemento_id = #{idele}
+        ORDER BY n.fecha DESC
+    </select>
+
+    <select parameterType="map" id="consultarNovedadesEquipo" resultMap="NovedadResult">
+        SELECT
+            n.id as nv_id,
+            n.titulo as nv_titulo,
+            n.detalle as nv_detalle,
+            n.fecha as nv_fecha,
+            n.EQUIPO_id as nv_EQUIPO_id,
+            n.ELEMENTO_id as nv_ELEMENTO_id
+            FROM NOVEDADES as n
+        WHERE n.EQUIPO_id = #{idequ}
+        ORDER BY n.fecha DESC
+    </select>
+
     <resultMap id="NovedadResult" type="Novedad">
         <id property="id" column="nv_id"/>
         <result property="titulo" column="nv_titulo"/>

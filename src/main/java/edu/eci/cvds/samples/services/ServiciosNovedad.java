@@ -1,10 +1,17 @@
 package edu.eci.cvds.samples.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.eci.cvds.samples.entities.Novedad;
 
 public interface ServiciosNovedad {
+
+    /**
+     * Consulta todas las novedades registradas
+     * @return lista de novedades registradas
+     * @throws ExcepcionServiciosLaboratorio si no se pueden cargar las novedades
+     */
     public ArrayList<Novedad> consultarNovedades() throws ExcepcionServiciosLaboratorio;
 
     /**
@@ -15,4 +22,20 @@ public interface ServiciosNovedad {
      *                                       existe
      */
     public void registrarNovedad(Novedad novedad) throws ExcepcionServiciosLaboratorio;
+
+    /**
+     * Consulta las novedades de un Elemento específico
+     * @param id ID del Elemento en cuestión
+     * @return lista de novedades del Elemento
+     * @throws ExcepcionServiciosLaboratorio si no se pueden cargar las novedades
+     */
+    public List<Novedad> consultarNovedadesElemento(int id) throws ExcepcionServiciosLaboratorio;
+
+    /**
+     * Consulta las novedades de un Equipo específico
+     * @param id ID del Equipo en cuestión
+     * @return lista de novedades del Equipo
+     * @throws ExcepcionServiciosLaboratorio si no se pueden cargar las novedades
+     */
+    public List<Novedad> consultarNovedadesEquipo(int id) throws ExcepcionServiciosLaboratorio;
 }

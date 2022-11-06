@@ -8,6 +8,7 @@ import edu.eci.cvds.samples.services.ServiciosNovedad;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ServiciosNovedadImpl implements ServiciosNovedad {
     @Inject
@@ -28,6 +29,24 @@ public class ServiciosNovedadImpl implements ServiciosNovedad {
             novedadDAO.save(novedad);
         } catch (PersistenceException ex) {
             throw new ExcepcionServiciosLaboratorio("Error al registrar novedad " + novedad.getId() + ex);
+        }
+    }
+
+    @Override
+    public List<Novedad> consultarNovedadesElemento(int id) throws ExcepcionServiciosLaboratorio {
+        try {
+            return novedadDAO.loadNovedadesElemento(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al consultar novedades del elemento " + id + ex);
+        }
+    }
+
+    @Override
+    public List<Novedad> consultarNovedadesEquipo(int id) throws ExcepcionServiciosLaboratorio {
+        try {
+            return novedadDAO.loadNovedadesEquipo(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al consultar novedades del elemento " + id + ex);
         }
     }
 }
