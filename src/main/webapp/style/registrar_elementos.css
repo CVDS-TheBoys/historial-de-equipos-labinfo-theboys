@@ -20,8 +20,21 @@ body {
     box-shadow: 10px 10px 35px #000;
 }
 
+body .ui-selectonemenu {
+    vertical-align: baseline;
+    border: 1px solid #ced4da;
+    position: relative;
+    transform: none;
+    padding: 0;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 4px;
+    background: #ffffff;
+    min-width: 197px !important;
+}
+
 body .ui-selectonemenu .ui-selectonemenu-label {
     padding-right: 3rem;
+    min-width: 197px;
 }
 
 body .ui-button.ui-button-text-icon-left .ui-button-text {

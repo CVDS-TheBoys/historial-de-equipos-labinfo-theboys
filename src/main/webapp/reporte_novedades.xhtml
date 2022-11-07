@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>Registro Novedades</title>
+    <title>Reporte Novedades</title>
     <link rel="stylesheet" href="./style/novedades.css"/>
 </h:head>
 
@@ -16,16 +16,26 @@
             <h1 class="title">Reporte de Novedades</h1>
             <br/>
             <h3>¿Quiéres ver las novedades de un equipo/elemento en particular?</h3>
+            <div class="menu_equipo">
+                <p:outputLabel for="Equipo" value="Equipo" /><br/>
+                <p:selectOneMenu id="Equipo" value="#{NovedadBean.equipoId}">
+                    <p:ajax update="novedades:Elemento" process="@this"/>
+                    <f:selectItem itemLabel="No especificar" itemValue="#{null}"/>
+                    <f:selectItems value="#{EquiposBean.getEquiposConNovedades()}" var="equipo"
+                                   itemLabel="#{equipo.nombre}" itemValue="#{equipo.id}"/>
+                </p:selectOneMenu><br/>
+            </div>
             <div class="menu-elemento">
                 <p:outputLabel for="Elemento" value="Elemento" /><br/>
-                <p:selectOneMenu id="Elemento" value="#{elementoId}" hideNoSelectionOption="#{not empty elementoId}">
-                    <p:ajax update="@this" process="@this"/>
-                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
-                    <f:selectItems value="#{ElementoBean.getElementosConNovedades()}" var="elemento"
+                <p:selectOneMenu id="Elemento" value="#{NovedadBean.elementoId}">
+                    <f:selectItem itemLabel="No especificar" itemValue="#{null}"/>
+                    <f:selectItems value="#{ElementoBean.getElementosConNovedades(NovedadBean.equipoId)}" var="elemento"
                                    itemLabel="#{elemento.nombre}" itemValue="#{elemento.id}"/>
-                </p:selectOneMenu><br/><br/>
-            </div><br/>
-            <h3>Reporte histórico de novedades</h3><br/>
+                </p:selectOneMenu><br/>
+            </div>
+            <p:commandButton value="Buscar" action="reporte_especifico_novedades?faces-redirect=true" icon="pi pi-search" styleClass="ui-button-info" immediate="true"/><br/><br/>
+
+            <h3>Últimas novedades reportadas</h3><br/>
             <div class="myLabel">
                 <p:dataTable var="novedad" value="#{NovedadBean.getNovedades()}" rows="5"
                              paginator="true" paginatorPosition="bottom"
@@ -46,11 +56,13 @@
                     </p:column>
 
                     <p:column headerText="Fecha">
-                        <h:outputText value="#{novedad.fecha}" />
+                        <h:outputText value="#{novedad.fecha}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
                     </p:column>
 
                     <p:column headerText="Equipo">
-                        <h:outputText value="#{novedad.EQUIPO_id}" />
+                        <h:outputText value="#{EquiposBean.displayEquipos(novedad.EQUIPO_id)}" />
                     </p:column>
 
                     <p:column headerText="Elemento">
