@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Reporte Novedades</title>
+    <link rel="stylesheet" href="./style/novedades.css"/>
+</h:head>
+
+<h:body>
+    <div class="card">
+        <h:form id="novedades" class="form-novedades">
+            <h1 class="title">Reporte de Novedades</h1>
+            <br/>
+            <h3>¿Quiéres ver las novedades de un equipo/elemento en particular?</h3>
+            <div class="menu_equipo">
+                <p:outputLabel for="Equipo" value="Equipo" /><br/>
+                <p:selectOneMenu id="Equipo" value="#{NovedadBean.equipoId}">
+                    <p:ajax update="novedades:Elemento" process="@this"/>
+                    <f:selectItem itemLabel="No especificar" itemValue="#{null}"/>
+                    <f:selectItems value="#{EquiposBean.getEquiposConNovedades()}" var="equipo"
+                                   itemLabel="#{equipo.nombre}" itemValue="#{equipo.id}"/>
+                </p:selectOneMenu><br/>
+            </div>
+            <div class="menu-elemento">
+                <p:outputLabel for="Elemento" value="Elemento" /><br/>
+                <p:selectOneMenu id="Elemento" value="#{NovedadBean.elementoId}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="No especificar" itemValue="#{null}"/>
+                    <f:selectItems value="#{ElementoBean.getElementosConNovedades(NovedadBean.equipoId)}" var="elemento"
+                                   itemLabel="#{elemento.nombre}" itemValue="#{elemento.id}"/>
+                </p:selectOneMenu><br/>
+            </div>
+            <p:commandButton value="Buscar" action="reporte_especifico_novedades?faces-redirect=true" icon="pi pi-search" styleClass="ui-button-info" immediate="true"/><br/><br/>
+
+            <h3>Últimas novedades reportadas</h3><br/>
+            <div class="myLabel">
+                <p:dataTable id ="tabla_novedades" var="novedad" value="#{NovedadBean.getNovedades()}" rows="5"
+                             paginator="true" paginatorPosition="bottom"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                             rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+
+                    <p:column headerText="Id">
+                        <h:outputText value="#{novedad.id}" />
+                    </p:column>
+
+                    <p:column headerText="Título">
+                        <h:outputText value="#{novedad.titulo}" />
+                    </p:column>
+
+                    <p:column headerText="Detalle">
+                        <h:outputText value="#{novedad.detalle}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha">
+                        <h:outputText value="#{novedad.fecha}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Equipo">
+                        <h:outputText value="#{EquiposBean.displayEquipos(novedad.EQUIPO_id)}" />
+                    </p:column>
+
+                    <p:column headerText="Elemento">
+                        <h:outputText value="#{ElementoBean.getElemento(novedad.ELEMENTO_id).nombre}" />
+                    </p:column>
+
+                </p:dataTable>
+
+            </div><br/>
+            <div class="excel" style="text-align: right;">
+                <h:commandLink>
+                    <p:graphicImage value="./images/excel.ico" height="50" />
+                    <p:dataExporter type="xls" target="tabla_novedades" fileName="reporte_novedades" />
+                </h:commandLink>
+            </div>
+            <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
+
+        </h:form>
+
+    </div>
+
+</h:body>
+</html>

@@ -1,16 +1,12 @@
 package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.samples.entities.Elemento;
-import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
-import edu.eci.cvds.samples.services.ServiciosElemento;
+import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
+import edu.eci.cvds.services.ServiciosElemento;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.model.SelectItem;
-import javax.faces.model.SelectItemGroup;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -42,6 +38,38 @@ public class ElementoBean extends BasePageBean {
             return null;
         }
     }
+    public List<Elemento> getTipoElementosDisponibles(String tipo) {
+        try {
+            return serviciosElemento.consultarTipoElementoDisponibles(tipo);
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public Elemento getElemento(int id) {
+        try {
+            return serviciosElemento.consultarElemento(id);
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Elemento> getElementosConNovedades(Integer equipoId) {
+        try {
+            if (equipoId == null || equipoId == 0) {
+                return serviciosElemento.consultarElementosConNovedades();
+            } else {
+                return serviciosElemento.consultarElementosConNovedades(equipoId);
+            }
+
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
 
     public void sleep() throws InterruptedException {
         TimeUnit.SECONDS.sleep(1);

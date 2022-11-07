@@ -3,13 +3,83 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper">
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.ElementoMapper">
     <insert id="insertarElemento" parameterType="map">
         INSERT INTO ELEMENTOS (id, nombre, tipo, funcional, EQUIPO_id)
         VALUES (#{elem.id}, #{elem.nombre}, #{elem.tipo}, #{elem.funcional}, null)
     </insert>
 
+    <select id="consultarElemento" resultMap="ElementoResult">
+        SELECT
+        e.id as e_id,
+        e.nombre as e_nombre,
+        e.tipo as e_tipo,
+        e.funcional as e_funcional,
+        e.EQUIPO_id as e_equipo_id,
+        n.id as nv_id,
+        n.titulo as nv_titulo,
+        n.detalle as nv_detalle,
+        n.fecha as nv_fecha,
+        n.EQUIPO_id as nv_EQUIPO_id,
+        n.ELEMENTO_id as nv_ELEMENTO_id
+        FROM ELEMENTOS as e LEFT JOIN NOVEDADES as n ON (e.id = n.elemento_id)
+        WHERE e.id = #{idele}
+    </select>
+
     <select id="consultarElementos" resultMap="ElementoResult">
+        SELECT
+            e.id as e_id,
+            e.nombre as e_nombre,
+            e.tipo as e_tipo,
+            e.funcional as e_funcional,
+            e.EQUIPO_id as e_equipo_id,
+            n.id as nv_id,
+            n.titulo as nv_titulo,
+            n.detalle as nv_detalle,
+            n.fecha as nv_fecha,
+            n.EQUIPO_id as nv_EQUIPO_id,
+            n.ELEMENTO_id as nv_ELEMENTO_id
+        FROM ELEMENTOS as e LEFT JOIN NOVEDADES as n ON (e.id = n.elemento_id);
+    </select>
+
+    <select id="consultarElementosConNovedades" resultMap="ElementoResult">
+        SELECT
+        e.id as e_id,
+        e.nombre as e_nombre,
+        e.tipo as e_tipo,
+        e.funcional as e_funcional,
+        e.EQUIPO_id as e_equipo_id,
+        n.id as nv_id,
+        n.titulo as nv_titulo,
+        n.detalle as nv_detalle,
+        n.fecha as nv_fecha,
+        n.EQUIPO_id as nv_EQUIPO_id,
+        n.ELEMENTO_id as nv_ELEMENTO_id
+        FROM ELEMENTOS as e JOIN NOVEDADES as n ON (e.id = n.elemento_id);
+    </select>
+
+    <select id="consultarEquipoElementosConNovedades" resultMap="ElementoResult">
+        SELECT
+        e.id as e_id,
+        e.nombre as e_nombre,
+        e.tipo as e_tipo,
+        e.funcional as e_funcional,
+        e.EQUIPO_id as e_equipo_id,
+        n.id as nv_id,
+        n.titulo as nv_titulo,
+        n.detalle as nv_detalle,
+        n.fecha as nv_fecha,
+        n.EQUIPO_id as nv_EQUIPO_id,
+        n.ELEMENTO_id as nv_ELEMENTO_id
+        FROM ELEMENTOS as e JOIN NOVEDADES as n ON (e.id = n.elemento_id)
+        WHERE n.EQUIPO_id = #{idequ}
+    </select>
+
+    <update id="actualizarEquipo" parameterType="map">
+        UPDATE ELEMENTOS SET EQUIPO_id = #{ideq} WHERE id = #{idel}
+    </update>
+
+    <select id="consultarTipoElementosDisponibles" resultMap="ElementoResult">
         SELECT
           e.id as e_id,
           e.nombre as e_nombre,
@@ -17,6 +87,7 @@
           e.funcional as e_funcional,
           e.EQUIPO_id as e_equipo_id
         FROM ELEMENTOS as e
+        WHERE e.tipo = #{tipo} AND e.EQUIPO_id IS NULL  AND e.funcional = true
     </select>
 
     <resultMap id="ElementoResult" type="Elemento">
@@ -25,6 +96,15 @@
         <result property="tipo" column="e_tipo"/>
         <result property="funcional" column="e_funcional"/>
         <result property="equipo_id" column="e_equipo_id"/>
+        <collection property="novedades" javaType="ArrayList" ofType="Novedad" column="n_id">
+            <result property="id" column="nv_id"/>
+            <result property="titulo" column="nv_titulo"/>
+            <result property="detalle" column="nv_detalle"/>
+            <result property="fecha" column="nv_fecha"/>
+            <result property="EQUIPO_id" column="nv_EQUIPO_id"/>
+            <result property="ELEMENTO_id" column="nv_ELEMENTO_id"/>
+        </collection>
     </resultMap>
+
 
 </mapper>

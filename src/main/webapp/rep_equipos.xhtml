@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Reporte de equipos</title>
+    <link rel="stylesheet" href="./style/registrar_elementos.css"/>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:dataTable id ="tabla_reporte" var="equipo" value="#{EquiposBean.consultarEquipos()}"
+                     selectionMode="multiple" selection="#{EquiposBean.equiposSeleccionados}"
+                     rowKey="#{equipo.id}"
+                     filteredValue="#{EquiposBean.listaEquiposFiltrada}"
+                     widgetVar="equipoWidget" xmlns:p="http://primefaces.org/ui"
+                     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+            <f:facet name="header">
+                <center>
+                <p:outputPanel>
+                    <h:outputText value="Reporte de equipos"/>
+                </p:outputPanel>
+                </center>
+            </f:facet>
+
+            <p:column headerText="Id" sortBy="#{equipo.id}" filterBy="#{equipo.id}" filterMatchMode="contains">
+                <h:outputText value="#{equipo.id}"/>
+            </p:column>
+
+            <p:column headerText="Estado" sortBy="#{EquiposBean.convertToString(equipo.estado)}" filterBy="#{equipo.estado}"
+                      filterMatchMode="exact">
+                <f:facet name="filter">
+                    <p:selectOneMenu onchange="PF('equipoWidget').filter()" >
+                        <f:selectItem itemLabel="Seleccionar estado" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItem itemLabel="Activo" itemValue="true"/>
+                        <f:selectItem itemLabel="Inactivo" itemValue="false"/>
+                    </p:selectOneMenu>
+                </f:facet>
+                <h:outputText value="#{EquiposBean.convertToString(equipo.estado)}"/>
+            </p:column>
+
+            <p:column headerText="Laboratorio" sortBy="#{equipo.laboratorio_id}" filterBy="#{equipo.laboratorio_id}"
+                      filterMatchMode="contains">
+                <h:outputText value="#{equipo.laboratorio_id}"/>
+            </p:column>
+
+            <p:column headerText="Nombre" sortBy="#{equipo.nombre}" filterBy="#{equipo.nombre}" filterMatchMode="contains">
+                <h:outputText value="#{equipo.nombre}"/>
+            </p:column>
+
+            <p:column headerText="Pagina administracion">
+                <p:button outcome="pagina_adm" value="Pagina Administracion"/>
+            </p:column>
+
+            <p:column headerText="Reporte de novedades">
+                <p:button outcome="reporte_novedades?equipo=#{equipo.id}" value="Reporte Novedades"/>
+            </p:column>
+
+        </p:dataTable>
+
+        <br></br>
+
+        <p:panel>
+            <center>
+            <p:commandButton value ="Dar de baja" action="#{EquiposBean.darDeBaja()}"/>
+            </center>
+        </p:panel>
+
+        <br></br>
+
+        <center>
+            <p:panel header="Exportar a Excel">
+                <h:commandLink>
+                    <p:graphicImage value="./images/excel.ico" height="50" />
+                    <p:dataExporter type="xls" target="tabla_reporte" fileName="reporte" />
+                </h:commandLink>
+            </p:panel>
+        </center>
+    </h:form>
+</h:body>
+
+</html>
+
