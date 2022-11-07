@@ -1,12 +1,11 @@
 package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.samples.entities.Novedad;
-import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
-import edu.eci.cvds.samples.services.ServiciosElemento;
-import edu.eci.cvds.samples.services.ServiciosEquipo;
-import edu.eci.cvds.samples.services.ServiciosNovedad;
-import org.apache.ibatis.jdbc.Null;
+import edu.eci.cvds.entities.Novedad;
+import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
+import edu.eci.cvds.services.ServiciosElemento;
+import edu.eci.cvds.services.ServiciosEquipo;
+import edu.eci.cvds.services.ServiciosNovedad;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -101,5 +100,4 @@ public class NovedadBean extends BasePageBean {
     public void setEquipoId(Integer equipoId) {
         this.equipoId = equipoId;
     }
-
 }

@@ -1,4 +1,4 @@
-package edu.eci.cvds.samples.entities;
+package edu.eci.cvds.entities;
 
 import java.util.ArrayList;
 import java.util.List;

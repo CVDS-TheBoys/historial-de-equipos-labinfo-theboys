@@ -1,7 +1,6 @@
-package edu.eci.cvds.samples.services;
+package edu.eci.cvds.services;
 
-import edu.eci.cvds.sampleprj.dao.EquipoDAO;
-import edu.eci.cvds.samples.entities.Equipo;
+import edu.eci.cvds.entities.Equipo;
 
 import java.util.List;
 

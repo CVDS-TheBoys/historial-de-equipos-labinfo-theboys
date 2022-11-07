@@ -1,6 +1,6 @@
-package edu.eci.cvds.sampleprj.dao.mybatis.mappers;
+package edu.eci.cvds.persistence.mybatis.mappers;
 
-import edu.eci.cvds.samples.entities.Equipo;
+import edu.eci.cvds.entities.Equipo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

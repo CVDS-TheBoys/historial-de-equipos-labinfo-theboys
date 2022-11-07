@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper">
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.ElementoMapper">
     <insert id="insertarElemento" parameterType="map">
         INSERT INTO ELEMENTOS (id, nombre, tipo, funcional, EQUIPO_id)
         VALUES (#{elem.id}, #{elem.nombre}, #{elem.tipo}, #{elem.funcional}, null)

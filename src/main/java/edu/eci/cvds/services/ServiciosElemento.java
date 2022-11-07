@@ -1,6 +1,6 @@
-package edu.eci.cvds.samples.services;
+package edu.eci.cvds.services;
 
-import edu.eci.cvds.samples.entities.Elemento;
+import edu.eci.cvds.entities.Elemento;
 
 import java.util.List;
 

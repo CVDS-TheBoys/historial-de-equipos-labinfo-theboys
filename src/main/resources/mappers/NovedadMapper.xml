@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.NovedadMapper">
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.NovedadMapper">
 
     <insert id="insertarNovedad" parameterType="map">
         INSERT INTO NOVEDADES (id, titulo, detalle, fecha, EQUIPO_id, ELEMENTO_id)
