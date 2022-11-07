@@ -10,5 +10,6 @@ public interface EquipoDAO {
     public Equipo load(int id) throws PersistenceException;
     public List<Equipo> loadAll() throws PersistenceException;
     public List<Equipo> loadWithNovedades() throws PersistenceException;
+    public List<Equipo> consultarReporte() throws PersistenceException;
 
 }

@@ -33,4 +33,10 @@ public interface ServiciosEquipo {
      * @throws ExcepcionServiciosLaboratorio si no se pueden cargar los equipos
      */
     public List<Equipo> consultarEquiposConNovedades() throws ExcepcionServiciosLaboratorio;
+
+    /**
+     *  Consulta el reporte de los equipos activo
+     */
+    public List<Equipo> consultarReporte() throws  ExcepcionServiciosLaboratorio;
+
 }

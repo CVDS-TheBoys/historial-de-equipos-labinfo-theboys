@@ -48,4 +48,10 @@ public class ServiciosEquipoImpl implements ServiciosEquipo {
             throw new ExcepcionServiciosLaboratorio("Error al cargar novedades de los equipos " + ex);
         }
     }
+
+    @Override
+    public List<Equipo> consultarReporte() throws ExcepcionServiciosLaboratorio {
+        return equipoDAO.consultarReporte();
+    }
+
 }

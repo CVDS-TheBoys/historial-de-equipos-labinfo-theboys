@@ -109,4 +109,8 @@ public class Equipo implements Serializable {
                 ", elementos=" + elementos +
                 '}';
     }
+
+    public void darDeBaja() {
+        // Sin implementacion
+    }
 }
