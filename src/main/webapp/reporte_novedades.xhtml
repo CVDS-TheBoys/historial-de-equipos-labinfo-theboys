@@ -28,6 +28,7 @@
             <div class="menu-elemento">
                 <p:outputLabel for="Elemento" value="Elemento" /><br/>
                 <p:selectOneMenu id="Elemento" value="#{NovedadBean.elementoId}">
+                    <p:ajax update="@this" process="@this"/>
                     <f:selectItem itemLabel="No especificar" itemValue="#{null}"/>
                     <f:selectItems value="#{ElementoBean.getElementosConNovedades(NovedadBean.equipoId)}" var="elemento"
                                    itemLabel="#{elemento.nombre}" itemValue="#{elemento.id}"/>

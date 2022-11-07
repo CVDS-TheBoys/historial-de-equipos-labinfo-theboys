@@ -1,4 +1,4 @@
-package edu.eci.cvds.samples.services;
+package edu.eci.cvds.services;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 

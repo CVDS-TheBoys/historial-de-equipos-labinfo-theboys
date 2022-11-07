@@ -1,9 +1,9 @@
 package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.samples.entities.Elemento;
-import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
-import edu.eci.cvds.samples.services.ServiciosElemento;
+import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
+import edu.eci.cvds.services.ServiciosElemento;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

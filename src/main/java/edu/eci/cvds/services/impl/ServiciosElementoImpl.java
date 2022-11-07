@@ -1,10 +1,10 @@
-package edu.eci.cvds.samples.services.impl;
+package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.sampleprj.dao.ElementoDAO;
-import edu.eci.cvds.samples.entities.Elemento;
-import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
-import edu.eci.cvds.samples.services.ServiciosElemento;
+import edu.eci.cvds.persistence.ElementoDAO;
+import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
+import edu.eci.cvds.services.ServiciosElemento;
 import org.apache.ibatis.exceptions.PersistenceException;
 
 import java.util.List;

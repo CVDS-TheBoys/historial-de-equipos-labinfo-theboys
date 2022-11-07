@@ -1,9 +1,9 @@
-package edu.eci.cvds.samples.services;
+package edu.eci.cvds.services;
 
 import com.google.inject.Injector;
-import edu.eci.cvds.sampleprj.dao.EquipoDAO;
-import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISEquipoDAO;
-import edu.eci.cvds.samples.services.impl.ServiciosEquipoImpl;
+import edu.eci.cvds.persistence.EquipoDAO;
+import edu.eci.cvds.persistence.mybatis.MyBATISEquipoDAO;
+import edu.eci.cvds.services.impl.ServiciosEquipoImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 
 import java.util.Optional;

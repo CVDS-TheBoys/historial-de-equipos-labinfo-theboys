@@ -1,18 +1,17 @@
-package edu.eci.cvds.samples.services.client;
+package edu.eci.cvds.services.client;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
 
-import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ElementoMapper;
-import edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper;
-import edu.eci.cvds.sampleprj.dao.mybatis.mappers.NovedadMapper;
-import edu.eci.cvds.samples.entities.Elemento;
-import edu.eci.cvds.samples.entities.Equipo;
-import edu.eci.cvds.samples.entities.Novedad;
-import edu.eci.cvds.samples.services.*;
-import edu.eci.cvds.samples.services.impl.ServiciosEquipoImpl;
+import edu.eci.cvds.persistence.mybatis.mappers.ElementoMapper;
+import edu.eci.cvds.persistence.mybatis.mappers.EquipoMapper;
+import edu.eci.cvds.persistence.mybatis.mappers.NovedadMapper;
+import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.entities.Novedad;
+import edu.eci.cvds.services.*;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;

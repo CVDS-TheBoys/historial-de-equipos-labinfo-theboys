@@ -1,17 +1,14 @@
 package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.samples.entities.Elemento;
-import edu.eci.cvds.samples.entities.Equipo;
-import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
-import edu.eci.cvds.samples.services.ServiciosElemento;
-import edu.eci.cvds.samples.services.ServiciosEquipo;
+import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
+import edu.eci.cvds.services.ServiciosElemento;
+import edu.eci.cvds.services.ServiciosEquipo;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.view.ViewScoped;
 import java.util.List;
-import java.util.Arrays;
 
 
 /**

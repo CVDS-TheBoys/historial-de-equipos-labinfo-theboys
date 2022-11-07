@@ -1,9 +1,9 @@
-package edu.eci.cvds.samples.services;
+package edu.eci.cvds.services;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.eci.cvds.samples.entities.Novedad;
+import edu.eci.cvds.entities.Novedad;
 
 public interface ServiciosNovedad {
 

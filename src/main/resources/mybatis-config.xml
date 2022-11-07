@@ -10,9 +10,9 @@
     <properties resource="config.properties">
     </properties>
     <typeAliases>
-        <typeAlias type='edu.eci.cvds.samples.entities.Elemento' alias='Elemento'/>
-        <typeAlias type='edu.eci.cvds.samples.entities.Equipo' alias='Equipo'/>
-        <typeAlias type='edu.eci.cvds.samples.entities.Novedad' alias='Novedad'/>
+        <typeAlias type='edu.eci.cvds.entities.Elemento' alias='Elemento'/>
+        <typeAlias type='edu.eci.cvds.entities.Equipo' alias='Equipo'/>
+        <typeAlias type='edu.eci.cvds.entities.Novedad' alias='Novedad'/>
         <!-- TODO poner entidades faltantes -->
     </typeAliases>	
 

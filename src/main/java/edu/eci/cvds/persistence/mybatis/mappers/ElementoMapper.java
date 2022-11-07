@@ -1,9 +1,8 @@
-package edu.eci.cvds.sampleprj.dao.mybatis.mappers;
+package edu.eci.cvds.persistence.mybatis.mappers;
 
-import edu.eci.cvds.samples.entities.Elemento;
+import edu.eci.cvds.entities.Elemento;
 import org.apache.ibatis.annotations.Param;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public interface ElementoMapper {

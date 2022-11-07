@@ -1,18 +1,12 @@
 import com.google.inject.Inject;
-import edu.eci.cvds.samples.entities.Elemento;
-import edu.eci.cvds.samples.entities.Equipo;
-import edu.eci.cvds.samples.entities.Novedad;
-import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
-import edu.eci.cvds.samples.services.ServiciosElemento;
-import edu.eci.cvds.samples.services.ServiciosElementoFactory;
+import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
+import edu.eci.cvds.services.ServiciosElemento;
+import edu.eci.cvds.services.ServiciosElementoFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class ServiciosElementoTest {
     @Inject

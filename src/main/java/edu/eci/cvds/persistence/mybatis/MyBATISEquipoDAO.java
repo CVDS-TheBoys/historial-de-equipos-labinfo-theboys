@@ -1,9 +1,9 @@
-package edu.eci.cvds.sampleprj.dao.mybatis;
+package edu.eci.cvds.persistence.mybatis;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.sampleprj.dao.EquipoDAO;
-import edu.eci.cvds.sampleprj.dao.mybatis.mappers.EquipoMapper;
-import edu.eci.cvds.samples.entities.Equipo;
+import edu.eci.cvds.persistence.EquipoDAO;
+import edu.eci.cvds.persistence.mybatis.mappers.EquipoMapper;
+import edu.eci.cvds.entities.Equipo;
 import org.apache.ibatis.exceptions.PersistenceException;
 
 import java.util.List;
