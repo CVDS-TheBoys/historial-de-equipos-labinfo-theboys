@@ -14,6 +14,15 @@ public class ServiciosElementoImpl implements ServiciosElemento {
     private ElementoDAO elementoDAO;
 
     @Override
+    public Elemento consultarElemento(int id) throws ExcepcionServiciosLaboratorio {
+        try {
+            return elementoDAO.load(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar elementos " + ex);
+        }
+    }
+
+    @Override
     public List<Elemento> consultarElementos() throws ExcepcionServiciosLaboratorio {
         try {
             return elementoDAO.loadAll();
@@ -28,6 +37,24 @@ public class ServiciosElementoImpl implements ServiciosElemento {
             elementoDAO.save(elemento);
         } catch (PersistenceException ex) {
             throw new ExcepcionServiciosLaboratorio("Error al registrar el elemento " + elemento.getId() + ex);
+        }
+    }
+
+    @Override
+    public List<Elemento> consultarElementosConNovedades() throws ExcepcionServiciosLaboratorio {
+        try {
+            return elementoDAO.loadWithNovedades();
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar elementos " + ex);
+        }
+    }
+
+    @Override
+    public List<Elemento> consultarElementosConNovedades(int idEquipo) throws ExcepcionServiciosLaboratorio {
+        try {
+            return elementoDAO.loadWithNovedades(idEquipo);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar elementos " + ex);
         }
     }
 
@@ -49,12 +76,4 @@ public class ServiciosElementoImpl implements ServiciosElemento {
         }
     }
 
-    @Override
-    public Elemento consultarElemento(int id) throws ExcepcionServiciosLaboratorio {
-        try {
-            return elementoDAO.load(id);
-        } catch (PersistenceException ex) {
-            throw new ExcepcionServiciosLaboratorio("Error al cargar el elemento " + id + ex);
-        }
-    }
 }

@@ -47,6 +47,30 @@ public class ElementoBean extends BasePageBean {
         }
     }
 
+    public Elemento getElemento(int id) {
+        try {
+            return serviciosElemento.consultarElemento(id);
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Elemento> getElementosConNovedades(Integer equipoId) {
+        try {
+            if (equipoId == null || equipoId == 0) {
+                return serviciosElemento.consultarElementosConNovedades();
+            } else {
+                return serviciosElemento.consultarElementosConNovedades(equipoId);
+            }
+
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+
     public void sleep() throws InterruptedException {
         TimeUnit.SECONDS.sleep(1);
     }

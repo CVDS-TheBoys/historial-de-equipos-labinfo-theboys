@@ -1,6 +1,7 @@
 package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.samples.entities.Elemento;
 import edu.eci.cvds.samples.entities.Equipo;
 import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.samples.services.ServiciosElemento;
@@ -8,8 +9,9 @@ import edu.eci.cvds.samples.services.ServiciosEquipo;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.util.Arrays;
+import javax.faces.view.ViewScoped;
 import java.util.List;
+import java.util.Arrays;
 
 
 /**
@@ -52,6 +54,22 @@ public class EquipoBean extends BasePageBean{
     }
 
     /**
+<<<<<<< HEAD
+     * Muestra el nombre del equipo asociado al elemento en la pantalla
+     * @param id id del equipo
+     * @return el nombre del equipo asociado en caso de tener, "No aplica" de lo contrario
+     */
+    public String displayEquipos(int id) {
+        try {
+            Equipo equipo = serviciosEquipo.consultarEquipo(id);
+            return equipo != null ? equipo.getNombre() : "No aplica";
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * Consulta todos los equipos
      */
     public List<Equipo> consultarEquipos(){
@@ -59,6 +77,15 @@ public class EquipoBean extends BasePageBean{
             return serviciosEquipo.consultarEquipos();
         } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
             excepcionServiciosLaboratorio.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Equipo> getEquiposConNovedades() {
+        try {
+            return serviciosEquipo.consultarEquiposConNovedades();
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
             return null;
         }
     }

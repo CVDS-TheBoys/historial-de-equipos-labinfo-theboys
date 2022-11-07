@@ -12,16 +12,16 @@ public class Equipo implements Serializable {
     private Integer laboratorio_id;
     private String nombre;
     private List<Elemento> elementos;
-    // TODO private List<Novedad> novedades;
+    private List<Novedad> novedades;
 
-    /*public Equipo(int id, boolean estado, Integer laboratorio_id, String nombre, List<Elemento> elementos, List<Novedad> novedades) {
+    public Equipo(int id, boolean estado, Integer laboratorio_id, String nombre, List<Elemento> elementos, List<Novedad> novedades) {
         this.id = id;
         this.estado = estado;
         this.laboratorio_id = laboratorio_id;
         this.nombre = nombre;
         this.elementos = elementos;
         this.novedades = novedades;
-    }*/
+    }
 
     public Equipo(int id, boolean estado, Integer laboratorio_id, String nombre, List<Elemento> elementos) {
         this.id = id;
@@ -90,13 +90,13 @@ public class Equipo implements Serializable {
         this.elementos = elementos;
     }
 
-    /*public List<Novedad> getNovedades() {
+    public List<Novedad> getNovedades() {
         return novedades;
     }
 
     public void setNovedades(List<Novedad> novedades) {
         this.novedades = novedades;
-    }*/
+    }
 
     @Override
     public String toString() {
@@ -105,7 +105,7 @@ public class Equipo implements Serializable {
                 ", estado=" + estado +
                 ", laboratorio_id=" + laboratorio_id +
                 ", nombre='" + nombre + '\'' +
-                //", novedades=" + novedades +
+                ", novedades=" + novedades +
                 ", elementos=" + elementos +
                 '}';
     }

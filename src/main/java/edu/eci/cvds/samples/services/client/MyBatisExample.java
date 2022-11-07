@@ -58,17 +58,17 @@ public class MyBatisExample {
         // Elemento
         ElementoMapper em = sqlss.getMapper(ElementoMapper.class);
         Elemento elemento = new Elemento(1, "pupito", "Teclado", true);
-        em.insertarElemento(elemento);
-        System.out.println(em.consultarElementos());
+        //em.insertarElemento(elemento);
+        //System.out.println(em.consultarElementos());
 
         // Equipo
         EquipoMapper eqm = sqlss.getMapper(EquipoMapper.class);
         Equipo equipo = new Equipo(2, true, "equipo1");
-        eqm.insertarEquipo(equipo);
-        System.out.println(eqm.consultarEquipos());
+        //eqm.insertarEquipo(equipo);
+        //System.out.println(eqm.consultarEquipos());
 
-        em.actualizarEquipo(1, 2);
-        System.out.println(em.consultarElementos());
+        //em.actualizarEquipo(1, 2);
+        //System.out.println(em.consultarElementos());
 
         // Novedad
         NovedadMapper nvd = sqlss.getMapper(NovedadMapper.class);
@@ -81,20 +81,32 @@ public class MyBatisExample {
 
         // Prueba servicio
         ServiciosElemento serviciosElemento = ServiciosElementoFactory.getInstance().getServiciosElemento();
-        /*ServiciosEquipo serviciosEquipo = ServiciosEquipoFactory.getInstance().getServiciosEquipo();
+        ServiciosNovedad serviciosNovedad = ServiciosNovedadFactory.getInstance().getServiciosNovedad();
+        ServiciosEquipo serviciosEquipo = ServiciosEquipoFactory.getInstance().getServiciosEquipo();
         try {
             // Elemento
-            System.out.println(serviciosElemento.consultarElementos());
-            serviciosElemento.registrarElemento(elemento);
-            System.out.println(serviciosElemento.consultarElementos());
+            //System.out.println(serviciosElemento.consultarElementos());
+            //serviciosElemento.registrarElemento(elemento);
+            //System.out.println(serviciosElemento.consultarElementos().size());
+            //System.out.println(serviciosElemento.consultarElementosConNovedades().size());
+            //System.out.println(serviciosElemento.consultarElemento(1));
+            //System.out.println(serviciosElemento.consultarElementosConNovedades(1));
+
+            // Novedades
+            //System.out.println(serviciosNovedad.consultarNovedades());
+            //serviciosNovedad.registrarNovedad(novedad);
+            //System.out.println(serviciosNovedad.consultarNovedadesElemento(1));
+            //System.out.println(serviciosNovedad.consultarNovedadesEquipo(1));
 
             // Equipo
-            serviciosEquipo.registrarEquipo(equipo);
-            System.out.println(serviciosEquipo.consultarEquipos());
+            //serviciosEquipo.registrarEquipo(equipo);
+            //System.out.println(serviciosEquipo.consultarEquipos());
+            System.out.println(serviciosEquipo.consultarEquiposConNovedades());
+
 
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
-        }*/
+        }
 
     }
 
