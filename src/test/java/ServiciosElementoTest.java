@@ -1,6 +1,7 @@
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Elemento;
 import edu.eci.cvds.samples.entities.Equipo;
+import edu.eci.cvds.samples.entities.Novedad;
 import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.samples.services.ServiciosElemento;
 import edu.eci.cvds.samples.services.ServiciosElementoFactory;
@@ -8,6 +9,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class ServiciosElementoTest {
@@ -20,7 +24,7 @@ public class ServiciosElementoTest {
         serviciosElemento = ServiciosElementoFactory.getInstance().getServiciosElementoTesting();
     }
 
-    /*@Test
+    @Test
     public void deberiaInsertarElemento() {
         try {
             serviciosElemento.registrarElemento(elemento);
@@ -37,7 +41,17 @@ public class ServiciosElementoTest {
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
         }
-    }*/
+    }
+
+    @Test
+    public void deberiaConsultarElemento() {
+        try {
+            serviciosElemento.registrarElemento(elemento);
+            Assert.assertEquals(serviciosElemento.consultarElemento(1).getNombre(), "Logitech");
+        } catch (ExcepcionServiciosLaboratorio e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Test
     public void deberiaActualizarEquipo() {
