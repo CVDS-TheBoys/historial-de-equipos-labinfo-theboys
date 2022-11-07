@@ -16,7 +16,7 @@
             <h1 class="title">Reporte de Novedades</h1><br/>
             <h2>Novedades del #{NovedadBean.getElementName()}</h2>
             <div class="myLabel">
-                <p:dataTable var="novedad" value="#{NovedadBean.getNovedadesEspecificas(NovedadBean.elementoId, NovedadBean.equipoId)}" rows="5"
+                <p:dataTable id="tabla_novedades" var="novedad" value="#{NovedadBean.getNovedadesEspecificas(NovedadBean.elementoId, NovedadBean.equipoId)}" rows="5"
                              paginator="true" paginatorPosition="bottom"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
@@ -53,6 +53,12 @@
                     </f:facet>
                 </p:dataTable>
             </div><br/>
+            <div class="excel" style="text-align: right;">
+                <h:commandLink>
+                    <p:graphicImage value="./images/excel.ico" height="50" />
+                    <p:dataExporter type="xls" target="tabla_novedades" fileName="reporte_#{NovedadBean.getElementName()}" />
+                </h:commandLink>
+            </div>
             <p:commandButton value="Atrás" action="reporte_novedades?faces-redirect=true" icon="pi pi-angle-left" styleClass="ui-button-info" immediate="true"/>
         </h:form>
     </div>

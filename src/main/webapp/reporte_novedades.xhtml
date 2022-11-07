@@ -37,7 +37,7 @@
 
             <h3>Últimas novedades reportadas</h3><br/>
             <div class="myLabel">
-                <p:dataTable var="novedad" value="#{NovedadBean.getNovedades()}" rows="5"
+                <p:dataTable id ="tabla_novedades" var="novedad" value="#{NovedadBean.getNovedades()}" rows="5"
                              paginator="true" paginatorPosition="bottom"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
@@ -69,18 +69,17 @@
                         <h:outputText value="#{ElementoBean.getElemento(novedad.ELEMENTO_id).nombre}" />
                     </p:column>
 
-                    <f:facet name="paginatorTopLeft">
-                        <p:commandButton type="button" icon="pi pi-refresh"/>
-                    </f:facet>
-
-                    <!--<p:column style="width:3rem;text-align: center">
-                        <p:commandButton action = "registroalquiler?faces-redirect = true" icon="pi pi-search" title="View">
-                            <f:setPropertyActionListener value="#{novedad}" target="#{AlquilerItemsBean.novedadSeleccionado}"/>
-                        </p:commandButton>
-                    </p:column>-->
                 </p:dataTable>
+
             </div><br/>
+            <div class="excel" style="text-align: right;">
+                <h:commandLink>
+                    <p:graphicImage value="./images/excel.ico" height="50" />
+                    <p:dataExporter type="xls" target="tabla_novedades" fileName="reporte_novedades" />
+                </h:commandLink>
+            </div>
             <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
+
         </h:form>
 
     </div>
