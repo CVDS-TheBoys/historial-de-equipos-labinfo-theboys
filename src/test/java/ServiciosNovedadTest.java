@@ -40,8 +40,8 @@ public class ServiciosNovedadTest {
     @Test
     public void deberiaConsultarNovedad() {
         try {
-            Assert.assertEquals(serviciosNovedad.consultarNovedad(1001).getTitulo(),
-                    "Novedad Logitech");
+                Assert.assertEquals(serviciosNovedad.consultarNovedad(777).getTitulo(),
+                    "Novedad 777");
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
         }
