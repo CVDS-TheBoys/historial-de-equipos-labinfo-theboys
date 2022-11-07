@@ -1,8 +1,8 @@
 import com.google.inject.Inject;
-import edu.eci.cvds.samples.entities.Novedad;
-import edu.eci.cvds.samples.services.ExcepcionServiciosLaboratorio;
-import edu.eci.cvds.samples.services.ServiciosNovedad;
-import edu.eci.cvds.samples.services.ServiciosNovedadFactory;
+import edu.eci.cvds.entities.Novedad;
+import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
+import edu.eci.cvds.services.ServiciosNovedad;
+import edu.eci.cvds.services.ServiciosNovedadFactory;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -41,7 +41,7 @@ public class ServiciosNovedadTest {
     public void deberiaConsultarNovedad() {
         try {
             Assert.assertEquals(serviciosNovedad.consultarNovedad(1001).getTitulo(),
-            "Novedad Logitech");
+                    "Novedad Logitech");
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
         }
