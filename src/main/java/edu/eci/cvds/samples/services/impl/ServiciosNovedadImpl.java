@@ -33,6 +33,15 @@ public class ServiciosNovedadImpl implements ServiciosNovedad {
     }
 
     @Override
+    public Novedad consultarNovedad(int id) throws ExcepcionServiciosLaboratorio {
+        try {
+            return novedadDAO.load(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al novedad " + ex);
+        }
+    }
+
+    @Override
     public List<Novedad> consultarNovedadesElemento(int id) throws ExcepcionServiciosLaboratorio {
         try {
             return novedadDAO.loadNovedadesElemento(id);
