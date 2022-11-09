@@ -31,6 +31,7 @@ public class ServiciosNovedadTest {
     @Test
     public void deberiaConsultarNovedades() {
         try {
+            serviciosNovedad.registrarNovedad(novedad);
             Assert.assertEquals(serviciosNovedad.consultarNovedades().get(0).getTitulo(), "Novedad Logitech");
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
@@ -40,21 +41,12 @@ public class ServiciosNovedadTest {
     @Test
     public void deberiaConsultarNovedad() {
         try {
-                Assert.assertEquals(serviciosNovedad.consultarNovedad(777).getTitulo(),
-                    "Novedad 777");
+            serviciosNovedad.registrarNovedad(novedad);
+            Assert.assertEquals(serviciosNovedad.consultarNovedad(1001).getTitulo(),
+                    "Novedad Logitech");
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Test
-    public void deberiaConsultarNovedadesElemento() {
-        Assert.assertTrue(true);
-    }
-
-    @Test
-    public void deberiaConsultarNovedadesEquipo() {
-        Assert.assertTrue(true);
     }
 
 }

@@ -2,7 +2,7 @@ package edu.eci.cvds.services;
 
 import com.google.inject.Injector;
 import edu.eci.cvds.persistence.ElementoDAO;
-import edu.eci.cvds.persistence.mybatis.MyBATISElementoDAO;
+import edu.eci.cvds.persistence.mybatis.*;
 import edu.eci.cvds.services.impl.ServiciosElementoImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 
