@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
 
+import edu.eci.cvds.entities.Laboratorio;
 import edu.eci.cvds.persistence.mybatis.mappers.ElementoMapper;
 import edu.eci.cvds.persistence.mybatis.mappers.EquipoMapper;
 import edu.eci.cvds.persistence.mybatis.mappers.NovedadMapper;
@@ -78,10 +79,16 @@ public class MyBatisExample {
         sqlss.commit();
         sqlss.close();
 
+        // Laboratorio
+        Date fecha_creacion = new Date(System.currentTimeMillis());
+        Date fecha_cierre = Date.valueOf("2022-10-11");
+        Laboratorio laboratorio = new Laboratorio(3, "Lab1", 0, true, fecha_creacion);
+
         // Prueba servicio
         ServiciosElemento serviciosElemento = ServiciosElementoFactory.getInstance().getServiciosElemento();
         ServiciosNovedad serviciosNovedad = ServiciosNovedadFactory.getInstance().getServiciosNovedad();
         ServiciosEquipo serviciosEquipo = ServiciosEquipoFactory.getInstance().getServiciosEquipo();
+        ServiciosLaboratorio serviciosLaboratorio = ServiciosLaboratorioFactory.getInstance().getServiciosLaboratorio();
         try {
             // Elemento
             // System.out.println(serviciosElemento.consultarElementos());
@@ -100,7 +107,10 @@ public class MyBatisExample {
             // Equipo
             // serviciosEquipo.registrarEquipo(equipo);
             // System.out.println(serviciosEquipo.consultarEquipos());
-            System.out.println(serviciosEquipo.consultarEquiposConNovedades());
+
+            // Laboratorio
+            serviciosLaboratorio.registrarLaboratorio(laboratorio);
+            System.out.println(serviciosLaboratorio.consultarLaboratorios());
 
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
