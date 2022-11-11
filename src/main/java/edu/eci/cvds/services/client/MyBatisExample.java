@@ -90,6 +90,7 @@ public class MyBatisExample {
             // System.out.println(serviciosElemento.consultarElementosConNovedades().size());
             // System.out.println(serviciosElemento.consultarElemento(1));
             // System.out.println(serviciosElemento.consultarElementosConNovedades(1));
+            serviciosElemento.actualizarEquipo(1, null);
 
             // Novedades
             //System.out.println(serviciosNovedad.consultarNovedad(333));
@@ -100,7 +101,7 @@ public class MyBatisExample {
             // Equipo
             // serviciosEquipo.registrarEquipo(equipo);
             // System.out.println(serviciosEquipo.consultarEquipos());
-            System.out.println(serviciosEquipo.consultarEquiposConNovedades());
+            //System.out.println(serviciosEquipo.consultarEquiposConNovedades());
 
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);

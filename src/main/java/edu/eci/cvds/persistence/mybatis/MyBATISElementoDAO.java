@@ -59,7 +59,7 @@ public class MyBATISElementoDAO implements ElementoDAO {
     }
 
     @Override
-    public void updatePC(int idel, int ideq) throws PersistenceException {
+    public void updatePC(int idel, Integer ideq) throws PersistenceException {
         try {
             elementoMapper.actualizarEquipo(idel, ideq);
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {
