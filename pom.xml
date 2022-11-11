@@ -95,7 +95,7 @@
     </dependencies>
 
     <build>
-        <plugins>
+        <plugins><!--
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
@@ -103,7 +103,7 @@
                     <fork>true</fork>
                     <executable>C:\Program Files\Java\jdk1.8.0_221\bin\javac.exe</executable>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <!-- Para circleci -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

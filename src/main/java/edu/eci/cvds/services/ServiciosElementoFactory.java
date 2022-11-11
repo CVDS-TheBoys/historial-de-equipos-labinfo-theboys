@@ -2,8 +2,10 @@ package edu.eci.cvds.services;
 
 import com.google.inject.Injector;
 import edu.eci.cvds.persistence.ElementoDAO;
+import edu.eci.cvds.persistence.EquipoDAO;
 import edu.eci.cvds.persistence.mybatis.*;
 import edu.eci.cvds.services.impl.ServiciosElementoImpl;
+import edu.eci.cvds.services.impl.ServiciosEquipoImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 
 import java.util.Optional;
@@ -23,6 +25,8 @@ public class ServiciosElementoFactory {
                 setEnvironmentId(env);
                 setClassPathResource(pathResource);
                 bind(ElementoDAO.class).to(MyBATISElementoDAO.class);
+                bind(EquipoDAO.class).to(MyBATISEquipoDAO.class);
+                bind(ServiciosEquipo.class).to(ServiciosEquipoImpl.class);
                 bind(ServiciosElemento.class).to(ServiciosElementoImpl.class);
                 // TODO bind de DAOs/servicios faltantes
             }

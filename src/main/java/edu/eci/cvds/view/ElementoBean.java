@@ -20,6 +20,12 @@ public class ElementoBean extends BasePageBean {
     @Inject
     private ServiciosElemento serviciosElemento;
 
+    private List<Elemento> listaElementos;
+
+    private List<Elemento> elementosSeleccionados;
+
+    private List<Elemento> listaElementosFiltrada;
+
 
     public void registrarElemento(int id, String nombre, String tipo) {
         Elemento elemento = new Elemento(id, nombre, tipo, true);
@@ -70,9 +76,50 @@ public class ElementoBean extends BasePageBean {
         }
     }
 
+    public String getEquipoAsociado(Integer equipo_id) {
+        return serviciosElemento.getEquipoAsociado(equipo_id);
+    }
 
     public void sleep() throws InterruptedException {
         TimeUnit.SECONDS.sleep(1);
     }
 
+    public List<Elemento> getListaElementos() {
+        return listaElementos;
+    }
+
+    public void setListaElementos(List<Elemento> listaElementos) {
+        this.listaElementos = listaElementos;
+    }
+
+    public List<Elemento> getElementosSeleccionados() {
+        return elementosSeleccionados;
+    }
+
+    public void setElementosSeleccionados(List<Elemento> elementosSeleccionados) {
+        this.elementosSeleccionados = elementosSeleccionados;
+    }
+
+    public List<Elemento> getListaElementosFiltrada() {
+        return listaElementosFiltrada;
+    }
+
+    public void setListaElementosFiltrada(List<Elemento> listaElementosFiltrada) {
+        this.listaElementosFiltrada = listaElementosFiltrada;
+    }
+
+    /**
+     * Convierte el valor booleano de estado en un String que sea Activo o Inactivo para mostrar
+     * en el frontend
+     * @param funcional estado del equipo
+     * @return "Activo" "Inactivo"
+     */
+    public String convertToString(boolean funcional){
+        if (funcional){
+            return "Activo";
+        }
+        else {
+            return "Dado de baja";
+        }
+    }
 }

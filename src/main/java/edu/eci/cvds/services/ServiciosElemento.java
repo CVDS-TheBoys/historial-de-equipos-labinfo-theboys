@@ -61,4 +61,5 @@ public interface ServiciosElemento {
      */
     public List<Elemento> consultarTipoElementoDisponibles(String tipo) throws ExcepcionServiciosLaboratorio;
 
+    String getEquipoAsociado(Integer equipo_id);
 }

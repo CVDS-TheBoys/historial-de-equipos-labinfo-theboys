@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Reporte de elementos</title>
+    <link rel="stylesheet" href="./style/novedades.css"/>
+</h:head>
+
+<h:body>
+    <div class="card" >
+        <h:form class="form-novedades">
+            <div class="myLabel">
+            <p:dataTable id ="tabla_reporte" var="elemento" value="#{ElementoBean.getElementos()}"
+                         selectionMode="multiple" selection="#{ElementoBean.elementosSeleccionados}"
+                         rowKey="#{elemento.id}"
+                         filteredValue="#{ElementoBean.listaElementosFiltrada}"
+                         widgetVar="elementoWidget">
+
+                <f:facet name="header">
+                    <center>
+                        <p:outputPanel>
+                            <h:outputText value="Reporte de elementos"/>
+                        </p:outputPanel>
+                    </center>
+                </f:facet>
+
+                <p:column headerText="Id" sortBy="#{elemento.id}" filterBy="#{elemento.id}" filterMatchMode="contains">
+                    <h:outputText value="#{elemento.id}"/>
+                </p:column>
+
+                <p:column headerText="Nombre" sortBy="#{elemento.nombre}" filterBy="#{elemento.nombre}" filterMatchMode="contains">
+                    <h:outputText value="#{elemento.nombre}"/>
+                </p:column>
+
+                <p:column headerText="Tipo" sortBy="#{elemento.tipo}" filterBy="#{elemento.tipo}" filterMatchMode="contains">
+                    <h:outputText value="#{elemento.tipo}"/>
+                </p:column>
+
+                <p:column headerText="Estado" sortBy="#{ElementoBean.convertToString(elemento.funcional)}" filterBy="#{elemento.funcional}"
+                          filterMatchMode="exact">
+                    <f:facet name="filter">
+                        <p:selectOneMenu onchange="PF('elementoWidget').filter()" >
+                            <f:selectItem itemLabel="Seleccionar estado" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItem itemLabel="Activo" itemValue="true"/>
+                            <f:selectItem itemLabel="Dado de baja" itemValue="false"/>
+                        </p:selectOneMenu>
+                    </f:facet>
+                    <h:outputText value="#{ElementoBean.convertToString(elemento.funcional)}"/>
+                </p:column>
+
+                <p:column headerText="Equipo asociado" sortBy="#{ElementoBean.getEquipoAsociado(elemento.equipo_id)}" filterBy="#{ElementoBean.getEquipoAsociado(elemento.equipo_id)}"
+                          filterMatchMode="contains">
+                    <h:outputText value="#{ElementoBean.getEquipoAsociado(elemento.equipo_id)}"/>
+                </p:column>
+
+
+                <p:column headerText="Pagina administracion">
+                    <p:button outcome="pagina_adm" value="Pagina Administracion"/>
+                </p:column>
+
+                <p:column headerText="Reporte de novedades">
+                    <p:button outcome="reporte_novedades?elemento=#{elemento.id}" value="Reporte Novedades"/>
+                </p:column>
+
+            </p:dataTable>
+
+            </div>
+
+            <br></br>
+
+            <div class="Dar_baja">
+            <p:panel>
+                <center>
+                    <p:commandButton value ="Dar de baja" action="#{EquiposBean.darDeBaja()}"/>
+                </center>
+            </p:panel>
+            </div>
+
+            <br></br>
+
+            <div class="excel">
+            <center>
+                <p:panel header="Exportar a Excel">
+                    <h:commandLink>
+                        <p:graphicImage value="./images/excel.ico" height="50" />
+                        <p:dataExporter type="xls" target="tabla_reporte" fileName="reporte" />
+                    </h:commandLink>
+                </p:panel>
+            </center>
+            </div>
+        </h:form>
+    </div>
+</h:body>
+
+</html>
+

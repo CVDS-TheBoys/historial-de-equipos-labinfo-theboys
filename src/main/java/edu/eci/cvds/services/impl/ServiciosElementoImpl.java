@@ -5,6 +5,7 @@ import edu.eci.cvds.persistence.ElementoDAO;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.services.ServiciosElemento;
+import edu.eci.cvds.services.ServiciosEquipo;
 import org.apache.ibatis.exceptions.PersistenceException;
 
 import java.util.List;
@@ -12,6 +13,9 @@ import java.util.List;
 public class ServiciosElementoImpl implements ServiciosElemento {
     @Inject
     private ElementoDAO elementoDAO;
+
+    @Inject
+    private ServiciosEquipo serviciosEquipo;
 
     @Override
     public Elemento consultarElemento(int id) throws ExcepcionServiciosLaboratorio {
@@ -73,6 +77,15 @@ public class ServiciosElementoImpl implements ServiciosElemento {
             return elementoDAO.loadAvailableElementsType(tipo);
         } catch (PersistenceException ex) {
             throw new ExcepcionServiciosLaboratorio("Error al cargar elementos disponibles del tipo " + tipo + ex);
+        }
+    }
+
+    @Override
+    public String getEquipoAsociado(Integer equipo_id) {
+        try {
+            return serviciosEquipo.consultarEquipo(equipo_id).getNombre();
+        } catch (ExcepcionServiciosLaboratorio e) {
+            throw new RuntimeException(e);
         }
     }
 
