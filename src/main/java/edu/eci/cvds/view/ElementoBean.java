@@ -2,6 +2,7 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.services.ServiciosElemento;
 
@@ -77,7 +78,15 @@ public class ElementoBean extends BasePageBean {
     }
 
     public String getEquipoAsociado(Integer equipo_id) {
-        return serviciosElemento.getEquipoAsociado(equipo_id);
+        String res = "";
+        Equipo equipo_as = serviciosElemento.getEquipoAsociado(equipo_id);
+        if (equipo_as != null){
+            res = res + equipo_as.getNombre();
+        }
+        else {
+            res = res + "No aplica";
+        }
+        return res;
     }
 
     public void sleep() throws InterruptedException {

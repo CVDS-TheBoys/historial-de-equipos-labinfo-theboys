@@ -1,6 +1,7 @@
 package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.persistence.ElementoDAO;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
@@ -81,9 +82,9 @@ public class ServiciosElementoImpl implements ServiciosElemento {
     }
 
     @Override
-    public String getEquipoAsociado(Integer equipo_id) {
+    public Equipo getEquipoAsociado(Integer equipo_id) {
         try {
-            return serviciosEquipo.consultarEquipo(equipo_id).getNombre();
+            return serviciosEquipo.consultarEquipo(equipo_id);
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
         }

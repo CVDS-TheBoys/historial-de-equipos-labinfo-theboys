@@ -1,6 +1,7 @@
 package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.entities.Equipo;
 
 import java.util.List;
 
@@ -61,5 +62,5 @@ public interface ServiciosElemento {
      */
     public List<Elemento> consultarTipoElementoDisponibles(String tipo) throws ExcepcionServiciosLaboratorio;
 
-    String getEquipoAsociado(Integer equipo_id);
+    public Equipo getEquipoAsociado(Integer equipo_id);
 }
