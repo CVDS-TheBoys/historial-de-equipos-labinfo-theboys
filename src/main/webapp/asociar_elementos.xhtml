@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Registro Equipos</title>
+    <link rel="stylesheet" href="./style/asociar_elementos.css"/>
+</h:head>
+
+<h:body>
+    <div class="card">
+        <h:form id="asociar" class="form-asociar">
+            <h1 class="title">Asociar elementos</h1>
+            <br/>
+            <div>
+                <p:outputLabel for="Equipo" value="Selecciona un equipo"/><br/>
+                <p:selectOneMenu id="Equipo" value="#{equipoId}" required="true">
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{EquiposBean.consultarEquipos()}" var="equipo"
+                                   itemLabel="#{equipo.nombre}" itemValue="#{equipo.id}"/>
+                </p:selectOneMenu><br/>
+            </div><br/>
+            <h2>Elementos disponibles</h2>
+            <div>
+                <p:outputLabel for="Pantalla" value="Pantalla"/><br/>
+                <p:selectOneMenu id="Pantalla" value="#{pantallaId}">
+                    <f:selectItem itemLabel="No asociar" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getTipoElementosDisponibles('Pantalla')}" var="pantalla"
+                                   itemLabel="#{pantalla.nombre}" itemValue="#{pantalla.id}"/>
+                </p:selectOneMenu><br/>
+
+                <p:outputLabel for="Torre" value="Torre"/><br/>
+                <p:selectOneMenu id="Torre" value="#{torreId}">
+                    <f:selectItem itemLabel="No asociar" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getTipoElementosDisponibles('Torre')}" var="torre"
+                                   itemLabel="#{torre.nombre}" itemValue="#{torre.id}"/>
+                </p:selectOneMenu><br/>
+
+                <p:outputLabel for="Teclado" value="Teclado"/><br/>
+                <p:selectOneMenu id="Teclado" value="#{tecladoId}">
+                    <f:selectItem itemLabel="No asociar" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getTipoElementosDisponibles('Teclado')}" var="teclado"
+                                   itemLabel="#{teclado.nombre}" itemValue="#{teclado.id}"/>
+                </p:selectOneMenu><br/>
+
+                <p:outputLabel for="Mouse" value="Mouse"/><br/>
+                <p:selectOneMenu id="Mouse" value="#{mouseId}">
+                    <f:selectItem itemLabel="No asociar" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getTipoElementosDisponibles('Mouse')}" var="mouse"
+                                   itemLabel="#{mouse.nombre}" itemValue="#{mouse.id}"/>
+                </p:selectOneMenu>
+            </div><br/>
+            <p:growl id="message" showDetail="true"/>
+
+            <p:commandButton value="Guardar" action="menu?faces-redirect=true" styleClass="ui-button-info" icon="pi pi-save"
+                             actionListener="#{ElementoBean.asociarElementos(equipoId, pantallaId, torreId, tecladoId, mouseId)}">
+                <p:confirm type="popup" header="Confirmation" message="¿Seguro que quieres proceder?" icon="pi pi-exclamation-triangle"/>
+            </p:commandButton>
+
+            <br/><br/>
+            <div id="button-layout">
+                <div>
+                    <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
+                </div>
+                <div id="info">
+                    <p:commandButton id="basic" icon="pi pi-info-circle" styleClass="ui-button-info"/>
+                    <p:overlayPanel for="basic" style="width:350px; text-align: left;">
+                        <p>Selecciona un equipo y asocia elementos a él. Si no seleccionas un elemento para asociar,
+                            el equipo no tendrá cambio alguno en dicho elemento. Si seleccionas un elemento y el equipo
+                            ya tenía uno de ese tipo, se desasociará el que estaba y quedará disponible
+                            para asociarlo a otro equipo.</p>
+                    </p:overlayPanel>
+                </div>
+            </div>
+
+            <p:confirmPopup global="true">
+                <p:commandButton value="No" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                <p:commandButton value="Si" type="button" styleClass="ui-confirm-popup-yes" />
+            </p:confirmPopup>
+
+        </h:form>
+    </div>
+</h:body>
+</html>

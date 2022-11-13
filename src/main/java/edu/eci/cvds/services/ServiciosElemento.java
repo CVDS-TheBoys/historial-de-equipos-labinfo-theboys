@@ -51,7 +51,7 @@ public interface ServiciosElemento {
      * @param ideq id del equipo
      * @throws ExcepcionServiciosLaboratorio
      */
-    public void actualizarEquipo(int idel, int ideq) throws ExcepcionServiciosLaboratorio;
+    public void actualizarEquipo(int idel, Integer ideq) throws ExcepcionServiciosLaboratorio;
 
     /**
      * Consulta los elementos disponibles segun el tipo que se ingrese
