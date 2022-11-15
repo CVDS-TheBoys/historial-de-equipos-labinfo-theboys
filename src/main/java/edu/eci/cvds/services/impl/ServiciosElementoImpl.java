@@ -59,7 +59,7 @@ public class ServiciosElementoImpl implements ServiciosElemento {
     }
 
     @Override
-    public void actualizarEquipo(int idel, int ideq) throws ExcepcionServiciosLaboratorio {
+    public void actualizarEquipo(int idel, Integer ideq) throws ExcepcionServiciosLaboratorio {
         try {
             elementoDAO.updatePC(idel, ideq);
         } catch (PersistenceException ex) {

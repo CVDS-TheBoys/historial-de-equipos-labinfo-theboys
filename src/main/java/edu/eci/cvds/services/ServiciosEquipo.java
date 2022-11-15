@@ -1,5 +1,6 @@
 package edu.eci.cvds.services;
 
+import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
 
 import java.util.List;
@@ -37,5 +38,14 @@ public interface ServiciosEquipo {
      *  Consulta el reporte de los equipos activo
      */
     public List<Equipo> consultarReporte() throws  ExcepcionServiciosLaboratorio;
+
+    /**
+     * Consulta el elemento, del tipo especificado, de un equipo
+     * @param equipoId id del quipo
+     * @param tipo tipo del elemento a buscar
+     * @return elemento del tipo especificado
+     * @throws ExcepcionServiciosLaboratorio si no se pueden el elemento
+     */
+    public Elemento consultarElementoTipo(int equipoId, String tipo) throws ExcepcionServiciosLaboratorio;
 
 }
