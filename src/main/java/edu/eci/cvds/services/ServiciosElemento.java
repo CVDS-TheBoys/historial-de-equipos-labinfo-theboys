@@ -61,4 +61,17 @@ public interface ServiciosElemento {
      */
     public List<Elemento> consultarTipoElementoDisponibles(String tipo) throws ExcepcionServiciosLaboratorio;
 
+    /**
+     * Consulta los elementos funcionales disponibles
+     * @return lista de elementos disponibles
+     * @throws ExcepcionServiciosLaboratorio si no es posible cargar los elementos
+     */
+    public List<Elemento> consultarElementosDisponibles() throws ExcepcionServiciosLaboratorio;
+
+    /**
+     * Da de baja un elemento haciendo que el atributo funcional sea falso
+     * @param idel id del elemento
+     * @throws ExcepcionServiciosLaboratorio si no es posible cargar los elementos
+     */
+    public void darBajaElemento(int idel) throws ExcepcionServiciosLaboratorio;
 }

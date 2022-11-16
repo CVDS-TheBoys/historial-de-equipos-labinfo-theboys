@@ -76,4 +76,22 @@ public class ServiciosElementoImpl implements ServiciosElemento {
         }
     }
 
+    @Override
+    public List<Elemento> consultarElementosDisponibles() throws ExcepcionServiciosLaboratorio {
+        try {
+            return elementoDAO.loadAvailableElements();
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar elementos disponibles" + ex);
+        }
+    }
+
+    @Override
+    public void darBajaElemento(int idel) throws ExcepcionServiciosLaboratorio {
+        try {
+            elementoDAO.disableElement(idel);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al dar de baja elemento " + idel + ex);
+        }
+    }
+
 }
