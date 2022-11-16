@@ -90,10 +90,13 @@ public class MyBatisExample {
             // System.out.println(serviciosElemento.consultarElementosConNovedades().size());
             // System.out.println(serviciosElemento.consultarElemento(1));
             // System.out.println(serviciosElemento.consultarElementosConNovedades(1));
-            //serviciosElemento.actualizarEquipo(1, null);
+            // serviciosElemento.actualizarEquipo(1, null);
+            // serviciosElemento.darBajaElemento(4);
+            System.out.println(serviciosElemento.consultarElementosDisponibles());
+
 
             // Novedades
-            //System.out.println(serviciosNovedad.consultarNovedad(333));
+            //  System.out.println(serviciosNovedad.consultarNovedad(333));
             // serviciosNovedad.registrarNovedad(novedad);
             // System.out.println(serviciosNovedad.consultarNovedadesElemento(1));
             // System.out.println(serviciosNovedad.consultarNovedadesEquipo(1));
@@ -101,9 +104,9 @@ public class MyBatisExample {
             // Equipo
             // serviciosEquipo.registrarEquipo(equipo);
             // System.out.println(serviciosEquipo.consultarEquipos());
-            //System.out.println(serviciosEquipo.consultarEquiposConNovedades());
-            //System.out.println(serviciosEquipo.consultarEquipo(2));
-            System.out.println(serviciosEquipo.consultarElementoTipo(2, "Pantalla"));
+            //  System.out.println(serviciosEquipo.consultarEquiposConNovedades());
+            //  System.out.println(serviciosEquipo.consultarEquipo(2));
+            //  System.out.println(serviciosEquipo.consultarElementoTipo(2, "Pantalla"));
 
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);

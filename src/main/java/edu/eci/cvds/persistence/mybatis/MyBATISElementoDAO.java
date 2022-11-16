@@ -76,4 +76,22 @@ public class MyBATISElementoDAO implements ElementoDAO {
             throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar los elementos disponibles de tipo" + tipo + e);
         }
     }
+
+    @Override
+    public List<Elemento> loadAvailableElements() throws PersistenceException {
+        try {
+            return elementoMapper.consultarElementosDisponibles();
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar los elementos disponibles" + e);
+        }
+    }
+
+    @Override
+    public void disableElement(int idel) throws PersistenceException {
+        try {
+            elementoMapper.darBajaElemento(idel);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            throw new org.apache.ibatis.exceptions.PersistenceException("Error al dar de baja elemento "+ idel + e);
+        }
+    }
 }
