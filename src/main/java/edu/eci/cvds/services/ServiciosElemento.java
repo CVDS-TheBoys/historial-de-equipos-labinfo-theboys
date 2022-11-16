@@ -1,6 +1,7 @@
 package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.entities.Equipo;
 
 import java.util.List;
 
@@ -74,4 +75,5 @@ public interface ServiciosElemento {
      * @throws ExcepcionServiciosLaboratorio si no es posible cargar los elementos
      */
     public void darBajaElemento(int idel) throws ExcepcionServiciosLaboratorio;
+    public Equipo getEquipoAsociado(Integer equipo_id);
 }

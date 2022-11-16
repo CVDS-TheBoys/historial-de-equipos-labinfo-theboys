@@ -3,6 +3,7 @@ package edu.eci.cvds.view;
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Novedad;
+import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.services.ServiciosElemento;
 import edu.eci.cvds.services.ServiciosEquipo;
@@ -33,6 +34,12 @@ public class ElementoBean extends BasePageBean {
     static final String NEW_DETAIL = "Se asoció el elemento al equipo";
 
 
+
+    private List<Elemento> listaElementos;
+
+    private List<Elemento> elementosSeleccionados;
+
+    private List<Elemento> listaElementosFiltrada;
 
 
     public void registrarElemento(int id, String nombre, String tipo) {
@@ -165,8 +172,58 @@ public class ElementoBean extends BasePageBean {
         }
     }
 
+    public String getEquipoAsociado(Integer equipo_id) {
+        String res = "";
+        Equipo equipo_as = serviciosElemento.getEquipoAsociado(equipo_id);
+        if (equipo_as != null){
+            res = res + equipo_as.getNombre();
+        }
+        else {
+            res = res + "No aplica";
+        }
+        return res;
+    }
+
     public void sleep() throws InterruptedException {
         TimeUnit.SECONDS.sleep(1);
     }
 
+    public List<Elemento> getListaElementos() {
+        return listaElementos;
+    }
+
+    public void setListaElementos(List<Elemento> listaElementos) {
+        this.listaElementos = listaElementos;
+    }
+
+    public List<Elemento> getElementosSeleccionados() {
+        return elementosSeleccionados;
+    }
+
+    public void setElementosSeleccionados(List<Elemento> elementosSeleccionados) {
+        this.elementosSeleccionados = elementosSeleccionados;
+    }
+
+    public List<Elemento> getListaElementosFiltrada() {
+        return listaElementosFiltrada;
+    }
+
+    public void setListaElementosFiltrada(List<Elemento> listaElementosFiltrada) {
+        this.listaElementosFiltrada = listaElementosFiltrada;
+    }
+
+    /**
+     * Convierte el valor booleano de estado en un String que sea Activo o Inactivo para mostrar
+     * en el frontend
+     * @param funcional estado del equipo
+     * @return "Activo" "Inactivo"
+     */
+    public String convertToString(boolean funcional){
+        if (funcional){
+            return "Activo";
+        }
+        else {
+            return "Dado de baja";
+        }
+    }
 }
