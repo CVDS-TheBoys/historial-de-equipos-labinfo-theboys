@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Dar de baja Elementos</title>
+    <link rel="stylesheet" href="./style/asociar_elementos.css"/>
+</h:head>
+
+<h:body>
+    <div class="card">
+        <h:form id="asociar" class="form-asociar">
+            <h1 class="title">Dar baja Elementos</h1>
+            <br/>
+            <div>
+                <p:outputLabel for="Elemento" value="Selecciona un elemento"/><br/>
+                <p:selectOneMenu id="Elemento" value="#{elementoId}" filter="true" required="true">
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getElementosDisponibles()}" var="elemento"
+                                   itemLabel="#{elemento.nombre} - #{elemento.tipo}" itemValue="#{elemento.id}"/>
+                </p:selectOneMenu><br/>
+            </div><br/>
+            <div>
+                <p:outputLabel for="Detalle" value="Ingresa la razón"/><br/>
+                <p:inputTextarea id="Detalle" rows="5" cols="41" counter="display" maxlength="200" value="#{detalle}"
+                                 counterTemplate="{0} characters remaining." autoResize="true"/><br/>
+                <h:outputText id="display" class="block" />
+            </div><br/>
+
+            <p:growl id="message" showDetail="true"/>
+
+            <p:commandButton value="Dar de baja" action="menu?faces-redirect=true" styleClass="ui-button-danger" icon="pi pi-times"
+                             actionListener="#{ElementoBean.darBajaElemento(elementoId, detalle)}">
+                <p:confirm type="popup" header="Confirmation" message="¿Seguro que quieres proceder?" icon="pi pi-exclamation-triangle"/>
+            </p:commandButton>
+
+            <br/><br/>
+            <div id="button-layout">
+                <div>
+                    <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
+                </div>
+                <div id="info">
+                    <p:commandButton id="basic" icon="pi pi-info-circle" styleClass="ui-button-info"/>
+                    <p:overlayPanel for="basic" style="width:350px; text-align: left;">
+                        <p>Solo podrás dar de baja elementos funcionales que no estén asociados a un equipo.</p>
+                    </p:overlayPanel>
+                </div>
+            </div>
+
+            <p:confirmPopup global="true">
+                <p:commandButton value="No" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                <p:commandButton value="Si" type="button" styleClass="ui-confirm-popup-yes" />
+            </p:confirmPopup>
+
+        </h:form>
+    </div>
+</h:body>
+</html>
