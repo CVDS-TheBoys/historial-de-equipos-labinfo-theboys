@@ -52,11 +52,11 @@
                 </p:column>
 
 
-                <p:column headerText="Pagina administracion" style="text-align:center">
+                <p:column headerText="Pagina administracion" style="text-align:center" exportable="false">
                     <p:button outcome="pagina_adm" value="Ir" style="width:50px; text-align:center"/>
                 </p:column>
 
-                <p:column headerText="Reporte de novedades" style="text-align:center">
+                <p:column headerText="Reporte de novedades" style="text-align:center" exportable="false">
                     <p:button outcome="reporte_novedades?elemento=#{elemento.id}" value="Ir" style="width:50px; text-align:center"/>
                 </p:column>
 
@@ -73,7 +73,9 @@
                 </h:commandLink>
             </div>
 
-            <p:commandButton value ="Dar de baja" action="#{EquiposBean.darDeBaja()}"/><br/><br/>
+            <p:commandButton value ="Dar de baja" action="#{EquiposBean.darDeBaja()}"/>
+
+            <br> </br>
 
             <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
 
