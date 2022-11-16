@@ -20,7 +20,11 @@
                          rowKey="#{elemento.id}"
                          filteredValue="#{ElementoBean.listaElementosFiltrada}"
                          widgetVar="elementoWidget"
-                        styleClass="myTable">
+                         rows="5"
+                         paginator="true" paginatorPosition="bottom"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                         rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 
                 <p:column headerText="Id" sortBy="#{elemento.id}" filterBy="#{elemento.id}" filterMatchMode="exact" style="width:50px;">
                     <h:outputText value="#{elemento.id}"/>
