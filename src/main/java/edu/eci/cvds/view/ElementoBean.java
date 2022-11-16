@@ -84,6 +84,15 @@ public class ElementoBean extends BasePageBean {
         }
     }
 
+    public List<Elemento> getElementosDisponibles() {
+        try {
+            return serviciosElemento.consultarElementosDisponibles();
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public void asociarElementos(int equipoId, Integer pantallaId, Integer torreId, Integer tecladoId, Integer mouseId) {
         try {
             asociarPantalla(equipoId, pantallaId);
@@ -143,6 +152,17 @@ public class ElementoBean extends BasePageBean {
                 serviciosElemento.actualizarEquipo(mouseId, equipoId);
                 serviciosNovedad.registrarNovedad(new Novedad(66, NEW_TITLE, NEW_DETAIL, date, equipoId, mouseId));
             }
+    }
+
+    public void darBajaElemento(int elementoId, String detalle) {
+        Date date = new Date(System.currentTimeMillis());
+        try {
+            serviciosElemento.darBajaElemento(elementoId);
+            Novedad novedad = new Novedad(67, "Element dado de baja", detalle, date, elementoId);
+            serviciosNovedad.registrarNovedad(novedad);
+        } catch (ExcepcionServiciosLaboratorio e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void sleep() throws InterruptedException {
