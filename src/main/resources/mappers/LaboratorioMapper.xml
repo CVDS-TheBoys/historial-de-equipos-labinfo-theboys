@@ -18,7 +18,7 @@
         lb.cantidad_equipos as lb_cantidad_equipos,
         lb.estado as lb_estado,
         lb.fecha_creacion as lb_fecha_creacion,
-        lb.fecha_cierrre as lb_fecha_cierrre
+        lb.fecha_cierre as lb_fecha_cierre
         FROM LABORATORIOS as lb
         WHERE lb.id = #{idlb}
     </select>
