@@ -46,7 +46,7 @@ public class MyBatisExample {
 
     /**
      * Programa principal de ejempo de uso de MyBATIS
-     * 
+     *
      * @param args
      * @throws SQLException
      */
@@ -97,9 +97,12 @@ public class MyBatisExample {
             // System.out.println(serviciosElemento.consultarElementosConNovedades().size());
             // System.out.println(serviciosElemento.consultarElemento(1));
             // System.out.println(serviciosElemento.consultarElementosConNovedades(1));
+            // serviciosElemento.actualizarEquipo(1, null);
+            // serviciosElemento.darBajaElemento(4);
+            System.out.println(serviciosElemento.consultarElementosDisponibles());
 
             // Novedades
-            //System.out.println(serviciosNovedad.consultarNovedad(333));
+            // System.out.println(serviciosNovedad.consultarNovedad(333));
             // serviciosNovedad.registrarNovedad(novedad);
             // System.out.println(serviciosNovedad.consultarNovedadesElemento(1));
             // System.out.println(serviciosNovedad.consultarNovedadesEquipo(1));

@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('./../images/bkgd_menu.png')
+}
+
+.form-elementos {
+    color: white;
+    width: 1200px;
+    background: #000000d6;
+    padding: 90px;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 10px;
+    font-family: 'calibri';
+    box-shadow: 10px 10px 35px #000;
+}
+
+body .ui-datatable thead th {
+    background: #a8c7ff;
+    color: #000000;
+    padding: 1rem 1rem;
+    border: 1px solid #000000;
+    border-width: 0 0 1px 0;
+    text-align: left;
+    box-sizing: content-box;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+body .ui-datatable .ui-datatable-data > tr {
+    background: #ffffff;
+    color: #000000;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+body .ui-datatable .ui-paginator {
+    padding: 0.5rem;
+}
+
+body .ui-paginator {
+    background: #e5eeff;
+    border: solid #000000;
+    color: black;
+    border-width: 0;
+    padding: 1rem;
+}
+
+body .ui-selectonemenu .ui-selectonemenu-label {
+    padding-right: 3rem;
+}
+
+body .ui-button.ui-button-text-icon-left .ui-button-text {
+    margin-right: 16px;
+}
+
+.title {
+    color: white;
+    padding: 0px 0px;
+    margin: auto;
+    width: 350px;
+    margin-top: 0px;
+    font-family: 'calibri';
+    font-size: 37px;
+    text-shadow: 6px 6px 15px #000;
+}
+
+

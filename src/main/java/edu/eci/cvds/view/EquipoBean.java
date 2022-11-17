@@ -142,9 +142,10 @@ public class EquipoBean extends BasePageBean{
     }
 
     public void darDeBaja() {
-        //
-        for (Equipo equipo : equiposSeleccionados) {
-            equipo.darDeBaja();
+        if (equiposSeleccionados != null) {
+            for (Equipo equipo : equiposSeleccionados) {
+                equipo.darDeBaja();
+            }
         }
     }
 }

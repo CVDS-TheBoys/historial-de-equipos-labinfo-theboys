@@ -90,6 +90,27 @@
         WHERE e.tipo = #{tipo} AND e.EQUIPO_id IS NULL  AND e.funcional = true
     </select>
 
+    <update id="darBajaElemento" parameterType="map">
+        UPDATE ELEMENTOS SET funcional = false WHERE id = #{idele};
+    </update>
+
+    <select id="consultarElementosDisponibles" resultMap="ElementoResult">
+        SELECT
+        e.id as e_id,
+        e.nombre as e_nombre,
+        e.tipo as e_tipo,
+        e.funcional as e_funcional,
+        e.EQUIPO_id as e_equipo_id,
+        n.id as nv_id,
+        n.titulo as nv_titulo,
+        n.detalle as nv_detalle,
+        n.fecha as nv_fecha,
+        n.EQUIPO_id as nv_EQUIPO_id,
+        n.ELEMENTO_id as nv_ELEMENTO_id
+        FROM ELEMENTOS as e LEFT JOIN NOVEDADES as n ON (e.id = n.elemento_id)
+        WHERE e.EQUIPO_id IS NULL AND e.funcional = true
+    </select>
+
     <resultMap id="ElementoResult" type="Elemento">
         <id property="id" column="e_id"/>
         <result property="nombre" column="e_nombre"/>

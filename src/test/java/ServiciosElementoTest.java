@@ -72,4 +72,16 @@ public class ServiciosElementoTest {
         }
     }
 
+    @Test
+    public void deberiaDarBajaElemento() {
+        try {
+            Elemento elemento4 = new Elemento(4, "Samsung4", "Pantalla", true);
+            serviciosElemento.registrarElemento(elemento4);
+            serviciosElemento.darBajaElemento(4);
+            Assert.assertFalse(serviciosElemento.consultarElemento(4).isFuncional());
+        } catch (ExcepcionServiciosLaboratorio e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
