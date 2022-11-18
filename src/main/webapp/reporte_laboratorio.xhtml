@@ -38,7 +38,7 @@
                     </p:column>
 
                     <p:column headerText="Estado" sortBy="#{LaboratorioBean.convertToString(laboratorio.estado)}" filterBy="#{LaboratorioBean.convertToString(laboratorio.estado)} "
-                              filterMatchMode="exact" style="width:70px;">
+                              filterMatchMode="exact" style="width:80px;">
                         <f:facet name="filter">
                             <p:selectOneMenu onchange="PF('laboratorioWidget').filter()" >
                                 <f:selectItem itemLabel="Estado" itemValue="#{null}" noSelectionOption="true" />
@@ -47,6 +47,14 @@
                             </p:selectOneMenu>
                         </f:facet>
                         <h:outputText value="#{LaboratorioBean.convertToString(laboratorio.estado)}"/>
+                    </p:column>
+
+                    <p:column headerText="Fecha creacion" sortBy="#{laboratorio.fecha_creacion}" filterBy="#{laboratorio.fecha_creacion}" filterMatchMode="exact" style="width:135px;">
+                        <h:outputText value="#{laboratorio.fecha_creacion}"/>
+                    </p:column>
+
+                    <p:column headerText="Fecha cierre" sortBy="#{LaboratorioBean.getFechaCierre(laboratorio.id)}" filterBy="#{LaboratorioBean.getFechaCierre(laboratorio.id)}" filterMatchMode="contains" style="width:135px;">
+                        <h:outputText value="#{LaboratorioBean.getFechaCierre(laboratorio.id)}"/>
                     </p:column>
 
                 </p:dataTable>
