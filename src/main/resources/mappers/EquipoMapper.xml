@@ -61,15 +61,25 @@
         FROM EQUIPOS as eq JOIN NOVEDADES as n ON (eq.id = n.equipo_id);
     </select>
 
-    <select parameterType="map" id="consultarReporte" resultMap="EquipoResult">
+    <select parameterType="map" id="consultarEquiposDisponibles" resultMap="EquipoResult">
         SELECT
         eq.id as eq_id,
         eq.estado as eq_estado,
         eq.LABORATORIO_id as eq_laboratorio_id,
-        eq.nombre as eq_nombre
-        FROM EQUIPOS as eq
-        WHERE eq.estado = 1
+        eq.nombre as eq_nombre,
+        n.id as nv_id,
+        n.titulo as nv_titulo,
+        n.detalle as nv_detalle,
+        n.fecha as nv_fecha,
+        n.EQUIPO_id as nv_EQUIPO_id,
+        n.ELEMENTO_id as nv_ELEMENTO_id
+        FROM EQUIPOS as eq LEFT JOIN NOVEDADES as n ON (eq.id = n.equipo_id)
+        WHERE eq.estado = true
     </select>
+
+    <update id="darBajaEquipo" parameterType="map">
+        UPDATE EQUIPOS SET estado = false WHERE id = #{ideq};
+    </update>
 
     <resultMap id="EquipoResult" type="Equipo">
         <id property="id" column="eq_id" />

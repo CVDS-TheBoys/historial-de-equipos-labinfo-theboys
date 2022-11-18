@@ -7,9 +7,16 @@ import java.util.List;
 
 public interface EquipoDAO {
     public void save(Equipo e) throws PersistenceException;
+
     public Equipo load(int id) throws PersistenceException;
+
     public List<Equipo> loadAll() throws PersistenceException;
+
     public List<Equipo> loadWithNovedades() throws PersistenceException;
+
     public List<Equipo> consultarReporte() throws PersistenceException;
 
+    public List<Equipo> loadAvailableDevice() throws PersistenceException;
+
+    public void disableDevice(int id) throws PersistenceException;
 }

@@ -69,4 +69,23 @@ public class ServiciosEquipoImpl implements ServiciosEquipo {
             throw new ExcepcionServiciosLaboratorio("Error al cargar novedades de los equipos " + ex);
         }
     }
+
+    @Override
+    public List<Equipo> consultarEquiposDisponibles() throws ExcepcionServiciosLaboratorio {
+        try {
+            return equipoDAO.loadAvailableDevice();
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar equipos disponibles" + ex);
+        }
+    }
+
+    @Override
+    public void darBajaEquipo(int id) throws ExcepcionServiciosLaboratorio {
+        try {
+            equipoDAO.disableDevice(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al dar de baja equipo: " +
+                    id + ex);
+        }
+    }
 }
