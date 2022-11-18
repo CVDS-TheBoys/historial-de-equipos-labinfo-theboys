@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Reporte de elementos</title>
+    <link rel="stylesheet" href="./style/elementos.css"/>
+</h:head>
+
+<h:body>
+    <div class="card" >
+        <h:form class="form-elementos">
+            <h1 class="title" align="center">Reporte de Laboratorios</h1><br/><br/><br/>
+            <div class="myLabel">
+                <p:dataTable id ="tabla_reporte" var="laboratorio" value="#{LaboratorioBean.getLaboratorios()}"
+                             rowKey="#{laboratorio.id}"
+                             filteredValue="#{LaboratorioBean.listaLaboratoriosFiltrada}"
+                             widgetVar="laboratorioWidget"
+                             rows="5"
+                             paginator="true" paginatorPosition="bottom"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                             rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+
+                    <p:column headerText="Id" sortBy="#{laboratorio.id}" filterBy="#{laboratorio.id}" filterMatchMode="exact" style="width:50px;">
+                        <h:outputText value="#{laboratorio.id}"/>
+                    </p:column>
+
+                    <p:column headerText="Nombre" sortBy="#{laboratorio.nombre}" filterBy="#{laboratorio.nombre}" filterMatchMode="contains" style="width:250px;">
+                        <h:outputText value="#{laboratorio.nombre}"/>
+                    </p:column>
+
+                    <p:column headerText="Cantidad equipos" sortBy="#{laboratorio.cantidad_equipos}" filterBy="#{laboratorio.cantidad_equipos}" filterMatchMode="exact" style="width:160px;">
+                        <h:outputText value="#{elemento.tipo}"/>
+                    </p:column>
+
+                    <p:column headerText="Estado" sortBy="#{LaboratorioBean.convertToString(laboratorio.estado)}" filterBy="#{LaboratorioBean.convertToString(laboratorio.estado)} "
+                              filterMatchMode="exact" style="width:70px;">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('laboratorioWidget').filter()" >
+                                <f:selectItem itemLabel="Estado" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItem itemLabel="Activo" itemValue="true"/>
+                                <f:selectItem itemLabel="Cerrado" itemValue="false"/>
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <h:outputText value="#{LaboratorioBean.convertToString(laboratorio.estado)}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+            </div>
+
+            <br></br>
+
+            <div class="excel" style="text-align: right;">
+                <h:commandLink>
+                    <p:graphicImage value="./images/excel.ico" height="50" />
+                    <p:dataExporter type="xls" target="tabla_reporte" fileName="reporte_elementos" />
+                </h:commandLink>
+            </div>
+
+            <p:commandButton value="Gráfico de la información más relevante" styleClass="ui-button-info" immediate="true"/><br> </br>
+            <p:commandButton value="Gráfico de las estadisticas de la información más relevante" styleClass="ui-button-info" immediate="true"/><br> </br>
+            <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
+
+        </h:form>
+    </div>
+</h:body>
+
+</html>
+
+
