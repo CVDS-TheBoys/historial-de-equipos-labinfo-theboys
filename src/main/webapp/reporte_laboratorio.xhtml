@@ -34,7 +34,7 @@
                     </p:column>
 
                     <p:column headerText="Cantidad equipos" sortBy="#{laboratorio.cantidad_equipos}" filterBy="#{laboratorio.cantidad_equipos}" filterMatchMode="exact" style="width:160px;">
-                        <h:outputText value="#{elemento.tipo}"/>
+                        <h:outputText value="#{laboratorio.cantidad_equipos}"/>
                     </p:column>
 
                     <p:column headerText="Estado" sortBy="#{LaboratorioBean.convertToString(laboratorio.estado)}" filterBy="#{LaboratorioBean.convertToString(laboratorio.estado)} "
