@@ -1,6 +1,7 @@
 package edu.eci.cvds.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,8 @@ public class Equipo implements Serializable {
     private List<Elemento> elementos;
     private List<Novedad> novedades;
 
-    public Equipo(int id, boolean estado, Integer laboratorio_id, String nombre, List<Elemento> elementos, List<Novedad> novedades) {
+    public Equipo(int id, boolean estado, Integer laboratorio_id, String nombre, List<Elemento> elementos,
+            List<Novedad> novedades) {
         this.id = id;
         this.estado = estado;
         this.laboratorio_id = laboratorio_id;
@@ -36,7 +38,7 @@ public class Equipo implements Serializable {
         this.estado = estado;
         this.laboratorio_id = null;
         this.nombre = nombre;
-        this.elementos = null;
+        this.elementos = new ArrayList<>();
     }
 
     public Equipo(int id, boolean estado, Integer laboratorio_id, String nombre) {
@@ -44,7 +46,7 @@ public class Equipo implements Serializable {
         this.estado = estado;
         this.laboratorio_id = laboratorio_id;
         this.nombre = nombre;
-        this.elementos = null;
+        this.elementos = new ArrayList<>();
     }
 
     public Equipo() {
@@ -108,9 +110,5 @@ public class Equipo implements Serializable {
                 ", novedades=" + novedades +
                 ", elementos=" + elementos +
                 '}';
-    }
-
-    public void darDeBaja() {
-        // Sin implementacion
     }
 }

@@ -18,7 +18,8 @@ public class MyBATISEquipoDAO implements EquipoDAO {
             equipoMapper.insertarEquipo(equipo);
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {
             System.out.println(e.getMessage());
-            throw new org.apache.ibatis.exceptions.PersistenceException("Error al registrar el equipo " + equipo.toString(), e);
+            throw new org.apache.ibatis.exceptions.PersistenceException(
+                    "Error al registrar el equipo " + equipo.toString(), e);
         }
     }
 
@@ -59,6 +60,25 @@ public class MyBATISEquipoDAO implements EquipoDAO {
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {
             System.out.println(e.getMessage());
             throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar los reportes ", e);
+        }
+    }
+
+    @Override
+    public List<Equipo> loadAvailableDevice() throws PersistenceException {
+        try {
+            return equipoMapper.consultarEquiposDisponibles();
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            throw new org.apache.ibatis.exceptions.PersistenceException(
+                    "Error al consultar los equipos disponibles" + e);
+        }
+    }
+
+    @Override
+    public void disableDevice(int id) throws PersistenceException {
+        try {
+            equipoMapper.darBajaEquipo(id);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            throw new org.apache.ibatis.exceptions.PersistenceException("Error al dar de baja equipo: " + id + e);
         }
     }
 
