@@ -10,7 +10,11 @@ import edu.eci.cvds.services.ServiciosNovedad;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
@@ -152,19 +156,27 @@ public class EquipoBean extends BasePageBean {
         this.equiposSeleccionados = equiposSeleccionados;
     }
 
-    public void darBajaEquipo() {
+    public void darBajaEquipo(String detalle) {
         Date date = new Date(System.currentTimeMillis());
+        int cantNov = 0;
         try {
             if (equiposSeleccionados != null) {
                 for (Equipo equipo : equiposSeleccionados) {
                     serviciosEquipo.darBajaEquipo(equipo.getId());
-                    Novedad novedad = new Novedad(1000, "Equipo " + equipo.getNombre() + " dado de baja", "", date,
+                    Novedad novedad = new Novedad(699 + cantNov, "Equipo " + equipo.getNombre() + " dado de baja",
+                            detalle, date,
                             equipo.getId());
                     serviciosNovedad.registrarNovedad(novedad);
+                    cantNov++;
                 }
             }
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void reload() throws IOException {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
 }
