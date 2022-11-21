@@ -16,12 +16,6 @@
             <h1 class="title">Registrar equipo</h1>
             <br/>
             <div>
-                <p:outputLabel for="Id" value="Id"/><br/>
-                <p:inputText id="Id" type="int" required="true" value="#{equipoId}" placeholder="Ingresa el id">
-                    <p:keyFilter mask="num"/>
-                </p:inputText><br/><br/>
-            </div>
-            <div>
                 <p:outputLabel for="Nombre" value="Nombre"/><br/>
                 <p:inputText id="Nombre" type="String" required="true" value="#{nombreEquipo}" placeholder="Ingresa el nombre"/><br/><br/>
             </div>
@@ -64,7 +58,7 @@
                 </p:selectOneMenu>
             </div><br/>
             <p:commandButton value="Registrar equipo" icon="pi pi-save" update="equipos" action="menu?faces-redirect=true"
-                             actionListener="#{EquiposBean.registrarEquipo(equipoId, nombreEquipo, pantallaId, torreId, tecladoId, mouseId)}"/><br/><br/>
+                             actionListener="#{EquiposBean.registrarEquipo('1', nombreEquipo, pantallaId, torreId, tecladoId, mouseId)}"/><br/><br/>
             <h1 class="title2">¿Quieres registrar un elemento?</h1>
             <p:commandButton value="Registrar elemento" action="registrar_elementos?faces-redirect=true" styleClass="ui-button-info" icon="pi pi-desktop" immediate="true"/><br/><br/>
             <p:commandButton value="Menú" action="menu?faces-redirect=true" styleClass="ui-button-info" icon="pi pi-home" immediate="true"/>
