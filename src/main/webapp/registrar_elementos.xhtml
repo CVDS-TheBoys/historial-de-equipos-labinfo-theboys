@@ -16,12 +16,6 @@
             <h1 class="title">Registrar Elementos</h1>
             <br/>
             <div>
-                <p:outputLabel for="Id" value="Id" /><br/>
-                <p:inputText id="Id" type="int" required="true" value="#{id}" placeholder="Ingresa el id">
-                    <p:keyFilter mask="num"/>
-                </p:inputText><br/><br/>
-            </div>
-            <div>
                 <p:outputLabel for="Nombre" value="Nombre" /><br/>
                 <p:inputText id="Nombre" type="String" required="true" value="#{name}" placeholder="Ingresa el nombre"/><br/><br/>
             </div>
@@ -41,7 +35,7 @@
             <div>
                 <p:commandButton value="Registrar elemento" icon="pi pi-save" iconPos="left" update="elementos"
                                  action="menu?faces-redirect=true" styleClass="ui-button-info"
-                                 actionListener="#{ElementoBean.registrarElemento(id, name, type)}"/><br/><br/>
+                                 actionListener="#{ElementoBean.registrarElemento('1', name, type)}"/><br/><br/>
             </div>
             <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
         </h:form>

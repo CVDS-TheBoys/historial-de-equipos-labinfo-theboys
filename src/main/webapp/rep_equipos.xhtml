@@ -81,7 +81,7 @@
         </div>
         <br/>
         <p:growl id="message" showDetail="true"/>
-        <p:commandButton value="Dar de baja"   styleClass="ui-button-danger" icon="pi pi-times"
+        <p:commandButton value="Dar de baja" action="rep_equipos?faces-redirect=true" styleClass="ui-button-danger" icon="pi pi-times"
                          actionListener="#{EquiposBean.darBajaEquipo(detalle)}">
             <p:confirm type="popup" header="Confirmation" message="¿Seguro que quieres proceder?" icon="pi pi-exclamation-triangle"/>
         </p:commandButton>
