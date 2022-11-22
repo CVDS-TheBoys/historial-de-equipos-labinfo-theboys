@@ -25,15 +25,15 @@
                              currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                              rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 
-                    <p:column headerText="Id" sortBy="#{laboratorio.id}" filterBy="#{laboratorio.id}" filterMatchMode="exact" style="width:50px;">
+                    <p:column headerText="Id" sortBy="#{laboratorio.id}" filterBy="#{laboratorio.id}" filterMatchMode="exact">
                         <h:outputText value="#{laboratorio.id}"/>
                     </p:column>
 
-                    <p:column headerText="Nombre" sortBy="#{laboratorio.nombre}" filterBy="#{laboratorio.nombre}" filterMatchMode="contains" style="width:250px;">
+                    <p:column headerText="Nombre" sortBy="#{laboratorio.nombre}" filterBy="#{laboratorio.nombre}" filterMatchMode="contains">
                         <h:outputText value="#{laboratorio.nombre}"/>
                     </p:column>
 
-                    <p:column headerText="Cantidad equipos" sortBy="#{laboratorio.cantidad_equipos}" filterBy="#{laboratorio.cantidad_equipos}" filterMatchMode="exact" style="width:160px;">
+                    <p:column headerText="Cantidad equipos" sortBy="#{laboratorio.cantidad_equipos}" filterBy="#{laboratorio.cantidad_equipos}" filterMatchMode="exact">
                         <h:outputText value="#{laboratorio.cantidad_equipos}"/>
                     </p:column>
 
@@ -49,11 +49,11 @@
                         <h:outputText value="#{LaboratorioBean.convertToString(laboratorio.estado)}"/>
                     </p:column>
 
-                    <p:column headerText="Fecha creacion" sortBy="#{laboratorio.fecha_creacion}" filterBy="#{laboratorio.fecha_creacion}" filterMatchMode="exact" style="width:135px;">
+                    <p:column headerText="Fecha creacion" sortBy="#{laboratorio.fecha_creacion}" filterBy="#{laboratorio.fecha_creacion}" filterMatchMode="exact">
                         <h:outputText value="#{laboratorio.fecha_creacion}"/>
                     </p:column>
 
-                    <p:column headerText="Fecha cierre" sortBy="#{LaboratorioBean.getFechaCierre(laboratorio.id)}" filterBy="#{LaboratorioBean.getFechaCierre(laboratorio.id)}" filterMatchMode="contains" style="width:135px;">
+                    <p:column headerText="Fecha cierre" sortBy="#{LaboratorioBean.getFechaCierre(laboratorio.id)}" filterBy="#{LaboratorioBean.getFechaCierre(laboratorio.id)}" filterMatchMode="contains">
                         <h:outputText value="#{LaboratorioBean.getFechaCierre(laboratorio.id)}"/>
                     </p:column>
 
