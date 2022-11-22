@@ -15,7 +15,8 @@ public class Equipo implements Serializable {
     private List<Elemento> elementos;
     private List<Novedad> novedades;
 
-    public Equipo(int id, boolean estado, Integer laboratorio_id, String nombre, List<Elemento> elementos, List<Novedad> novedades) {
+    public Equipo(int id, boolean estado, Integer laboratorio_id, String nombre, List<Elemento> elementos,
+            List<Novedad> novedades) {
         this.id = id;
         this.estado = estado;
         this.laboratorio_id = laboratorio_id;
@@ -109,9 +110,5 @@ public class Equipo implements Serializable {
                 ", novedades=" + novedades +
                 ", elementos=" + elementos +
                 '}';
-    }
-
-    public void darDeBaja() {
-        // Sin implementacion
     }
 }
