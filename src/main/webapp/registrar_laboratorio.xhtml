@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Registro Laboratorio</title>
+    <link rel="stylesheet" href="./style/registrar_elementos.css"/>
+</h:head>
+
+<h:body>
+    <div class="card">
+        <h:form id="laboratorios" class="form-elementos">
+            <h1 class="title">Registrar Laboratorios</h1>
+            <br/>
+            <div>
+                <p:outputLabel for="Nombre" value="Nombre" /><br/>
+                <p:inputText id="Nombre" type="String" required="true" value="#{nombre}" placeholder="Ingresa el nombre"/><br/><br/>
+            </div>
+            <div>
+                <p:outputLabel for="cantidad_equipos" value="Cantidad de Equipos" /><br/>
+                <p:inputText id="cantidad_equipos" type="int" value="#{cantidad_equipos}" placeholder="Ingresa la cantidad">
+                    <p:keyFilter mask="num"/>
+                </p:inputText><br/><br/>
+            </div>
+            <div>
+                <p:commandButton value="Registrar Laboratorio" icon="pi pi-save" iconPos="left" update="laboratorios"
+                                 action="menu?faces-redirect=true" styleClass="ui-button-info"
+                                 actionListener="#{LaboratorioBean.registrarLaboratorio('1', nombre, cantidad_equipos)}"/><br/><br/>
+            </div>
+            <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
+        </h:form>
+
+    </div>
+
+</h:body>
+</html>

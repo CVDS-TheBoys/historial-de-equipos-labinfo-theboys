@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.LaboratorioMapper">
+
+    <insert id="insertarLaboratorio" parameterType="map">
+        INSERT INTO LABORATORIOS (id, nombre, cantidad_equipos, estado, fecha_creacion, fecha_cierre)
+        VALUES (#{laboratorio.id}, #{laboratorio.nombre}, #{laboratorio.cantidad_equipos}, #{laboratorio.estado}, #{laboratorio.fecha_creacion},
+        #{laboratorio.fecha_cierre})
+    </insert>
+
+    <select parameterType="map" id="consultarLaboratorio" resultMap="LaboratorioResult">
+        SELECT
+        lb.id as lb_id,
+        lb.nombre as lb_nombre,
+        lb.cantidad_equipos as lb_cantidad_equipos,
+        lb.estado as lb_estado,
+        lb.fecha_creacion as lb_fecha_creacion,
+        lb.fecha_cierre as lb_fecha_cierre
+        FROM LABORATORIOS as lb
+        WHERE lb.id = #{idlb}
+    </select>
+
+    <select parameterType="map" id="consultarLaboratorios" resultMap="LaboratorioResult">
+        SELECT
+        lb.id as lb_id,
+        lb.nombre as lb_nombre,
+        lb.cantidad_equipos as lb_cantidad_equipos,
+        lb.estado as lb_estado,
+        lb.fecha_creacion as lb_fecha_creacion,
+        lb.fecha_cierre as lb_fecha_cierre
+        FROM LABORATORIOS as lb
+        ORDER BY lb.fecha_creacion DESC
+    </select>
+
+    <resultMap id="LaboratorioResult" type="Laboratorio">
+        <id property="id" column="lb_id"/>
+        <result property="nombre" column="lb_nombre"/>
+        <result property="cantidad_equipos" column="lb_cantidad_equipos"/>
+        <result property="estado" column="lb_estado"/>
+        <result property="fecha_creacion" column="lb_fecha_creacion"/>
+        <result property="fecha_cierre" column="lb_fecha_cierre"/>
+    </resultMap>
+
+</mapper>

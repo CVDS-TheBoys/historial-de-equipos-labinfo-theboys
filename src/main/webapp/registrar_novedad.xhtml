@@ -16,12 +16,6 @@
             <h1 class="title">Registrar Novedades</h1>
             <br/>
             <div>
-                <p:outputLabel for="Id" value="Id" /><br/>
-                <p:inputText id="Id" type="int" required="true" value="#{id}" placeholder="Ingresa el id">
-                    <p:keyFilter mask="num"/>
-                </p:inputText><br/><br/>
-            </div>
-            <div>
                 <p:outputLabel for="Titulo" value="Título" /><br/>
                 <p:inputText id="Titulo" type="String" required="true" value="#{titulo}" placeholder="Ingresa el título"/><br/><br/>
             </div>
@@ -30,21 +24,29 @@
                 <p:inputText id="Detalle" type="String" required="true" value="#{detalle}" placeholder="Ingresa detalles"/><br/><br/>
             </div>
             <div>
-                <p:outputLabel for="Equipo_id" value="Equipo_id" /><br/>
-                <p:inputText id="Equipo_id" type="int" required="true" value="#{equipo_id}" placeholder="Ingresa el id Equipo">
-                    <p:keyFilter mask="num"/>
-                </p:inputText><br/><br/>
+                <p:outputLabel for="Equipo_id" value="Equipo" /><br/>
+                <p:selectOneMenu id="Equipo_id" value="#{equipo_id}"
+                                 hideNoSelectionOption="#{not empty equipo_id}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{EquiposBean.consultarEquipos()}" var="equipo"
+                                   itemLabel="#{equipo.nombre}" itemValue="#{equipo.id}"/>
+                </p:selectOneMenu><br/>
             </div>
             <div>
-                <p:outputLabel for="Elemento_id" value="Elemento_id" /><br/>
-                <p:inputText id="Elemento_id" type="int" required="true" value="#{elemento_id}" placeholder="Ingresa el id Elemento">
-                    <p:keyFilter mask="num"/>
-                </p:inputText><br/><br/>
+                <p:outputLabel for="Elemento_id" value="Elemento" /><br/>
+                <p:selectOneMenu id="Elemento_id" value="#{elemento_id}" required="true"
+                                 hideNoSelectionOption="#{not empty elemento_id}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{ElementoBean.getElementos()}" var="elemento"
+                                   itemLabel="#{elemento.nombre}" itemValue="#{elemento.id}"/>
+                </p:selectOneMenu><br/>
             </div>
             <div>
                 <p:commandButton value="Registrar Novedad" icon="pi pi-save" iconPos="left" update="novedades"
                                  action="menu?faces-redirect=true" styleClass="ui-button-info"
-                                 actionListener="#{NovedadBean.registrarNovedad(id, titulo, detalle, equipo_id, elemento_id)}"/><br/><br/>
+                                 actionListener="#{NovedadBean.registrarNovedad('1', titulo, detalle, equipo_id, elemento_id)}"/><br/><br/>
             </div>
             <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
         </h:form>

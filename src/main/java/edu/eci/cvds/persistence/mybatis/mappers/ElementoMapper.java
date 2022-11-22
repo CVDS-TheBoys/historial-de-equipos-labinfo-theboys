@@ -11,6 +11,8 @@ public interface ElementoMapper {
     public void insertarElemento(@Param("elem") Elemento elemento);
     public List<Elemento> consultarElementosConNovedades();
     public List<Elemento> consultarEquipoElementosConNovedades(@Param("idequ") int id);
-    public void actualizarEquipo(@Param("idel") int idel, @Param("ideq") int ideq);
+    public void actualizarEquipo(@Param("idel") int idel, @Param("ideq") Integer ideq);
     public List<Elemento> consultarTipoElementosDisponibles(@Param("tipo") String tipo);
+    public List<Elemento> consultarElementosDisponibles();
+    public void darBajaElemento(@Param("idele") int idel);
 }
