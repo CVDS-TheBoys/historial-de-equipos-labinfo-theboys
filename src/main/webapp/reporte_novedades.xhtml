@@ -79,7 +79,9 @@
                     <p:dataExporter type="xls" target="tabla_novedades" fileName="reporte_novedades" />
                 </h:commandLink>
             </div>
-            <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
+            <p:commandButton value="Atrás" action="menu?faces-redirect=true"
+                             actionListener="#{NovedadBean.serElementoIdEquipoId(null, null)}"
+                             styleClass="ui-button-info"/>
 
         </h:form>
 
