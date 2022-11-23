@@ -61,7 +61,8 @@
                 </p:column>
 
                 <p:column headerText="Reporte de novedades" style="text-align:center" exportable="false">
-                    <p:button outcome="reporte_novedades?elemento=#{elemento.id}" value="Ir" style="width:50px; text-align:center"/>
+                    <p:commandButton action="reporte_especifico_novedades?faces-redirect=true" icon="pi pi-search"
+                                     actionListener="#{NovedadBean.serElementoIdEquipoId(elemento.id, null)}"/>
                 </p:column>
 
             </p:dataTable>
