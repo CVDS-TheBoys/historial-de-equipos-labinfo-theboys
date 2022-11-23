@@ -63,7 +63,6 @@ public class EquipoBean extends BasePageBean {
     }
 
     /**
-     * <<<<<<< HEAD
      * Muestra el nombre del equipo asociado al elemento en la pantalla
      * 
      * @param id id del equipo
@@ -86,6 +85,19 @@ public class EquipoBean extends BasePageBean {
     public List<Equipo> consultarEquipos() {
         try {
             return serviciosEquipo.consultarEquipos();
+        } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
+            excepcionServiciosLaboratorio.printStackTrace();
+            return null;
+        }
+    }
+
+
+    /**
+     * Consulta todos los equipos funcionales
+     */
+    public List<Equipo> consultarEquiposDisponibles() {
+        try {
+            return serviciosEquipo.consultarEquiposDisponibles();
         } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
             excepcionServiciosLaboratorio.printStackTrace();
             return null;

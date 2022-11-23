@@ -19,7 +19,7 @@
                 <p:outputLabel for="Equipo" value="Selecciona un equipo"/><br/>
                 <p:selectOneMenu id="Equipo" value="#{equipoId}" required="true">
                     <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}" noSelectionOption="true"/>
-                    <f:selectItems value="#{EquiposBean.consultarEquipos()}" var="equipo"
+                    <f:selectItems value="#{EquiposBean.consultarEquiposDisponibles()}" var="equipo"
                                    itemLabel="#{equipo.nombre}" itemValue="#{equipo.id}"/>
                 </p:selectOneMenu><br/>
             </div><br/>
