@@ -53,10 +53,11 @@ public class EquipoBean extends BasePageBean {
         Equipo equipo = new Equipo(equipoId, true, nombre);
         try {
             serviciosEquipo.registrarEquipo(equipo);
-            serviciosElemento.actualizarEquipo(pantallaId, equipoId);
-            serviciosElemento.actualizarEquipo(torreId, equipoId);
-            serviciosElemento.actualizarEquipo(tecladoId, equipoId);
-            serviciosElemento.actualizarEquipo(mouseId, equipoId);
+            int maxId = getMaxEquipoId();
+            serviciosElemento.actualizarEquipo(pantallaId, maxId);
+            serviciosElemento.actualizarEquipo(torreId, maxId);
+            serviciosElemento.actualizarEquipo(tecladoId, maxId);
+            serviciosElemento.actualizarEquipo(mouseId, maxId);
         } catch (ExcepcionServiciosLaboratorio ex) {
             ex.printStackTrace();
         }
@@ -146,6 +147,22 @@ public class EquipoBean extends BasePageBean {
             return "Activo";
         } else {
             return "Inactivo";
+        }
+    }
+
+    public int getMaxEquipoId() {
+        int max = 0;
+        try {
+            List<Equipo> equipos = serviciosEquipo.consultarEquipos();
+            for (Equipo equipo : equipos) {
+                if (equipo.getId() > max) {
+                    max = equipo.getId();
+                }
+            }
+            return max;
+        } catch (ExcepcionServiciosLaboratorio e) {
+            e.printStackTrace();
+            return -1;
         }
     }
 

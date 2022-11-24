@@ -16,12 +16,6 @@
             <h1 class="title">Registrar Novedades</h1>
             <br/>
             <div>
-                <p:outputLabel for="Id" value="Id" /><br/>
-                <p:inputText id="Id" type="int" required="true" value="#{id}" placeholder="Ingresa el id">
-                    <p:keyFilter mask="num"/>
-                </p:inputText><br/><br/>
-            </div>
-            <div>
                 <p:outputLabel for="Titulo" value="Título" /><br/>
                 <p:inputText id="Titulo" type="String" required="true" value="#{titulo}" placeholder="Ingresa el título"/><br/><br/>
             </div>
@@ -52,7 +46,7 @@
             <div>
                 <p:commandButton value="Registrar Novedad" icon="pi pi-save" iconPos="left" update="novedades"
                                  action="menu?faces-redirect=true" styleClass="ui-button-info"
-                                 actionListener="#{NovedadBean.registrarNovedad(id, titulo, detalle, equipo_id, elemento_id)}"/><br/><br/>
+                                 actionListener="#{NovedadBean.registrarNovedad('1', titulo, detalle, equipo_id, elemento_id)}"/><br/><br/>
             </div>
             <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
         </h:form>
