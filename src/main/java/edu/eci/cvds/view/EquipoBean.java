@@ -2,6 +2,7 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Novedad;
 import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.services.ServiciosElemento;
@@ -156,13 +157,25 @@ public class EquipoBean extends BasePageBean {
         this.equiposSeleccionados = equiposSeleccionados;
     }
 
-    public void darBajaEquipo(String detalle) {
+    public void darBajaEquipo(String detalle, boolean darBajaElementos) {
         Date date = new Date(System.currentTimeMillis());
         int cantNov = 0;
+        Elemento e;
         try {
             if (equiposSeleccionados != null) {
                 for (Equipo equipo : equiposSeleccionados) {
                     serviciosEquipo.darBajaEquipo(equipo.getId());
+                    if (darBajaElementos) {
+                        for (Elemento elemento : equipo.getElementos()) {
+                            serviciosElemento.darBajaElemento(elemento.getId());
+                        }
+                    } else {
+                        for (Elemento elemento : equipo.getElementos()) {
+                            e = serviciosElemento.consultarElemento(elemento.getId());
+                            e.setEquipo_id(null);
+                        }
+                        equipo.setElementos(null);
+                    }
                     Novedad novedad = new Novedad(699 + cantNov, "Equipo " + equipo.getNombre() + " dado de baja",
                             detalle, date,
                             equipo.getId());
@@ -170,8 +183,8 @@ public class EquipoBean extends BasePageBean {
                     cantNov++;
                 }
             }
-        } catch (ExcepcionServiciosLaboratorio e) {
-            throw new RuntimeException(e);
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            throw new RuntimeException(ex);
         }
     }
 
