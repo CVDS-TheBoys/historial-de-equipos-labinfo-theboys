@@ -87,5 +87,21 @@ public class LaboratorioBean extends BasePageBean{
         }
     }
 
+    public List<Laboratorio> getListaLaboratoriosFiltrada() {
+        return listaLaboratoriosFiltrada;
+    }
+
+    public void setListaLaboratoriosFiltrada(List<Laboratorio> listaLaboratoriosFiltrada) {
+        this.listaLaboratoriosFiltrada = listaLaboratoriosFiltrada;
+    }
+
+    public List<Laboratorio> getListaLaboratorio() {
+        return listaLaboratorio;
+    }
+
+    public void setListaLaboratorio(List<Laboratorio> listaLaboratorio) {
+        this.listaLaboratorio = listaLaboratorio;
+    }
+
 
 }
