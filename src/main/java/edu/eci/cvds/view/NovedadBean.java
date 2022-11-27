@@ -9,6 +9,7 @@ import edu.eci.cvds.services.ServiciosNovedad;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
@@ -98,6 +99,11 @@ public class NovedadBean extends BasePageBean {
     }
 
     public void setEquipoId(Integer equipoId) {
+        this.equipoId = equipoId;
+    }
+
+    public void serElementoIdEquipoId(Integer elementoId, Integer equipoId) {
+        this.elementoId = elementoId;
         this.equipoId = equipoId;
     }
 }
