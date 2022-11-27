@@ -8,15 +8,13 @@ import edu.eci.cvds.services.ServiciosLaboratorio;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "LaboratorioBean")
 @SessionScoped
-public class LaboratorioBean extends BasePageBean{
+public class LaboratorioBean extends BasePageBean {
     @Inject
     private ServiciosLaboratorio serviciosLaboratorio;
 
@@ -25,7 +23,7 @@ public class LaboratorioBean extends BasePageBean{
     private List<Laboratorio> listaLaboratoriosFiltrada;
 
     public void registrarLaboratorio(int id, String nombre, Integer cantidad_equipos) {
-        if(cantidad_equipos==null){
+        if (cantidad_equipos == null) {
             cantidad_equipos = 0;
         }
         Date fecha_creacion = new Date(System.currentTimeMillis());
@@ -37,7 +35,7 @@ public class LaboratorioBean extends BasePageBean{
         }
     }
 
-    public ArrayList<Laboratorio> getLaboratorios() {
+    public List<Laboratorio> getLaboratorios() {
         try {
             return serviciosLaboratorio.consultarLaboratorios();
         } catch (ExcepcionServiciosLaboratorio ex) {
@@ -59,13 +57,10 @@ public class LaboratorioBean extends BasePageBean{
         TimeUnit.SECONDS.sleep(1);
     }
 
-
-
-    public String convertToString(boolean estado){
-        if (estado){
+    public String convertToString(boolean estado) {
+        if (estado) {
             return "Activo";
-        }
-        else {
+        } else {
             return "Cerrado";
         }
     }
@@ -75,10 +70,9 @@ public class LaboratorioBean extends BasePageBean{
         Date fecha_cierre = null;
         try {
             fecha_cierre = serviciosLaboratorio.consultarLaboratorio(id).getFecha_cierre();
-            if (fecha_cierre != null){
+            if (fecha_cierre != null) {
                 res = res + fecha_cierre;
-            }
-            else {
+            } else {
                 res = res + "No aplica";
             }
             return res;
@@ -87,5 +81,8 @@ public class LaboratorioBean extends BasePageBean{
         }
     }
 
+    public void cerrarLaboratorio(int id) {
+
+    }
 
 }

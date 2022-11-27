@@ -109,11 +109,10 @@ public class MyBatisExample {
 
             // Equipo
             // serviciosEquipo.registrarEquipo(equipo);
-            System.out.println(serviciosEquipo.consultarEquipos());
-
-            // Laboratorio
+            //System.out.println(serviciosEquipo.consultarEquipos());
+            // LaboratorioList
             // serviciosLaboratorio.registrarLaboratorio(laboratorio);
-            // System.out.println(serviciosLaboratorio.consultarLaboratorios());
+            System.out.println(serviciosLaboratorio.consultarLaboratorios());
 
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);

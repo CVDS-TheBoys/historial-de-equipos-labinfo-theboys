@@ -1,6 +1,8 @@
 package edu.eci.cvds.entities;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Laboratorio {
     private int id;
@@ -9,14 +11,28 @@ public class Laboratorio {
     private boolean estado;
     private Date fecha_creacion;
     private Date fecha_cierre;
+    private List<Equipo> equipos;
 
-    public Laboratorio(int id, String nombre, Integer cantidad_equipos, boolean estado,Date fecha_creacion) {
+    public Laboratorio(int id, String nombre, Integer cantidad_equipos, boolean estado, Date fecha_creacion,
+            Date fecha_cierre,
+            List<Equipo> equipos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.cantidad_equipos = cantidad_equipos;
+        this.estado = estado;
+        this.fecha_creacion = fecha_creacion;
+        this.fecha_cierre = fecha_cierre;
+        this.equipos = equipos;
+    }
+
+    public Laboratorio(int id, String nombre, Integer cantidad_equipos, boolean estado, Date fecha_creacion) {
         this.id = id;
         this.nombre = nombre;
         this.cantidad_equipos = cantidad_equipos;
         this.estado = estado;
         this.fecha_creacion = fecha_creacion;
         this.fecha_cierre = null;
+        this.equipos = new ArrayList<>();
     }
 
     public boolean isEstado() {
@@ -77,5 +93,13 @@ public class Laboratorio {
                 ", fecha_creacion=" + fecha_creacion +
                 ", fecha_cierre=" + fecha_cierre +
                 '}';
+    }
+
+    public List<Equipo> getEquipos() {
+        return equipos;
+    }
+
+    public void setEquipos(List<Equipo> equipos) {
+        this.equipos = equipos;
     }
 }
