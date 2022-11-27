@@ -11,11 +11,7 @@ import edu.eci.cvds.services.ServiciosNovedad;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 
-import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
@@ -174,9 +170,9 @@ public class EquipoBean extends BasePageBean {
         this.equiposSeleccionados = equiposSeleccionados;
     }
 
-    public void darBajaEquipo(String detalle, boolean darBajaElementos) {
+    public void darBajaEquipo(String detalle, boolean darBajaElementos) throws ExcepcionServiciosLaboratorio {
         Date date = new Date(System.currentTimeMillis());
-        int cantNov = 0;
+        int cantNov = serviciosNovedad.consultarNovedades().size();
         try {
             if (equiposSeleccionados != null) {
                 for (Equipo equipo : equiposSeleccionados) {
@@ -201,10 +197,5 @@ public class EquipoBean extends BasePageBean {
         } catch (ExcepcionServiciosLaboratorio ex) {
             throw new RuntimeException(ex);
         }
-    }
-
-    public void reload() throws IOException {
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
 }
