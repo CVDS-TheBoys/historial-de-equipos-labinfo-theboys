@@ -50,7 +50,7 @@
         <result property="estado" column="lb_estado"/>
         <result property="fecha_creacion" column="lb_fecha_creacion"/>
         <result property="fecha_cierre" column="lb_fecha_cierre"/>
-        <collection property="equipos" javaType="List" ofType="Equipo" column="eq_id">
+        <collection property="equipos" javaType="ArrayList" ofType="Equipo" column="eq_id">
             <result property="id" column="eq_id"/>
             <result property="estado" column="eq_estado" />
             <result property="laboratorio_id" column="eq_laboratorio_id" />
