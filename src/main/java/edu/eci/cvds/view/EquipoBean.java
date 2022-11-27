@@ -177,7 +177,6 @@ public class EquipoBean extends BasePageBean {
     public void darBajaEquipo(String detalle, boolean darBajaElementos) {
         Date date = new Date(System.currentTimeMillis());
         int cantNov = 0;
-        Elemento e;
         try {
             if (equiposSeleccionados != null) {
                 for (Equipo equipo : equiposSeleccionados) {
@@ -188,8 +187,7 @@ public class EquipoBean extends BasePageBean {
                         }
                     } else {
                         for (Elemento elemento : equipo.getElementos()) {
-                            e = serviciosElemento.consultarElemento(elemento.getId());
-                            e.setEquipo_id(null);
+                            serviciosElemento.actualizarEquipo(elemento.getId(), null);
                         }
                         equipo.setElementos(null);
                     }
