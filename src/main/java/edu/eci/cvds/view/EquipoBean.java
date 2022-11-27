@@ -50,13 +50,18 @@ public class EquipoBean extends BasePageBean {
      */
     public void registrarEquipo(int equipoId, String nombre, int pantallaId, int torreId, int tecladoId, int mouseId) {
         Equipo equipo = new Equipo(equipoId, true, nombre);
+        Date date = new Date(System.currentTimeMillis());
         try {
             serviciosEquipo.registrarEquipo(equipo);
             int maxId = getMaxEquipoId();
             serviciosElemento.actualizarEquipo(pantallaId, maxId);
+            serviciosNovedad.registrarNovedad(new Novedad(1, "Nueva asociación","Se asoció al equipo " + nombre, date, equipoId, pantallaId));
             serviciosElemento.actualizarEquipo(torreId, maxId);
+            serviciosNovedad.registrarNovedad(new Novedad(1, "Nueva asociación","Se asoció al equipo " + nombre, date, equipoId, torreId));
             serviciosElemento.actualizarEquipo(tecladoId, maxId);
+            serviciosNovedad.registrarNovedad(new Novedad(1, "Nueva asociación","Se asoció al equipo " + nombre, date, equipoId, tecladoId));
             serviciosElemento.actualizarEquipo(mouseId, maxId);
+            serviciosNovedad.registrarNovedad(new Novedad(1, "Nueva asociación","Se asoció al equipo " + nombre, date, equipoId, mouseId));
         } catch (ExcepcionServiciosLaboratorio ex) {
             ex.printStackTrace();
         }
