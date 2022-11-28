@@ -82,6 +82,16 @@
         WHERE eq.estado = true
     </select>
 
+    <select parameterType="map" id="consultarEquiposLaboratorio" resultMap="EquipoResult">
+        SELECT
+        eq.id as eq_id,
+        eq.estado as eq_estado,
+        eq.LABORATORIO_id as eq_laboratorio_id,
+        eq.nombre as eq_nombre
+        FROM EQUIPOS as eq
+        WHERE eq.LABORATORIO_id = #{idlb}
+    </select>
+
     <update id="darBajaEquipo" parameterType="map">
         UPDATE EQUIPOS SET estado = false WHERE id = #{ideq};
     </update>

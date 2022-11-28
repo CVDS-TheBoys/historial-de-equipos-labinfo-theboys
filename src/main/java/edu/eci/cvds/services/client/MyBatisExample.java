@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 import edu.eci.cvds.entities.Laboratorio;
 import edu.eci.cvds.persistence.mybatis.mappers.ElementoMapper;
@@ -63,7 +64,7 @@ public class MyBatisExample {
 
         // Equipo
         EquipoMapper eqm = sqlss.getMapper(EquipoMapper.class);
-        Equipo equipo = new Equipo(2, true, "equipo1");
+        Equipo equipo = new Equipo(2002, true, 4, "equipo1");
         // eqm.insertarEquipo(equipo);
         // System.out.println(eqm.consultarEquipos());
 
@@ -109,10 +110,11 @@ public class MyBatisExample {
 
             // Equipo
             // serviciosEquipo.registrarEquipo(equipo);
-            //System.out.println(serviciosEquipo.consultarEquipos());
+            // System.out.println(serviciosEquipo.consultarEquipos());
             // LaboratorioList
             // serviciosLaboratorio.registrarLaboratorio(laboratorio);
-            System.out.println(serviciosLaboratorio.consultarLaboratorios());
+            // serviciosEquipo.registrarEquipo(equipo);
+            System.out.println(serviciosEquipo.consultarEquiposLaboratorio(4));
 
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);

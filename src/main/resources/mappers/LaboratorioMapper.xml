@@ -30,12 +30,8 @@
         lb.cantidad_equipos as lb_cantidad_equipos,
         lb.estado as lb_estado,
         lb.fecha_creacion as lb_fecha_creacion,
-        lb.fecha_cierre as lb_fecha_cierre,
-        eq.id as eq_id,
-        eq.estado as eq_estado,
-        eq.LABORATORIO_id as eq_laboratorio_id,
-        eq.nombre as eq_nombre
-        FROM LABORATORIOS as lb LEFT JOIN EQUIPOS AS eq ON (lb.id = eq.LABORATORIO_id)
+        lb.fecha_cierre as lb_fecha_cierre
+        FROM LABORATORIOS as lb
         ORDER BY lb.fecha_creacion DESC
     </select>
 
@@ -50,12 +46,6 @@
         <result property="estado" column="lb_estado"/>
         <result property="fecha_creacion" column="lb_fecha_creacion"/>
         <result property="fecha_cierre" column="lb_fecha_cierre"/>
-        <collection property="equipos" javaType="ArrayList" ofType="Equipo" column="eq_id">
-            <result property="id" column="eq_id"/>
-            <result property="estado" column="eq_estado" />
-            <result property="laboratorio_id" column="eq_laboratorio_id" />
-            <result property="nombre" column="eq_nombre" />
-        </collection>
     </resultMap>
 
 </mapper>

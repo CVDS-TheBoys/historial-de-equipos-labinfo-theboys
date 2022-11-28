@@ -19,4 +19,6 @@ public interface EquipoDAO {
     public List<Equipo> loadAvailableDevice() throws PersistenceException;
 
     public void disableDevice(int id) throws PersistenceException;
+
+    public List<Equipo> loadLabDevice(int id) throws PersistenceException;
 }

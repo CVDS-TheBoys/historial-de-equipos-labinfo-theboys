@@ -13,9 +13,9 @@ public class Laboratorio {
     private Date fecha_cierre;
     private List<Equipo> equipos;
 
-    public Laboratorio(int id, String nombre, Integer cantidad_equipos, boolean estado, Date fecha_creacion,
-            Date fecha_cierre,
-            List<Equipo> equipos) {
+    public Laboratorio(int id, String nombre, Integer cantidad_equipos,
+            List<Equipo> equipos, boolean estado, Date fecha_creacion,
+            Date fecha_cierre) {
         this.id = id;
         this.nombre = nombre;
         this.cantidad_equipos = cantidad_equipos;
@@ -23,6 +23,17 @@ public class Laboratorio {
         this.fecha_creacion = fecha_creacion;
         this.fecha_cierre = fecha_cierre;
         this.equipos = equipos;
+    }
+
+    public Laboratorio(int id, String nombre, Integer cantidad_equipos, boolean estado, Date fecha_creacion,
+            Date fecha_cierre) {
+        this.id = id;
+        this.nombre = nombre;
+        this.cantidad_equipos = cantidad_equipos;
+        this.estado = estado;
+        this.fecha_creacion = fecha_creacion;
+        this.fecha_cierre = fecha_cierre;
+        this.equipos = new ArrayList<>();
     }
 
     public Laboratorio(int id, String nombre, Integer cantidad_equipos, boolean estado, Date fecha_creacion) {

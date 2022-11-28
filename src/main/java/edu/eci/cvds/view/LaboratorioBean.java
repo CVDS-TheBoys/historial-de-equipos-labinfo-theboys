@@ -4,10 +4,12 @@ import com.google.inject.Inject;
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.entities.Laboratorio;
 import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
+import edu.eci.cvds.services.ServiciosEquipo;
 import edu.eci.cvds.services.ServiciosLaboratorio;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +19,8 @@ import java.util.concurrent.TimeUnit;
 public class LaboratorioBean extends BasePageBean {
     @Inject
     private ServiciosLaboratorio serviciosLaboratorio;
+    @Inject
+    private ServiciosEquipo serviciosEquipo;
 
     private List<Laboratorio> listaLaboratorio;
 
@@ -38,6 +42,22 @@ public class LaboratorioBean extends BasePageBean {
     public List<Laboratorio> getLaboratorios() {
         try {
             return serviciosLaboratorio.consultarLaboratorios();
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Laboratorio> getLaboratoriosDisponibles() {
+        try {
+            List<Laboratorio> laboratorios = serviciosLaboratorio.consultarLaboratorios();
+            List<Laboratorio> laboratoriosFilt = new ArrayList<Laboratorio>();
+            for (Laboratorio lab : laboratorios) {
+                if (lab.isEstado()) {
+                    laboratoriosFilt.add(lab);
+                }
+            }
+            return laboratoriosFilt;
         } catch (ExcepcionServiciosLaboratorio ex) {
             ex.printStackTrace();
             return null;
@@ -81,8 +101,12 @@ public class LaboratorioBean extends BasePageBean {
         }
     }
 
-    public void cerrarLaboratorio(int id) {
-
+    public void cerrarLaboratorio(int id) throws ExcepcionServiciosLaboratorio {
+        serviciosLaboratorio.cerrarLaboratorio(id);
+        List<Equipo> equipos = serviciosEquipo.consultarEquiposLaboratorio(id);
+        for (Equipo equipo : equipos) {
+            serviciosEquipo.darBajaEquipo(equipo.getId());
+        }
     }
 
 }
