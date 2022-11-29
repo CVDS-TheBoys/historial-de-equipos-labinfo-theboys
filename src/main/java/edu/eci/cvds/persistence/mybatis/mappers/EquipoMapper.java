@@ -22,4 +22,7 @@ public interface EquipoMapper {
     public List<Equipo> consultarEquiposDisponibles();
 
     public void darBajaEquipo(@Param("ideq") int id);
+    public void actualizarLaboratorio(@Param("ideq") int ideq, @Param("idlab") Integer idlab);
+    public void eliminarAsociacion(@Param("ideq") int ideq);
+    public List<Equipo> consultarEquiposEnLaboratorio(@Param("idlab") int idlab);
 }

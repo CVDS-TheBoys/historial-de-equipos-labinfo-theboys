@@ -82,4 +82,32 @@ public class MyBATISEquipoDAO implements EquipoDAO {
         }
     }
 
+    @Override
+    public void updateLab(int ideq, Integer idlab) throws PersistenceException {
+        try {
+            equipoMapper.actualizarLaboratorio(ideq, idlab);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            throw new org.apache.ibatis.exceptions.PersistenceException("Error al actualizar el laboratorio del equipo: " + ideq + e);
+        }
+    }
+
+    @Override
+    public void removeLab(int ideq) throws PersistenceException {
+        try {
+            equipoMapper.eliminarAsociacion(ideq);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            throw new org.apache.ibatis.exceptions.PersistenceException("Error al eliminar el laboratorio del equipo: " + ideq + e);
+        }
+    }
+
+    @Override
+    public List<Equipo> loadInLab(int idlab) throws PersistenceException {
+        try {
+            return equipoMapper.consultarEquiposEnLaboratorio(idlab);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            throw new org.apache.ibatis.exceptions.PersistenceException(
+                    "Error al consultar los equipos en el laboratorio " + idlab + e);
+        }
+    }
+
 }

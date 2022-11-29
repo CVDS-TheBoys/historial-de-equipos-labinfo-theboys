@@ -88,4 +88,31 @@ public class ServiciosEquipoImpl implements ServiciosEquipo {
                     id + ex);
         }
     }
+
+    @Override
+    public void actualizarLaboratorio(int equipoId, Integer laboratorioId) throws ExcepcionServiciosLaboratorio {
+        try {
+            equipoDAO.updateLab(equipoId, laboratorioId);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al actualizar el laboratorio del equipo " + equipoId + ex);
+        }
+    }
+
+    @Override
+    public void eliminarAsociacion(int equipoId) throws ExcepcionServiciosLaboratorio {
+        try {
+            equipoDAO.removeLab(equipoId);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al actualizar el laboratorio del equipo " + equipoId + ex);
+        }
+    }
+
+    @Override
+    public List<Equipo> consultarEquiposEnLaboratorio(int laboratorioId) throws ExcepcionServiciosLaboratorio {
+        try {
+            return equipoDAO.loadInLab(laboratorioId);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cargar equipos en el laboratorio " + laboratorioId + ex);
+        }
+    }
 }

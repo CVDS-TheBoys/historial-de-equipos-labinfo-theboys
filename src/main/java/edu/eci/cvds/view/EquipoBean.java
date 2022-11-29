@@ -3,10 +3,7 @@ package edu.eci.cvds.view;
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.entities.Novedad;
-import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
-import edu.eci.cvds.services.ServiciosElemento;
-import edu.eci.cvds.services.ServiciosEquipo;
-import edu.eci.cvds.services.ServiciosNovedad;
+import edu.eci.cvds.services.*;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -33,6 +30,9 @@ public class EquipoBean extends BasePageBean {
 
     @Inject
     private ServiciosNovedad serviciosNovedad;
+
+    @Inject
+    private ServiciosLaboratorio serviciosLaboratorio;
 
     private List<Equipo> listaEquipos;
     private List<Equipo> listaEquiposFiltrada;
@@ -124,6 +124,55 @@ public class EquipoBean extends BasePageBean {
     public List<Equipo> consultarReporte() {
         try {
             return serviciosEquipo.consultarReporte();
+        } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
+            excepcionServiciosLaboratorio.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Asocia un equipo a un laboratorio
+     * @param equipoId id del equipo
+     * @param laboratorioId id del laboratorio
+     */
+    public void asociarEquipo(int equipoId, Integer laboratorioId) {
+        try {
+            Equipo equipo = serviciosEquipo.consultarEquipo(equipoId);
+            serviciosEquipo.actualizarLaboratorio(equipoId, laboratorioId);
+            Date date = new Date(System.currentTimeMillis());
+            String titulo = "";
+            if (equipo.getLaboratorio_id() == null){
+                titulo = "Se asoció al laboratorio " + serviciosLaboratorio.consultarLaboratorio(laboratorioId).getNombre();
+            } else {
+                titulo = "Se cambió al laboratorio " + serviciosLaboratorio.consultarLaboratorio(laboratorioId).getNombre();
+            }
+            //serviciosNovedad.registrarNovedad(new Novedad(1, titulo, date, equipoId, ));
+        } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
+            excepcionServiciosLaboratorio.printStackTrace();
+        }
+    }
+
+    /**
+     *  Elimina la asociación de un equipo con un laboratorio
+     * @param equipoId id del equipo
+     */
+    public void desasociarEquipo(int equipoId) {
+        try {
+            serviciosEquipo.eliminarAsociacion(equipoId);
+            //serviciosNovedad.registrarNovedad(new Novedad(1, titulo, date, equipoId, ));
+        } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
+            excepcionServiciosLaboratorio.printStackTrace();
+        }
+    }
+
+    /**
+     * Obtiene los equipos que se encuentran en un laboratorio en especifico
+     * @param laboratorioId id del laboratorio
+     * @return lista de equipos de un laboratorio
+     */
+    public List<Equipo> getEquiposEnLab(Integer laboratorioId) {
+        try {
+            return serviciosEquipo.consultarEquiposEnLaboratorio(laboratorioId);
         } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
             excepcionServiciosLaboratorio.printStackTrace();
             return null;
