@@ -112,8 +112,11 @@ public class MyBatisExample {
             // System.out.println(serviciosEquipo.consultarEquipos());
 
             // Laboratorio
-            serviciosLaboratorio.registrarLaboratorio(laboratorio);
-            System.out.println(serviciosLaboratorio.consultarLaboratorios());
+            // serviciosLaboratorio.registrarLaboratorio(laboratorio);
+            // System.out.println(serviciosLaboratorio.consultarLaboratorios());
+            // serviciosEquipo.actualizarLaboratorio(10, laboratorio.getId());
+            // System.out.println(serviciosEquipo.consultarEquipo(10));
+            System.out.println(serviciosLaboratorio.consultarLaboratoriosDisponibles());
 
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
