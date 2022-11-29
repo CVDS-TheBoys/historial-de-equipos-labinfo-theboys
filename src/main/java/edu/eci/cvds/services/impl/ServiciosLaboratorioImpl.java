@@ -8,6 +8,7 @@ import edu.eci.cvds.services.ServiciosLaboratorio;
 import org.apache.ibatis.exceptions.PersistenceException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ServiciosLaboratorioImpl implements ServiciosLaboratorio {
     @Inject
@@ -37,6 +38,15 @@ public class ServiciosLaboratorioImpl implements ServiciosLaboratorio {
             return laboratorioDAO.load(id);
         } catch (PersistenceException ex) {
             throw new ExcepcionServiciosLaboratorio("Error al consultar laboratorio "+ id + ex);
+        }
+    }
+
+    @Override
+    public List<Laboratorio> consultarLaboratoriosDisponibles() throws ExcepcionServiciosLaboratorio {
+        try {
+            return laboratorioDAO.loadAvailable();
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al consultar laboratorios disponibles " + ex);
         }
     }
 }

@@ -35,6 +35,19 @@
         ORDER BY lb.fecha_creacion DESC
     </select>
 
+    <select parameterType="map" id="consultarLaboratoriosDisponibles" resultMap="LaboratorioResult">
+        SELECT
+        lb.id as lb_id,
+        lb.nombre as lb_nombre,
+        lb.cantidad_equipos as lb_cantidad_equipos,
+        lb.estado as lb_estado,
+        lb.fecha_creacion as lb_fecha_creacion,
+        lb.fecha_cierre as lb_fecha_cierre
+        FROM LABORATORIOS as lb
+        WHERE lb.estado = true
+        ORDER BY lb.fecha_creacion DESC
+    </select>
+
     <resultMap id="LaboratorioResult" type="Laboratorio">
         <id property="id" column="lb_id"/>
         <result property="nombre" column="lb_nombre"/>

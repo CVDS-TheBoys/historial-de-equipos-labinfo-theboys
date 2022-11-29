@@ -3,6 +3,7 @@ package edu.eci.cvds.services;
 import edu.eci.cvds.entities.Laboratorio;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface ServiciosLaboratorio {
     /**
@@ -29,4 +30,11 @@ public interface ServiciosLaboratorio {
      * @throws ExcepcionServiciosLaboratorio si no se pueden cargar el laboratorio
      */
     public Laboratorio consultarLaboratorio(int id) throws ExcepcionServiciosLaboratorio;
+
+    /**
+     * Consulta los laboratorios que se encuentras activos
+     * @return lista de laboratorios activos
+     * @throws ExcepcionServiciosLaboratorio
+     */
+    public List<Laboratorio> consultarLaboratoriosDisponibles() throws ExcepcionServiciosLaboratorio;
 }
