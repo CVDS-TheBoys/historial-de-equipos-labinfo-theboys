@@ -11,10 +11,10 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>faces/menu.xhtml</welcome-file>
+        <welcome-file>menu.xhtml</welcome-file>
     </welcome-file-list>
     <listener>
         <listener-class>edu.eci.cvds.guice.GuiceContextListener</listener-class>
