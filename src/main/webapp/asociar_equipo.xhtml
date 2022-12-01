@@ -42,32 +42,7 @@
             <br/><br/>
 
             <h2>¿Quieres desasociar un equipo de un laboratorio?</h2>
-            <div>
-                <p:outputLabel for="LaboratorioEliminar" value="Selecciona un laboratorio"/><br/>
-                <p:selectOneMenu id="LaboratorioEliminar" value="#{laboratorioIdEl}">
-                    <p:ajax update="asociar:EquipoEliminar" process="@this"/>
-                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}"/>
-                    <f:selectItems value="#{LaboratorioBean.consultarLaboratoriosDisponibles()}" var="laboratorioel"
-                                   itemLabel="#{laboratorioel.nombre}" itemValue="#{laboratorioel.id}"/>
-                </p:selectOneMenu><br/>
-            </div><br/>
-
-            <div>
-                <p:outputLabel for="EquipoEliminar" value="Equipo"/><br/>
-                <p:selectOneMenu id="EquipoEliminar" value="#{equipoIdEl}">
-                    <!--p:ajax update="@this" process="@this"/-->
-                    <f:selectItem itemLabel="Desasociar" itemValue="#{null}"/>
-                    <f:selectItems value="#{EquiposBean.getEquiposEnLab(laboratorioIdEl)}" var="equipoel"
-                                   itemLabel="#{equipoel.nombre}" itemValue="#{equipoel.id}"/>
-                </p:selectOneMenu><br/>
-            </div><br/>
-
-            <p:growl id="messages" showDetail="true"/>
-            <p:commandButton value="Desasociar" action="menu?faces-redirect=true" styleClass="ui-button-info" icon="pi pi-save"
-                             actionListener="#{EquiposBean.desasociarEquipo(equipoIdEl)}">
-                <p:confirm type="popup" header="Confirmation" message="¿Seguro que quieres proceder?" icon="pi pi-exclamation-triangle"/>
-            </p:commandButton>
-            <br/><br/>
+            <p:commandButton value="Desasociar equipo" action="desasociar_equipo?faces-redirect=true" styleClass="ui-button-info" icon="pi pi-desktop" immediate="true"/><br/><br/>
 
             <div id="button-layout">
                 <div>
