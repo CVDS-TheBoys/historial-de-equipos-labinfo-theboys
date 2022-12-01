@@ -88,4 +88,14 @@ public class ServiciosEquipoImpl implements ServiciosEquipo {
                     id + ex);
         }
     }
+
+    @Override
+    public List<Equipo> consultarEquiposLaboratorio(int id) throws ExcepcionServiciosLaboratorio {
+        try {
+            return equipoDAO.loadLabDevice(id);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al consultar equipos asociados a laboratorio: " +
+                    id + ex);
+        }
+    }
 }

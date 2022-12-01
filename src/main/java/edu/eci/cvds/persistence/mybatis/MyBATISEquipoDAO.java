@@ -82,4 +82,14 @@ public class MyBATISEquipoDAO implements EquipoDAO {
         }
     }
 
+    @Override
+    public List<Equipo> loadLabDevice(int id) throws PersistenceException {
+        try {
+            return equipoMapper.consultarEquiposLaboratorio(id);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            throw new org.apache.ibatis.exceptions.PersistenceException(
+                    "Error al cargar equipos asociados a laboratorio: " + id + e);
+        }
+    }
+
 }
