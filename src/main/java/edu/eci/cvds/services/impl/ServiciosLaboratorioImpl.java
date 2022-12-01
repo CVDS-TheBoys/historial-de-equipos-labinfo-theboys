@@ -7,6 +7,7 @@ import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.services.ServiciosLaboratorio;
 import org.apache.ibatis.exceptions.PersistenceException;
 
+import java.sql.Date;
 import java.util.List;
 
 public class ServiciosLaboratorioImpl implements ServiciosLaboratorio {
@@ -43,7 +44,8 @@ public class ServiciosLaboratorioImpl implements ServiciosLaboratorio {
     @Override
     public void cerrarLaboratorio(int id) throws ExcepcionServiciosLaboratorio {
         try {
-            laboratorioDAO.closeLab(id);
+            Date fecha = new Date(System.currentTimeMillis());
+            laboratorioDAO.closeLab(id, fecha);
         } catch (PersistenceException ex) {
             throw new ExcepcionServiciosLaboratorio("Error al cerrar laboratiorio: " +
                     id + ex);

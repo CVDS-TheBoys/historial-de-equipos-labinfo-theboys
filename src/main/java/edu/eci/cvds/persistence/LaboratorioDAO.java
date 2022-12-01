@@ -3,6 +3,7 @@ package edu.eci.cvds.persistence;
 import edu.eci.cvds.entities.Laboratorio;
 import org.apache.ibatis.exceptions.PersistenceException;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface LaboratorioDAO {
@@ -12,5 +13,5 @@ public interface LaboratorioDAO {
 
     public List<Laboratorio> loadAll() throws PersistenceException;
 
-    public void closeLab(int id) throws PersistenceException;
+    public void closeLab(int id, Date fecha_cierre) throws PersistenceException;
 }

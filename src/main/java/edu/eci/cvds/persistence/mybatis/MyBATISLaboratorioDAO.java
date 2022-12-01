@@ -6,6 +6,7 @@ import edu.eci.cvds.persistence.LaboratorioDAO;
 import edu.eci.cvds.persistence.mybatis.mappers.LaboratorioMapper;
 import org.apache.ibatis.exceptions.PersistenceException;
 
+import java.sql.Date;
 import java.util.List;
 
 public class MyBATISLaboratorioDAO implements LaboratorioDAO {
@@ -45,9 +46,9 @@ public class MyBATISLaboratorioDAO implements LaboratorioDAO {
     }
 
     @Override
-    public void closeLab(int id) throws PersistenceException {
+    public void closeLab(int id, Date fecha_cierre) throws PersistenceException {
         try {
-            laboratorioMapper.cerrarLaboratorio(id);
+            laboratorioMapper.cerrarLaboratorio(id, fecha_cierre);
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {
             throw new org.apache.ibatis.exceptions.PersistenceException("Error al cerrar laboratorio: " + id + e);
         }

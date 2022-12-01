@@ -36,7 +36,7 @@
     </select>
 
     <update id="cerrarLaboratorio" parameterType="map">
-        UPDATE LABORATORIOS SET estado = false WHERE id = #{idlb};
+        UPDATE LABORATORIOS SET estado = false, fecha_cierre = #{fcierre} WHERE id = #{idlb};
     </update>
 
     <resultMap id="LaboratorioResult" type="Laboratorio">
