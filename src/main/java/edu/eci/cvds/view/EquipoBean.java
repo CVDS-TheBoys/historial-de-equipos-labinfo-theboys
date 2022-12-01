@@ -37,6 +37,8 @@ public class EquipoBean extends BasePageBean {
     private List<Equipo> listaEquipos;
     private List<Equipo> listaEquiposFiltrada;
     private List<Equipo> equiposSeleccionados;
+    private Integer equipoId;
+    private Integer laboratorioId;
 
     /**
      * Registra un equipo junto con sus elementos
@@ -141,12 +143,15 @@ public class EquipoBean extends BasePageBean {
             serviciosEquipo.actualizarLaboratorio(equipoId, laboratorioId);
             Date date = new Date(System.currentTimeMillis());
             String titulo = "";
+            String detalle = "";
             if (equipo.getLaboratorio_id() == null){
-                titulo = "Se asoció al laboratorio " + serviciosLaboratorio.consultarLaboratorio(laboratorioId).getNombre();
+                titulo = "Asociación de equipo";
+                detalle = "Se asoció el equipo al laboratorio "  + serviciosLaboratorio.consultarLaboratorio(laboratorioId).getNombre();
             } else {
-                titulo = "Se cambió al laboratorio " + serviciosLaboratorio.consultarLaboratorio(laboratorioId).getNombre();
+                titulo = "Cambio asociación de equipo";
+                detalle = "Se cambió el equipo al laboratorio "  + serviciosLaboratorio.consultarLaboratorio(laboratorioId).getNombre();
             }
-            //serviciosNovedad.registrarNovedad(new Novedad(1, titulo, date, equipoId, ));
+            serviciosNovedad.registrarNovedad(new Novedad(1, titulo, detalle, date, equipoId, null));
         } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
             excepcionServiciosLaboratorio.printStackTrace();
         }
@@ -157,9 +162,12 @@ public class EquipoBean extends BasePageBean {
      * @param equipoId id del equipo
      */
     public void desasociarEquipo(int equipoId) {
+        Date date = new Date(System.currentTimeMillis());
+        String titulo ="Eliminación asociación";
+        String detalle ="Se eliminó la asociación del equipo";
         try {
             serviciosEquipo.eliminarAsociacion(equipoId);
-            //serviciosNovedad.registrarNovedad(new Novedad(1, titulo, date, equipoId, ));
+            serviciosNovedad.registrarNovedad(new Novedad(1, titulo, detalle, date, equipoId, null));
         } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
             excepcionServiciosLaboratorio.printStackTrace();
         }
@@ -237,6 +245,22 @@ public class EquipoBean extends BasePageBean {
 
     public void setEquiposSeleccionados(List<Equipo> equiposSeleccionados) {
         this.equiposSeleccionados = equiposSeleccionados;
+    }
+
+    public Integer getEquipoId() {
+        return equipoId;
+    }
+
+    public void setEquipoId(Integer equipoId) {
+        this.equipoId = equipoId;
+    }
+
+    public Integer getLaboratorioId() {
+        return laboratorioId;
+    }
+
+    public void setLaboratorioId(Integer laboratorioId) {
+        this.laboratorioId = laboratorioId;
     }
 
     public void darBajaEquipo(String detalle) {

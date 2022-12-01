@@ -14,7 +14,6 @@ public class ServiciosEquipoTest {
     private SqlSession sqlSession;
     private final ServiciosElemento serviciosElemento;
     private final ServiciosEquipo serviciosEquipo;
-    private ServiciosLaboratorio serviciosLaboratorio;
     private final Equipo equipo = new Equipo(1, true, "Equipo 1");
 
     public ServiciosEquipoTest() {
@@ -60,7 +59,6 @@ public class ServiciosEquipoTest {
         try {
             serviciosEquipo.registrarEquipo(equipo);
             Laboratorio laboratorio = new Laboratorio(1, "Prueba", 10, true, new Date(System.currentTimeMillis()));
-            //serviciosLaboratorio.registrarLaboratorio(laboratorio);
             serviciosEquipo.actualizarLaboratorio(equipo.getId(), laboratorio.getId());
             Integer num = 1;
             Assert.assertEquals(num, serviciosEquipo.consultarEquipo(equipo.getId()).getLaboratorio_id());
