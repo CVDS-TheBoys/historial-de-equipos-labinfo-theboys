@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Login</title>
+    <link rel="stylesheet" href="./style/menu.css"/>
+</h:head>
+
+<h:body>
+    <p:messages autoUpdate="true" showDetail="true"/>
+    <h:form id="form" class="form-menu">
+        <h1 class="title">Inicio de Sesión</h1>
+        <br/>
+        <div class="card">
+
+                <p:outputLabel for="user" value="Usuario"/><br/>
+                <p:inputText id="user" value="#{usuario}" required="true"/><br/><br/>
+
+                <p:outputLabel for="clave" value="Clave"/><br/>
+                <p:password id="clave" label="Password 2" value="#{clave}" required="true"/><br/><br/>
+
+                <p:commandButton icon="pi pi-key" value="Iniciar sesión" action="#{UsuarioBean.login(usuario, clave)}"/>
+
+        </div>
+    </h:form>
+
+</h:body>
+</html>
