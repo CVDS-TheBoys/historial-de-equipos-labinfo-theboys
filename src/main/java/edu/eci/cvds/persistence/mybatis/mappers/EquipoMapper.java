@@ -22,4 +22,6 @@ public interface EquipoMapper {
     public List<Equipo> consultarEquiposDisponibles();
 
     public void darBajaEquipo(@Param("ideq") int id);
+
+    public List<Equipo> consultarEquiposLaboratorio(@Param("idlb") int id);
 }
