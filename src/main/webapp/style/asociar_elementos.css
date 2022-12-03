@@ -24,6 +24,15 @@ body .ui-selectonemenu .ui-selectonemenu-label {
     padding-right: 3rem;
 }
 
+#header {
+    background-color: rgba(0, 0, 0, 0.80);
+    text-align: right;
+    position: sticky;
+    top: 0px;
+    padding: 8px;
+    box-shadow: 10px 0px 20px #000;
+}
+
 body .ui-button.ui-button-text-icon-left .ui-button-text {
     margin-right: 16px;
 }
