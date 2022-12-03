@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.UsuarioMapper">
+    <!--<insert id="insertarElemento" parameterType="map">
+        INSERT INTO ELEMENTOS (id, nombre, tipo, funcional, EQUIPO_id)
+        VALUES (#{elem.id}, #{elem.nombre}, #{elem.tipo}, #{elem.funcional}, null)
+    </insert>-->
+
+    <select id="consultarUsuario" resultMap="UsuarioResult">
+        SELECT
+            u.email as u_email,
+            u.nombre as u_nombre,
+            u.password as u_password,
+            u.permisos as u_permisos
+        FROM usuarios u
+        WHERE u.email = #{email} AND u.password = #{contra};
+    </select>
+
+    <resultMap id="UsuarioResult" type="Usuario">
+        <id property="email" column="u_email"/>
+        <result property="nombre" column="u_nombre"/>
+        <result property="password" column="u_password"/>
+        <result property="permisos" column="u_permisos"/>
+    </resultMap>
+
+
+</mapper>

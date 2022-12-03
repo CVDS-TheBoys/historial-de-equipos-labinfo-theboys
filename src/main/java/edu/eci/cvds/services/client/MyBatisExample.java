@@ -90,6 +90,8 @@ public class MyBatisExample {
         ServiciosNovedad serviciosNovedad = ServiciosNovedadFactory.getInstance().getServiciosNovedad();
         ServiciosEquipo serviciosEquipo = ServiciosEquipoFactory.getInstance().getServiciosEquipo();
         ServiciosLaboratorio serviciosLaboratorio = ServiciosLaboratorioFactory.getInstance().getServiciosLaboratorio();
+        ServiciosUsuario serviciosUsuario = ServiciosUsuarioFactory.getInstance().getServiciosUsuario();
+
         try {
             // Elemento
             // System.out.println(serviciosElemento.consultarElementos());
@@ -111,10 +113,16 @@ public class MyBatisExample {
             // Equipo
             // serviciosEquipo.registrarEquipo(equipo);
             // System.out.println(serviciosEquipo.consultarEquipos());
-            // LaboratorioList
+
+
+            // Laboratorio
             // serviciosLaboratorio.registrarLaboratorio(laboratorio);
-            // serviciosEquipo.registrarEquipo(equipo);
-            System.out.println(serviciosEquipo.consultarEquiposLaboratorio(4));
+            // System.out.println(serviciosLaboratorio.consultarLaboratorios());
+            // System.out.println(serviciosEquipo.consultarEquiposLaboratorio(4));
+
+            // Usuario
+            System.out.println(serviciosUsuario.consultarUsuario("prueba", "prueba"));
+
 
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);

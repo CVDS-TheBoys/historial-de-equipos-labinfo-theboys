@@ -8,7 +8,7 @@
         <typeAlias type='edu.eci.cvds.entities.Equipo' alias='Equipo'/>
         <typeAlias type='edu.eci.cvds.entities.Novedad' alias='Novedad'/>
         <typeAlias type='edu.eci.cvds.entities.Laboratorio' alias='Laboratorio'/>
-        <!-- TODO poner entidades faltantes -->
+        <typeAlias type='edu.eci.cvds.entities.Usuario' alias='Usuario'/>
     </typeAliases>
     <environments default="test">
         <environment id="test">
@@ -26,5 +26,6 @@
         <mapper resource="mappers/EquipoMapper.xml"></mapper>
         <mapper resource="mappers/NovedadMapper.xml"></mapper>
         <mapper resource="mappers/LaboratorioMapper.xml"></mapper>
+        <mapper resource="mappers/UsuarioMapper.xml"></mapper>
     </mappers>
 </configuration>
