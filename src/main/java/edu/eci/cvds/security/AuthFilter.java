@@ -1,4 +1,6 @@
-package edu.eci.cvds.view;
+package edu.eci.cvds.security;
+
+import edu.eci.cvds.view.UsuarioBean;
 
 import javax.annotation.processing.Filer;
 import javax.servlet.*;
