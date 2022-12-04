@@ -96,4 +96,11 @@ public interface ServiciosEquipo {
      */
     public List<Equipo> consultarEquiposEnLaboratorio(int laboratorioId) throws ExcepcionServiciosLaboratorio;
 
+     /**
+     * Consulta los equipos asociados a un laboratorio
+     * @return lista de equipos
+     * @throws ExcepcionServiciosLaboratorio si no es posible cargar los equipos
+     */
+    public List<Equipo> consultarEquiposLaboratorio(int id) throws ExcepcionServiciosLaboratorio;
+
 }

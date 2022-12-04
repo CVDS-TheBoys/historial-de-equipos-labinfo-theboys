@@ -11,6 +11,9 @@
 </h:head>
 
 <h:body>
+    <div id="header">
+        <p:commandButton icon="pi pi-sign-out" value="Logout" styleClass="ui-button-info" action="#{UsuarioBean.logout()}"/>
+    </div>
     <h:form class="form-elementos">
         <h1 class="title">Reporte de Equipos</h1><br/><br/><br/>
         <p:dataTable id ="tabla_reporte" var="equipo" value="#{EquiposBean.consultarEquipos()}"
@@ -55,7 +58,8 @@
             </p:column>
 
             <p:column headerText="Reporte de novedades" exportable="false" style="text-align:center">
-                <p:button outcome="reporte_novedades?equipo=#{equipo.id}" value="Ir"/>
+                <p:commandButton action="reporte_especifico_novedades?faces-redirect=true" icon="pi pi-search"
+                                 actionListener="#{NovedadBean.serElementoIdEquipoId(null, equipo.id)}"/>
             </p:column>
 
         </p:dataTable>
@@ -78,18 +82,19 @@
             <p:inputTextarea id="Detalle" rows="5" cols="41" counter="display" maxlength="200" value="#{detalle}"
                              counterTemplate="{0} characters remaining." autoResize="true"/><br/>
             <h:outputText id="display" class="block" />
+            <p:selectBooleanCheckbox value="#{darBajaElementos}" itemLabel="Dar de baja a elementos asociados?"/>
         </div>
         <br/>
         <p:growl id="message" showDetail="true"/>
-        <p:commandButton value="Dar de baja" action="rep_equipos?faces-redirect=true" styleClass="ui-button-danger" icon="pi pi-times"
-                         actionListener="#{EquiposBean.darBajaEquipo(detalle)}">
+        <p:commandButton value="Dar de baja" action="rep_equipos?faces-redirect=true"   styleClass="ui-button-danger" icon="pi pi-times"
+                         actionListener="#{EquiposBean.darBajaEquipo(detalle, darBajaElementos)}">
             <p:confirm type="popup" header="Confirmation" message="¿Seguro que quieres proceder?" icon="pi pi-exclamation-triangle"/>
         </p:commandButton>
 
         <br/><br/>
         <p:confirmPopup global="true">
             <p:commandButton value="No" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
-            <p:commandButton value="Si" type="button" styleClass="ui-confirm-popup-yes" onclick="PF('dlg2').visible(false)"/>
+            <p:commandButton value="Si" type="button" styleClass="ui-confirm-popup-yes"/>
         </p:confirmPopup>
 </p:dialog>
 </h:body>

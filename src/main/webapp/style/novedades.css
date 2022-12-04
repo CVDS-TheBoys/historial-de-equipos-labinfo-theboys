@@ -31,6 +31,15 @@ body .ui-datatable thead th {
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
+#header {
+    background-color: rgba(0, 0, 0, 0.80);
+    text-align: right;
+    position: sticky;
+    top: 0px;
+    padding: 8px;
+    box-shadow: 10px 0px 20px #000;
+}
+
 body .ui-datatable .ui-datatable-data > tr {
     background: #ffffff;
     color: #000000;

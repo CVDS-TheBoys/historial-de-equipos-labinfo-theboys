@@ -6,8 +6,7 @@ import edu.eci.cvds.persistence.LaboratorioDAO;
 import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.services.ServiciosLaboratorio;
 import org.apache.ibatis.exceptions.PersistenceException;
-
-import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 public class ServiciosLaboratorioImpl implements ServiciosLaboratorio {
@@ -15,7 +14,7 @@ public class ServiciosLaboratorioImpl implements ServiciosLaboratorio {
     private LaboratorioDAO laboratorioDAO;
 
     @Override
-    public ArrayList<Laboratorio> consultarLaboratorios() throws ExcepcionServiciosLaboratorio {
+    public List<Laboratorio> consultarLaboratorios() throws ExcepcionServiciosLaboratorio {
         try {
             return laboratorioDAO.loadAll();
         } catch (PersistenceException ex) {
@@ -37,7 +36,18 @@ public class ServiciosLaboratorioImpl implements ServiciosLaboratorio {
         try {
             return laboratorioDAO.load(id);
         } catch (PersistenceException ex) {
-            throw new ExcepcionServiciosLaboratorio("Error al consultar laboratorio "+ id + ex);
+            throw new ExcepcionServiciosLaboratorio("Error al consultar laboratorio " + id + ex);
+        }
+    }
+
+    @Override
+    public void cerrarLaboratorio(int id) throws ExcepcionServiciosLaboratorio {
+        try {
+            Date fecha = new Date(System.currentTimeMillis());
+            laboratorioDAO.closeLab(id, fecha);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosLaboratorio("Error al cerrar laboratiorio: " +
+                    id + ex);
         }
     }
 

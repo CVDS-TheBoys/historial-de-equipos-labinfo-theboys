@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.entities.Laboratorio;
 import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
+import edu.eci.cvds.services.ServiciosEquipo;
 import edu.eci.cvds.services.ServiciosLaboratorio;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -12,20 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "LaboratorioBean")
 @SessionScoped
-public class LaboratorioBean extends BasePageBean{
+public class LaboratorioBean extends BasePageBean {
     @Inject
     private ServiciosLaboratorio serviciosLaboratorio;
+    @Inject
+    private ServiciosEquipo serviciosEquipo;
 
     private List<Laboratorio> listaLaboratorio;
 
     private List<Laboratorio> listaLaboratoriosFiltrada;
 
     public void registrarLaboratorio(int id, String nombre, Integer cantidad_equipos) {
-        if(cantidad_equipos==null){
+        if (cantidad_equipos == null) {
             cantidad_equipos = 0;
         }
         Date fecha_creacion = new Date(System.currentTimeMillis());
@@ -46,9 +48,25 @@ public class LaboratorioBean extends BasePageBean{
         }
     }
 
-    public ArrayList<Laboratorio> getLaboratorios() {
+    public List<Laboratorio> getLaboratorios() {
         try {
             return serviciosLaboratorio.consultarLaboratorios();
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Laboratorio> getLaboratoriosDisponibles() {
+        try {
+            List<Laboratorio> laboratorios = serviciosLaboratorio.consultarLaboratorios();
+            List<Laboratorio> laboratoriosFilt = new ArrayList<Laboratorio>();
+            for (Laboratorio lab : laboratorios) {
+                if (lab.isEstado()) {
+                    laboratoriosFilt.add(lab);
+                }
+            }
+            return laboratoriosFilt;
         } catch (ExcepcionServiciosLaboratorio ex) {
             ex.printStackTrace();
             return null;
@@ -68,13 +86,10 @@ public class LaboratorioBean extends BasePageBean{
         TimeUnit.SECONDS.sleep(1);
     }
 
-
-
-    public String convertToString(boolean estado){
-        if (estado){
+    public String convertToString(boolean estado) {
+        if (estado) {
             return "Activo";
-        }
-        else {
+        } else {
             return "Cerrado";
         }
     }
@@ -84,10 +99,9 @@ public class LaboratorioBean extends BasePageBean{
         Date fecha_cierre = null;
         try {
             fecha_cierre = serviciosLaboratorio.consultarLaboratorio(id).getFecha_cierre();
-            if (fecha_cierre != null){
+            if (fecha_cierre != null) {
                 res = res + fecha_cierre;
-            }
-            else {
+            } else {
                 res = res + "No aplica";
             }
             return res;
@@ -112,5 +126,12 @@ public class LaboratorioBean extends BasePageBean{
         this.listaLaboratorio = listaLaboratorio;
     }
 
+    public void cerrarLaboratorio(int id) throws ExcepcionServiciosLaboratorio {
+        serviciosLaboratorio.cerrarLaboratorio(id);
+        List<Equipo> equipos = serviciosEquipo.consultarEquiposLaboratorio(id);
+        for (Equipo equipo : equipos) {
+            serviciosEquipo.darBajaEquipo(equipo.getId());
+        }
+    }
 
 }
