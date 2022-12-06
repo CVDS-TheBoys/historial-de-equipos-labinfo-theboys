@@ -2,6 +2,7 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Novedad;
 import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
 import edu.eci.cvds.services.ServiciosElemento;
@@ -10,11 +11,7 @@ import edu.eci.cvds.services.ServiciosNovedad;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 
-import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
@@ -50,20 +47,24 @@ public class EquipoBean extends BasePageBean {
      */
     public void registrarEquipo(int equipoId, String nombre, int pantallaId, int torreId, int tecladoId, int mouseId) {
         Equipo equipo = new Equipo(equipoId, true, nombre);
+        Date date = new Date(System.currentTimeMillis());
         try {
             serviciosEquipo.registrarEquipo(equipo);
             int maxId = getMaxEquipoId();
             serviciosElemento.actualizarEquipo(pantallaId, maxId);
+            serviciosNovedad.registrarNovedad(new Novedad(1, "Nueva asociación","Se asoció al equipo " + nombre, date, equipoId, pantallaId));
             serviciosElemento.actualizarEquipo(torreId, maxId);
+            serviciosNovedad.registrarNovedad(new Novedad(1, "Nueva asociación","Se asoció al equipo " + nombre, date, equipoId, torreId));
             serviciosElemento.actualizarEquipo(tecladoId, maxId);
+            serviciosNovedad.registrarNovedad(new Novedad(1, "Nueva asociación","Se asoció al equipo " + nombre, date, equipoId, tecladoId));
             serviciosElemento.actualizarEquipo(mouseId, maxId);
+            serviciosNovedad.registrarNovedad(new Novedad(1, "Nueva asociación","Se asoció al equipo " + nombre, date, equipoId, mouseId));
         } catch (ExcepcionServiciosLaboratorio ex) {
             ex.printStackTrace();
         }
     }
 
     /**
-     * <<<<<<< HEAD
      * Muestra el nombre del equipo asociado al elemento en la pantalla
      * 
      * @param id id del equipo
@@ -86,6 +87,19 @@ public class EquipoBean extends BasePageBean {
     public List<Equipo> consultarEquipos() {
         try {
             return serviciosEquipo.consultarEquipos();
+        } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
+            excepcionServiciosLaboratorio.printStackTrace();
+            return null;
+        }
+    }
+
+
+    /**
+     * Consulta todos los equipos funcionales
+     */
+    public List<Equipo> consultarEquiposDisponibles() {
+        try {
+            return serviciosEquipo.consultarEquiposDisponibles();
         } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
             excepcionServiciosLaboratorio.printStackTrace();
             return null;
@@ -173,13 +187,23 @@ public class EquipoBean extends BasePageBean {
         this.equiposSeleccionados = equiposSeleccionados;
     }
 
-    public void darBajaEquipo(String detalle) {
+    public void darBajaEquipo(String detalle, boolean darBajaElementos) throws ExcepcionServiciosLaboratorio {
         Date date = new Date(System.currentTimeMillis());
-        int cantNov = 0;
+        int cantNov = serviciosNovedad.consultarNovedades().size();
         try {
             if (equiposSeleccionados != null) {
                 for (Equipo equipo : equiposSeleccionados) {
                     serviciosEquipo.darBajaEquipo(equipo.getId());
+                    if (darBajaElementos) {
+                        for (Elemento elemento : equipo.getElementos()) {
+                            serviciosElemento.darBajaElemento(elemento.getId());
+                        }
+                    } else {
+                        for (Elemento elemento : equipo.getElementos()) {
+                            serviciosElemento.actualizarEquipo(elemento.getId(), null);
+                        }
+                        equipo.setElementos(null);
+                    }
                     Novedad novedad = new Novedad(699 + cantNov, "Equipo " + equipo.getNombre() + " dado de baja",
                             detalle, date,
                             equipo.getId());
@@ -187,13 +211,8 @@ public class EquipoBean extends BasePageBean {
                     cantNov++;
                 }
             }
-        } catch (ExcepcionServiciosLaboratorio e) {
-            throw new RuntimeException(e);
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            throw new RuntimeException(ex);
         }
-    }
-
-    public void reload() throws IOException {
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
 }

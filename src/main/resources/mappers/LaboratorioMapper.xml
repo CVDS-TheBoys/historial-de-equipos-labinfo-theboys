@@ -35,6 +35,10 @@
         ORDER BY lb.fecha_creacion DESC
     </select>
 
+    <update id="cerrarLaboratorio" parameterType="map">
+        UPDATE LABORATORIOS SET estado = false, fecha_cierre = #{fcierre} WHERE id = #{idlb};
+    </update>
+
     <resultMap id="LaboratorioResult" type="Laboratorio">
         <id property="id" column="lb_id"/>
         <result property="nombre" column="lb_nombre"/>

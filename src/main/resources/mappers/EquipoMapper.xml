@@ -42,8 +42,13 @@
         n.detalle as nv_detalle,
         n.fecha as nv_fecha,
         n.EQUIPO_id as nv_EQUIPO_id,
-        n.ELEMENTO_id as nv_ELEMENTO_id
-        FROM EQUIPOS as eq LEFT JOIN NOVEDADES as n ON (eq.id = n.equipo_id);
+        n.ELEMENTO_id as nv_ELEMENTO_id,
+        el.id as el_id,
+        el.nombre as el_nombre,
+        el.tipo as el_tipo,
+        el.funcional as el_funcional,
+        el.EQUIPO_id as el_EQUIPO_id
+        FROM EQUIPOS as eq LEFT JOIN NOVEDADES as n ON (eq.id = n.equipo_id) LEFT JOIN ELEMENTOS AS el ON (eq.id = el.EQUIPO_id)
     </select>
 
     <select parameterType="map" id="consultarEquiposConNovedades" resultMap="EquipoResult">
@@ -75,6 +80,16 @@
         n.ELEMENTO_id as nv_ELEMENTO_id
         FROM EQUIPOS as eq LEFT JOIN NOVEDADES as n ON (eq.id = n.equipo_id)
         WHERE eq.estado = true
+    </select>
+
+    <select parameterType="map" id="consultarEquiposLaboratorio" resultMap="EquipoResult">
+        SELECT
+        eq.id as eq_id,
+        eq.estado as eq_estado,
+        eq.LABORATORIO_id as eq_laboratorio_id,
+        eq.nombre as eq_nombre
+        FROM EQUIPOS as eq
+        WHERE eq.LABORATORIO_id = #{idlb}
     </select>
 
     <update id="darBajaEquipo" parameterType="map">

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 import edu.eci.cvds.entities.Laboratorio;
 import edu.eci.cvds.persistence.mybatis.mappers.ElementoMapper;
@@ -63,7 +64,7 @@ public class MyBatisExample {
 
         // Equipo
         EquipoMapper eqm = sqlss.getMapper(EquipoMapper.class);
-        Equipo equipo = new Equipo(2, true, "equipo1");
+        Equipo equipo = new Equipo(2002, true, 4, "equipo1");
         // eqm.insertarEquipo(equipo);
         // System.out.println(eqm.consultarEquipos());
 
@@ -89,6 +90,8 @@ public class MyBatisExample {
         ServiciosNovedad serviciosNovedad = ServiciosNovedadFactory.getInstance().getServiciosNovedad();
         ServiciosEquipo serviciosEquipo = ServiciosEquipoFactory.getInstance().getServiciosEquipo();
         ServiciosLaboratorio serviciosLaboratorio = ServiciosLaboratorioFactory.getInstance().getServiciosLaboratorio();
+        ServiciosUsuario serviciosUsuario = ServiciosUsuarioFactory.getInstance().getServiciosUsuario();
+
         try {
             // Elemento
             // System.out.println(serviciosElemento.consultarElementos());
@@ -99,7 +102,7 @@ public class MyBatisExample {
             // System.out.println(serviciosElemento.consultarElementosConNovedades(1));
             // serviciosElemento.actualizarEquipo(1, null);
             // serviciosElemento.darBajaElemento(4);
-            System.out.println(serviciosElemento.consultarElementosDisponibles());
+            // System.out.println(serviciosElemento.consultarElementosDisponibles());
 
             // Novedades
             // System.out.println(serviciosNovedad.consultarNovedad(333));
@@ -111,9 +114,15 @@ public class MyBatisExample {
             // serviciosEquipo.registrarEquipo(equipo);
             // System.out.println(serviciosEquipo.consultarEquipos());
 
+
             // Laboratorio
-            serviciosLaboratorio.registrarLaboratorio(laboratorio);
-            System.out.println(serviciosLaboratorio.consultarLaboratorios());
+            // serviciosLaboratorio.registrarLaboratorio(laboratorio);
+            // System.out.println(serviciosLaboratorio.consultarLaboratorios());
+            // System.out.println(serviciosEquipo.consultarEquiposLaboratorio(4));
+
+            // Usuario
+            System.out.println(serviciosUsuario.consultarUsuario("prueba", "prueba"));
+
 
         } catch (ExcepcionServiciosLaboratorio e) {
             throw new RuntimeException(e);
