@@ -77,6 +77,16 @@ public class ElementoBean extends BasePageBean {
         }
     }
 
+    public String displayElementos(int id) {
+        try {
+            Elemento elemento = serviciosElemento.consultarElemento(id);
+            return elemento != null ? elemento.getNombre() : "No aplica";
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public List<Elemento> getElementosConNovedades(Integer equipoId) {
         try {
             if (equipoId == null || equipoId == 0) {

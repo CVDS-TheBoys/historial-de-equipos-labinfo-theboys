@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Asociar Equipo</title>
+    <link rel="stylesheet" href="./style/asociar_elementos.css"/>
+</h:head>
+
+<h:body>
+    <div class="card">
+        <h:form id="asociar" class="form-asociar">
+            <h1 class="title">Asociar equipo</h1>
+            <br/>
+            <div>
+                <p:outputLabel for="Laboratorio" value="Selecciona un laboratorio"/><br/>
+                <p:selectOneMenu id="Laboratorio" value="#{laboratorioId}">
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}"/>
+                    <f:selectItems value="#{LaboratorioBean.consultarLaboratoriosDisponibles()}" var="laboratorio"
+                                   itemLabel="#{laboratorio.nombre}" itemValue="#{laboratorio.id}"/>
+                </p:selectOneMenu><br/>
+            </div><br/>
+
+            <h3>Equipos disponibles</h3>
+            <div>
+                <p:outputLabel for="Equipo" value="Equipo"/><br/>
+                <p:selectOneMenu id="Equipo" value="#{equipoId}">
+                    <f:selectItem itemLabel="No asociar" itemValue="#{null}"/>
+                    <f:selectItems value="#{EquiposBean.consultarEquiposDisponibles()}" var="equipo"
+                                   itemLabel="#{equipo.nombre}" itemValue="#{equipo.id}"/>
+                </p:selectOneMenu><br/>
+            </div><br/>
+
+            <p:growl id="message" showDetail="true"/>
+            <p:commandButton value="Asociar" action="menu?faces-redirect=true" styleClass="ui-button-info" icon="pi pi-save"
+                             actionListener="#{EquiposBean.asociarEquipo(equipoId, laboratorioId)}">
+                <p:confirm type="popup" header="Confirmation" message="¿Seguro que quieres proceder?" icon="pi pi-exclamation-triangle"/>
+            </p:commandButton>
+            <br/><br/>
+
+            <h2>¿Quieres desasociar un equipo de un laboratorio?</h2>
+            <p:commandButton value="Desasociar equipo" action="desasociar_equipo?faces-redirect=true" styleClass="ui-button-info" icon="pi pi-desktop" immediate="true"/><br/><br/>
+
+            <div id="button-layout">
+                <div>
+                    <p:commandButton value="Atrás" action="menu?faces-redirect=true" styleClass="ui-button-info" immediate="true"/>
+                </div>
+                <div id="info">
+                    <p:commandButton id="basic" icon="pi pi-info-circle" styleClass="ui-button-info"/>
+                    <p:overlayPanel for="basic" style="width:350px; text-align: left;">
+                        <p>Selecciona un laboratorio y asocia un equipo que quieras que pertenezca al laboratorio seleccionado.
+                        Si un equipo ya se encuentra asociado a un laboratorio diferente al seleccionado, se hará el cambio automáticamente.</p>
+                    </p:overlayPanel>
+                </div>
+            </div>
+
+            <p:confirmPopup global="true">
+                <p:commandButton value="No" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                <p:commandButton value="Si" type="button" styleClass="ui-confirm-popup-yes" />
+            </p:confirmPopup>
+
+        </h:form>
+    </div>
+</h:body>
+</html>

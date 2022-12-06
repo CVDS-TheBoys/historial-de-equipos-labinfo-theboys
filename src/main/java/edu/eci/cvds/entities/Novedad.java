@@ -8,9 +8,9 @@ public class Novedad {
     private String detalle;
     private Date fecha;
     private Integer EQUIPO_id;
-    private int ELEMENTO_id;
+    private Integer ELEMENTO_id;
 
-    public Novedad(int id, String titulo, String detalle, Date fecha, Integer EQUIPO_id, int ELEMENTO_id) {
+    public Novedad(int id, String titulo, String detalle, Date fecha, Integer EQUIPO_id, Integer ELEMENTO_id) {
         this.id = id;
         this.titulo = titulo;
         this.detalle = detalle;
@@ -19,7 +19,7 @@ public class Novedad {
         this.ELEMENTO_id = ELEMENTO_id;
     }
 
-    public Novedad(int id, String titulo, String detalle, Date fecha, int ELEMENTO_id) {
+    public Novedad(int id, String titulo, String detalle, Date fecha, Integer ELEMENTO_id) {
         this.id = id;
         this.titulo = titulo;
         this.detalle = detalle;
@@ -77,7 +77,7 @@ public class Novedad {
         return ELEMENTO_id;
     }
 
-    public void setELEMENTO_id(int ELEMENTO_id) {
+    public void setELEMENTO_id(Integer ELEMENTO_id) {
         this.ELEMENTO_id = ELEMENTO_id;
     }
 
