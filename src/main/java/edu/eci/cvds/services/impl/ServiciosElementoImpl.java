@@ -99,7 +99,7 @@ public class ServiciosElementoImpl implements ServiciosElemento {
         }
     }
 
-
+    @Override
     public Equipo getEquipoAsociado(Integer equipo_id) {
         try {
             return serviciosEquipo.consultarEquipo(equipo_id);

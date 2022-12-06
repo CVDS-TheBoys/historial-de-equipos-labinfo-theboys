@@ -73,8 +73,31 @@ public interface ServiciosEquipo {
     public void darBajaEquipo(int id) throws ExcepcionServiciosLaboratorio;
 
     /**
+     * Actualiza el laboratorio al que pertenece el equipo
+     *
+     * @param equipoId id del equipo
+     * @param laboratorioId id del laboratorio
+     * @throws ExcepcionServiciosLaboratorio
+     */
+    public void actualizarLaboratorio(int equipoId, Integer laboratorioId) throws ExcepcionServiciosLaboratorio;
+
+    /**
+     * Elimina la asociación de un equipo con un laboratorio dejandlo disponible
+     * @param equipoId id del equipo
+     * @throws ExcepcionServiciosLaboratorio
+     */
+    public void eliminarAsociacion(int equipoId) throws ExcepcionServiciosLaboratorio;
+
+    /**
+     * Consulta los equipos que se encuentran en un laboratorio
+     * @param laboratorioId id del laboratorio
+     * @return lista de equipos en un laboratorio
+     * @throws ExcepcionServiciosLaboratorio
+     */
+    public List<Equipo> consultarEquiposEnLaboratorio(int laboratorioId) throws ExcepcionServiciosLaboratorio;
+
+     /**
      * Consulta los equipos asociados a un laboratorio
-     * 
      * @return lista de equipos
      * @throws ExcepcionServiciosLaboratorio si no es posible cargar los equipos
      */

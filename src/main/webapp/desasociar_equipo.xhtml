@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Deasociar Equipo</title>
+    <link rel="stylesheet" href="./style/asociar_elementos.css"/>
+</h:head>
+
+<h:body>
+    <div class="card">
+        <h:form id="desasociar" class="form-asociar">
+            <h1 class="title">Deasociar equipo</h1>
+            <br/>
+            <div>
+                <p:outputLabel for="LaboratorioEliminar" value="Selecciona un laboratorio"/><br/>
+                <p:selectOneMenu id="LaboratorioEliminar" value="#{EquiposBean.laboratorioId}">
+                    <p:ajax update="desasociar:EquipoEliminar" process="@this"/>
+                    <f:selectItem itemLabel="Seleccciona uno" itemValue="#{null}"/>
+                    <f:selectItems value="#{LaboratorioBean.consultarLaboratoriosDisponibles()}" var="laboratorioel"
+                                   itemLabel="#{laboratorioel.nombre}" itemValue="#{laboratorioel.id}"/>
+                </p:selectOneMenu><br/>
+            </div><br/>
+
+            <div>
+                <p:outputLabel for="EquipoEliminar" value="Equipo"/><br/>
+                <p:selectOneMenu id="EquipoEliminar" value="#{EquiposBean.equipoId}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="Desasociar" itemValue="#{null}"/>
+                    <f:selectItems value="#{EquiposBean.getEquiposEnLab(EquiposBean.laboratorioId)}" var="equipoel"
+                                   itemLabel="#{equipoel.nombre}" itemValue="#{equipoel.id}"/>
+                </p:selectOneMenu><br/>
+            </div><br/>
+
+            <p:growl id="message" showDetail="true"/>
+            <p:commandButton value="Deasociar" action="menu?faces-redirect=true" styleClass="ui-button-info" icon="pi pi-save"
+                             actionListener="#{EquiposBean.desasociarEquipo(EquiposBean.equipoId)}">
+                <p:confirm type="popup" header="Confirmation" message="¿Seguro que quieres proceder?" icon="pi pi-exclamation-triangle"/>
+            </p:commandButton>
+            <br/><br/>
+            <div>
+                <p:commandButton value="Atrás" action="asociar_equipo?faces-redirect=true" styleClass="ui-button-info"/>
+            </div>
+
+            <p:confirmPopup global="true">
+                <p:commandButton value="No" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                <p:commandButton value="Si" type="button" styleClass="ui-confirm-popup-yes" />
+            </p:confirmPopup>
+
+        </h:form>
+    </div>
+</h:body>
+</html>

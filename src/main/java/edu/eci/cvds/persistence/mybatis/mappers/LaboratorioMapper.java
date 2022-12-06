@@ -11,6 +11,8 @@ public interface LaboratorioMapper {
 
     public Laboratorio consultarLaboratorio(@Param("idlb") int id);
 
+    public List<Laboratorio> consultarLaboratoriosDisponibles();
+
     public List<Laboratorio> consultarLaboratorios();
 
     public void cerrarLaboratorio(@Param("idlb") int id, @Param("fcierre") Date fecha_cierre);

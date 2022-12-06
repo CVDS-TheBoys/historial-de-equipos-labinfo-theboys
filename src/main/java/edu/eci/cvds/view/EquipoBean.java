@@ -4,10 +4,7 @@ import com.google.inject.Inject;
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Novedad;
-import edu.eci.cvds.services.ExcepcionServiciosLaboratorio;
-import edu.eci.cvds.services.ServiciosElemento;
-import edu.eci.cvds.services.ServiciosEquipo;
-import edu.eci.cvds.services.ServiciosNovedad;
+import edu.eci.cvds.services.*;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -31,9 +28,14 @@ public class EquipoBean extends BasePageBean {
     @Inject
     private ServiciosNovedad serviciosNovedad;
 
+    @Inject
+    private ServiciosLaboratorio serviciosLaboratorio;
+
     private List<Equipo> listaEquipos;
     private List<Equipo> listaEquiposFiltrada;
     private List<Equipo> equiposSeleccionados;
+    private Integer equipoId;
+    private Integer laboratorioId;
 
     /**
      * Registra un equipo junto con sus elementos
@@ -127,6 +129,61 @@ public class EquipoBean extends BasePageBean {
         }
     }
 
+    /**
+     * Asocia un equipo a un laboratorio
+     * @param equipoId id del equipo
+     * @param laboratorioId id del laboratorio
+     */
+    public void asociarEquipo(int equipoId, Integer laboratorioId) {
+        try {
+            Equipo equipo = serviciosEquipo.consultarEquipo(equipoId);
+            serviciosEquipo.actualizarLaboratorio(equipoId, laboratorioId);
+            Date date = new Date(System.currentTimeMillis());
+            String titulo = "";
+            String detalle = "";
+            if (equipo.getLaboratorio_id() == null){
+                titulo = "Asociación de equipo";
+                detalle = "Se asoció el equipo al laboratorio "  + serviciosLaboratorio.consultarLaboratorio(laboratorioId).getNombre();
+            } else {
+                titulo = "Cambio asociación de equipo";
+                detalle = "Se cambió el equipo al laboratorio "  + serviciosLaboratorio.consultarLaboratorio(laboratorioId).getNombre();
+            }
+            serviciosNovedad.registrarNovedad(new Novedad(1, titulo, detalle, date, equipoId, null));
+        } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
+            excepcionServiciosLaboratorio.printStackTrace();
+        }
+    }
+
+    /**
+     *  Elimina la asociación de un equipo con un laboratorio
+     * @param equipoId id del equipo
+     */
+    public void desasociarEquipo(int equipoId) {
+        Date date = new Date(System.currentTimeMillis());
+        String titulo ="Eliminación asociación";
+        String detalle ="Se eliminó la asociación del equipo";
+        try {
+            serviciosEquipo.eliminarAsociacion(equipoId);
+            serviciosNovedad.registrarNovedad(new Novedad(1, titulo, detalle, date, equipoId, null));
+        } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
+            excepcionServiciosLaboratorio.printStackTrace();
+        }
+    }
+
+    /**
+     * Obtiene los equipos que se encuentran en un laboratorio en especifico
+     * @param laboratorioId id del laboratorio
+     * @return lista de equipos de un laboratorio
+     */
+    public List<Equipo> getEquiposEnLab(Integer laboratorioId) {
+        try {
+            return serviciosEquipo.consultarEquiposEnLaboratorio(laboratorioId);
+        } catch (ExcepcionServiciosLaboratorio excepcionServiciosLaboratorio) {
+            excepcionServiciosLaboratorio.printStackTrace();
+            return null;
+        }
+    }
+
     public void setListaEquipos(List<Equipo> listaEquipos) {
         try {
             this.listaEquipos = serviciosEquipo.consultarEquipos();
@@ -185,6 +242,22 @@ public class EquipoBean extends BasePageBean {
 
     public void setEquiposSeleccionados(List<Equipo> equiposSeleccionados) {
         this.equiposSeleccionados = equiposSeleccionados;
+    }
+
+    public Integer getEquipoId() {
+        return equipoId;
+    }
+
+    public void setEquipoId(Integer equipoId) {
+        this.equipoId = equipoId;
+    }
+
+    public Integer getLaboratorioId() {
+        return laboratorioId;
+    }
+
+    public void setLaboratorioId(Integer laboratorioId) {
+        this.laboratorioId = laboratorioId;
     }
 
     public void darBajaEquipo(String detalle, boolean darBajaElementos) throws ExcepcionServiciosLaboratorio {

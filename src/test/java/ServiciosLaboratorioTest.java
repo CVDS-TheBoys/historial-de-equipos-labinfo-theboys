@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ServiciosLaboratorioTest {
     @Inject
@@ -49,5 +50,19 @@ public class ServiciosLaboratorioTest {
             throw new RuntimeException(e);
         }
     }
+
+    @Test
+    public void deberiaConsultarLaboratoriosDisponibles() {
+        try {
+            Laboratorio laboratorio2 = new Laboratorio(1002, "Laboratorio", 2, false, fecha);
+            serviciosLabServiciosLaboratorio.registrarLaboratorio(laboratorio2);
+            List<Laboratorio> labs = serviciosLabServiciosLaboratorio.consultarLaboratorios();
+            List<Laboratorio> labsDisponibles = serviciosLabServiciosLaboratorio.consultarLaboratoriosDisponibles();
+            Assert.assertEquals(labs.size() - 1, labsDisponibles.size());
+        } catch (ExcepcionServiciosLaboratorio e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

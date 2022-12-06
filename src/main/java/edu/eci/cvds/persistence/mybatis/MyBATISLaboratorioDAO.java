@@ -5,7 +5,6 @@ import edu.eci.cvds.entities.Laboratorio;
 import edu.eci.cvds.persistence.LaboratorioDAO;
 import edu.eci.cvds.persistence.mybatis.mappers.LaboratorioMapper;
 import org.apache.ibatis.exceptions.PersistenceException;
-
 import java.sql.Date;
 import java.util.List;
 
@@ -42,6 +41,16 @@ public class MyBATISLaboratorioDAO implements LaboratorioDAO {
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {
             System.out.println(e.getMessage());
             throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar laboratorios: ", e);
+        }
+    }
+
+    @Override
+    public List<Laboratorio> loadAvailable() throws PersistenceException {
+        try {
+            return laboratorioMapper.consultarLaboratoriosDisponibles();
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            System.out.println(e.getMessage());
+            throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar laboratorios disponibles: ", e);
         }
     }
 

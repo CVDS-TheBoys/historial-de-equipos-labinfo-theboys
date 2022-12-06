@@ -1,7 +1,6 @@
 package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Laboratorio;
-
 import java.util.List;
 
 public interface ServiciosLaboratorio {
@@ -31,8 +30,14 @@ public interface ServiciosLaboratorio {
     public Laboratorio consultarLaboratorio(int id) throws ExcepcionServiciosLaboratorio;
 
     /**
+     * Consulta los laboratorios que se encuentras activos
+     * @return lista de laboratorios activos
+     * @throws ExcepcionServiciosLaboratorio
+     */
+    public List<Laboratorio> consultarLaboratoriosDisponibles() throws ExcepcionServiciosLaboratorio;
+
+     /**
      * Cerrar laboratorio dejando el estado en falso
-     * 
      * @param id id del laboratiorio
      * @throws ExcepcionServiciosLaboratorio
      */

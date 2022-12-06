@@ -39,6 +39,15 @@ public class LaboratorioBean extends BasePageBean {
         }
     }
 
+    public List<Laboratorio> consultarLaboratoriosDisponibles() {
+        try {
+            return serviciosLaboratorio.consultarLaboratoriosDisponibles();
+        } catch (ExcepcionServiciosLaboratorio ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public List<Laboratorio> getLaboratorios() {
         try {
             return serviciosLaboratorio.consultarLaboratorios();
